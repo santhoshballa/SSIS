@@ -1,0 +1,2553 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/27/2019 11:20:29 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NHFLFTLDTC1242"
+  DTS:CreatorName="NH\SPottigari"
+  DTS:DTSID="{41C751BA-1EC8-48C7-8909-824E709EFE86}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.132"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Elig_File_Download_pkg"
+  DTS:PackageType="5"
+  DTS:VersionBuild="246"
+  DTS:VersionGUID="{66ABBA4D-6467-4CDE-A200-E0067A1A07DB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NHSQLDBConn]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DE3F2F3C-9FE9-47D0-BDB6-88088AB7DA52}"
+      DTS:ObjectName="NHSQLDBConn">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=nhcrmstg.database.windows.net;User ID=stageadmin;Initial Catalog=NHCRM_STG;Provider=SQLNCLI11.1;Persist Security Info=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NHSQLDBConnADO]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{A33E3EBB-C091-4AC2-BF86-01A9F8D2B3DC}"
+      DTS:ObjectName="NHSQLDBConnADO">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=nhcrmstg.database.windows.net;User ID=stageadmin;Initial Catalog=NHCRM_STG;Persist Security Info=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ProcessMonitorDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+      DTS:ObjectName="ProcessMonitorDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=nhcrmstg.database.windows.net;User ID=stageadmin;Initial Catalog=NHCRM_STG;Provider=SQLNCLI11.1;Persist Security Info=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4B190C54-B543-4DE4-A53D-74FDE0739963}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="intFileInfoId">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6C66B4A5-A239-4F34-A4FE-E6C74364EC72}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="rsFileInfo">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4B4D3005-1BCE-4291-B3C8-4CF6CE1A6FDD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strAppName">
+      <DTS:VariableValue
+        DTS:DataType="8">1_CovantageNBND_H447_FULL_DL</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FE187BB4-067C-4808-AD8E-C9151CEF8DC7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strClientCode">
+      <DTS:VariableValue
+        DTS:DataType="8">H447</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FA0295AE-C006-4943-9423-61AF8B1A25CA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strDataSource">
+      <DTS:VariableValue
+        DTS:DataType="8">ELIG_CVTG_ND</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6D4623A3-CAE2-47CE-9E1A-BD05C81896EF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strDirection">
+      <DTS:VariableValue
+        DTS:DataType="8">IN</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C865A9ED-164C-4E0F-96A7-9C81C114011C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strFileExtension">
+      <DTS:VariableValue
+        DTS:DataType="8">TXT</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{903B5DB2-76D6-4850-AC66-A4432DFC5569}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strFileFormat">
+      <DTS:VariableValue
+        DTS:DataType="8">Pipe</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6E51ED80-639D-4E01-B2F2-5B60E8FE3347}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strFileType">
+      <DTS:VariableValue
+        DTS:DataType="8">ELIG</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6A6C6B5D-A76F-47CF-A1D0-2CF5312EA79B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strIsDelFileFromClientFTP">
+      <DTS:VariableValue
+        DTS:DataType="8">N</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A65BE919-718F-4E5D-A5F6-EDD067059C6D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;exec elig.sp_process_detail &quot; +  &quot;'&quot; + ( @[User::strAppName]!=&quot;&quot; ? @[User::strAppName] : @[System::PackageName])  + &quot;',&quot; +  &quot;'&quot; + @[System::MachineName] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strJobDetail">
+      <DTS:VariableValue
+        DTS:DataType="8">exec elig.sp_process_detail '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{559E33A4-7DE6-4A0A-835A-8FC911963647}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;exec elig.sp_process_summary &quot; +  &quot;'&quot; + ( @[User::strAppName]!=&quot;&quot; ? @[User::strAppName] : @[System::PackageName]) + &quot;',&quot; +  &quot;'&quot; + @[System::MachineName] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strJobSummary">
+      <DTS:VariableValue
+        DTS:DataType="8">exec elig.sp_process_summary '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{253991C9-8764-4BE8-872D-03A28FD889AB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strLogFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\CovantageNBND_SSIS\LOG\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D85095EF-528F-4E73-B650-D0840DB77EC5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strSnapshotFlag">
+      <DTS:VariableValue
+        DTS:DataType="8">FULL</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{61EBAB10-5E08-46DC-8998-271454CAA4A6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPDestinationPath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NH-DPSR-WorkingDir\BCBSRI\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3C84D7A9-749E-429B-AB0B-4808ACE37717}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPExePathName">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\NH_WinSCP_Scripts</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{63F6AC65-6C5A-40DC-9633-78B8A0023618}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPLoginName">
+      <DTS:VariableValue
+        DTS:DataType="8">nhitsftp</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{15AF8D68-FF7B-4709-AF04-F52FF9017AE1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPScriptFullyQualifiedPathName">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\NH_WinSCP_Scripts\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B92236F6-35DC-4080-9C66-1F229FDED1E9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPScriptName">
+      <DTS:VariableValue
+        DTS:DataType="8">ScriptToDLFiles-NBKEY.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F43ACB78-312B-4B8B-B41C-0C9A2C5E5A92}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPSourceFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">MEM_T01_NHD_O_MLY_MBR_ELIG_FULL</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8357C9F8-2AC6-48CD-A8E4-FA0BC5993318}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPSourcePath">
+      <DTS:VariableValue
+        DTS:DataType="8">/h223/toNH</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{BD8A9042-CFB9-49BA-A79F-06273E4EB02D}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach ClientCode-FileInfoId Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{5B67395D-0EE6-494A-881C-49705834FD7B}"
+        DTS:ObjectName="{5B67395D-0EE6-494A-881C-49705834FD7B}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::rsFileInfo" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container\Execute winscp Delete file"
+          DTS:CreationName="Microsoft.ExecuteProcess"
+          DTS:Description="Execute Process Task"
+          DTS:DTSID="{9331D6F3-944A-4989-A32F-D802BD6BB4B0}"
+          DTS:ExecutableType="Microsoft.ExecuteProcess"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute winscp Delete file"
+          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Arguments">"/script=" +  @[User::WinSCPScriptFullyQualifiedPathName] + "DeleteScriptToDelFiles.txt" + " /parameter " + @[User::WinSCPLoginName]+" \""+ @[User::WinSCPSourcePath] +"\" "+ @[User::WinSCPSourceFileName] +" "+ @[User::strFileExtension]+" " + " /Log=" +  @[User::strLogFolder] + @[User::strClientCode]+"_"+@[User::strFileType]+"_"+@[User::strSnapshotFlag]+"_"+  SUBSTRING((DT_STR,30, 1252) GETDATE(), 1, 10) + "_DeleteLog_"+ @[User::WinSCPScriptName]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="C:\NHEligJobs\NH_WinSCP_Scripts\WinSCP.com"
+              Arguments="/script=C:\NHEligJobs\NH_WinSCP_Scripts\DeleteScriptToDelFiles.txt /parameter nhitsftp &quot;/h223/toNH&quot; MEM_T01_NHD_O_MLY_MBR_ELIG_FULL TXT  /Log=C:\NHEligJobs\CovantageNBND_SSIS\LOG\H447_ELIG_FULL_2022-07-27_DeleteLog_ScriptToDLFiles-NBKEY.txt"
+              WindowStyle="Hidden" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container\Execute winscp get exe Task"
+          DTS:CreationName="Microsoft.ExecuteProcess"
+          DTS:Description="Execute Process Task"
+          DTS:DTSID="{2205D444-3691-4AED-A120-9EB250A2A340}"
+          DTS:ExecutableType="Microsoft.ExecuteProcess"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute winscp get exe Task"
+          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Arguments">"/script=" +  @[User::WinSCPScriptFullyQualifiedPathName] + @[User::WinSCPScriptName] + " /parameter " + @[User::WinSCPLoginName]+" \""+ @[User::WinSCPSourcePath] +"\" "+ @[User::WinSCPSourceFileName] +" "+ @[User::strFileExtension] +" "+@[User::WinSCPDestinationPath] + " /Log=" +  @[User::strLogFolder] + @[User::strClientCode]+"_"+  @[User::strFileType]+"_"+@[User::strSnapshotFlag]+"_"+ SUBSTRING((DT_STR,30, 1252) GETDATE(), 1, 10) + "_Log_"+ @[User::WinSCPScriptName]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="C:\NHEligJobs\NH_WinSCP_Scripts\WinSCP.com"
+              Arguments="/script=C:\NHEligJobs\NH_WinSCP_Scripts\ScriptToDLFiles-NBKEY.txt /parameter nhitsftp &quot;/h223/toNH&quot; MEM_T01_NHD_O_MLY_MBR_ELIG_FULL TXT C:\NH-DPSR-WorkingDir\BCBSRI\ /Log=C:\NHEligJobs\CovantageNBND_SSIS\LOG\H447_ELIG_FULL_2022-07-27_Log_ScriptToDLFiles-NBKEY.txt"
+              WindowStyle="Hidden" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container\Execute winscp move exe Task"
+          DTS:CreationName="Microsoft.ExecuteProcess"
+          DTS:Description="Execute Process Task"
+          DTS:DTSID="{66553026-9E61-419B-8BE4-84608FC95D7D}"
+          DTS:ExecutableType="Microsoft.ExecuteProcess"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute winscp move exe Task"
+          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Arguments">"/script=" +  @[User::WinSCPScriptFullyQualifiedPathName] + "Move"+@[User::WinSCPScriptName] + " /parameter " + @[User::WinSCPLoginName]+" \""+ @[User::WinSCPSourcePath] +"\" "+ @[User::WinSCPSourceFileName] +" "+ @[User::strFileExtension]+" " + " /Log=" +  @[User::strLogFolder] + @[User::strClientCode]+"_"+@[User::strFileType]+"_"+@[User::strSnapshotFlag]+"_"+  SUBSTRING((DT_STR,30, 1252) GETDATE(), 1, 10) + "_MoveLog_"+ @[User::WinSCPScriptName]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="C:\NHEligJobs\NH_WinSCP_Scripts\WinSCP.com"
+              Arguments="/script=C:\NHEligJobs\NH_WinSCP_Scripts\MoveScriptToDLFiles-NBKEY.txt /parameter nhitsftp &quot;/h223/toNH&quot; MEM_T01_NHD_O_MLY_MBR_ELIG_FULL TXT  /Log=C:\NHEligJobs\CovantageNBND_SSIS\LOG\H447_ELIG_FULL_2022-07-27_MoveLog_ScriptToDLFiles-NBKEY.txt"
+              WindowStyle="Hidden" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container\Insert FileTrack Script Task"
+          DTS:CreationName="Microsoft.ScriptTask"
+          DTS:Description="Script Task"
+          DTS:DTSID="{6FF6B9FA-CFF1-431A-8D89-C80DAA943549}"
+          DTS:ExecutableType="Microsoft.ScriptTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Insert FileTrack Script Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_9450d10e5af741d7b9346d5645a8aacc"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp"
+              ReadOnlyVariables="User::intFileInfoId,User::strClientCode,User::strDataSource,User::strDirection,User::strFileExtension,User::strFileFormat,User::strFileType,User::strLogFolder,User::strSnapshotFlag,User::WinSCPDestinationPath,User::WinSCPSourceFileName">
+              <ProjectItem
+                Name="Properties\Resources.resx"
+                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_9450d10e5af741d7b9346d5645a8aacc.Properties.Settings.get_Default():ST_9450d10e5af741d7b9346d5645a8aacc.Properties.Sett" +
+    "ings")]
+
+namespace ST_9450d10e5af741d7b9346d5645a8aacc.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
+                Name="ST_9450d10e5af741d7b9346d5645a8aacc.csproj"
+                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7C1AA828-4EAF-49D0-BFB7-6AEE2439D6E9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_9450d10e5af741d7b9346d5645a8aacc</RootNamespace>
+    <AssemblyName>ST_9450d10e5af741d7b9346d5645a8aacc</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=14.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=14.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
+        <Host Name="ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST140</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+              <ProjectItem
+                Name="ScriptMain.cs"
+                Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+/* The Script Task allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services control flow. 
+ * 
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script task. */
+#endregion
+
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.IO;
+#endregion
+
+namespace ST_9450d10e5af741d7b9346d5645a8aacc
+{
+    /// <summary>
+    /// ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+    /// or parent of this class.
+    /// </summary>
+	[Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+	public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+	{
+        #region Help:  Using Integration Services variables and parameters in a script
+        /* To use a variable in this script, first ensure that the variable has been added to 
+         * either the list contained in the ReadOnlyVariables property or the list contained in 
+         * the ReadWriteVariables property of this script task, according to whether or not your
+         * code needs to write to the variable.  To add the variable, save this script, close this instance of
+         * Visual Studio, and update the ReadOnlyVariables and 
+         * ReadWriteVariables properties in the Script Transformation Editor window.
+         * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+         * 
+         * Example of reading from a variable:
+         *  DateTime startTime = (DateTime) Dts.Variables["System::StartTime"].Value;
+         * 
+         * Example of writing to a variable:
+         *  Dts.Variables["User::myStringVariable"].Value = "new value";
+         * 
+         * Example of reading from a package parameter:
+         *  int batchId = (int) Dts.Variables["$Package::batchId"].Value;
+         *  
+         * Example of reading from a project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].Value;
+         * 
+         * Example of reading from a sensitive project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].GetSensitiveValue();
+         * */
+
+        #endregion
+
+        #region Help:  Firing Integration Services events from a script
+        /* This script task can fire events for logging purposes.
+         * 
+         * Example of firing an error event:
+         *  Dts.Events.FireError(18, "Process Values", "Bad value", "", 0);
+         * 
+         * Example of firing an information event:
+         *  Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, ref fireAgain)
+         * 
+         * Example of firing a warning event:
+         *  Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0);
+         * */
+        #endregion
+
+        #region Help:  Using Integration Services connection managers in a script
+        /* Some types of connection managers can be used in this script task.  See the topic 
+         * "Working with Connection Managers Programatically" for details.
+         * 
+         * Example of using an ADO.Net connection manager:
+         *  object rawConnection = Dts.Connections["Sales DB"].AcquireConnection(Dts.Transaction);
+         *  SqlConnection myADONETConnection = (SqlConnection)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Sales DB"].ReleaseConnection(rawConnection);
+         *
+         * Example of using a File connection manager
+         *  object rawConnection = Dts.Connections["Prices.zip"].AcquireConnection(Dts.Transaction);
+         *  string filePath = (string)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Prices.zip"].ReleaseConnection(rawConnection);
+         * */
+        #endregion
+
+
+		/// <summary>
+        /// This method is called when this script task executes in the control flow.
+        /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+        /// To open Help, press F1.
+        /// </summary>
+		public void Main()
+		{
+            string datetime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            try
+            {
+                SqlConnection myADONETConnection = new SqlConnection();
+                myADONETConnection = (SqlConnection)
+                (Dts.Connections["NHSQLDBConnADO"].AcquireConnection(Dts.Transaction) as SqlConnection);
+
+                //Declare Variables
+                string lvintFileInfoId = Dts.Variables["User::intFileInfoId"].Value.ToString();
+                string lvstrClientCode = Dts.Variables["User::strClientCode"].Value.ToString();
+                string lvstrDirection = Dts.Variables["User::strDirection"].Value.ToString();
+                string lvstrFileFormat = Dts.Variables["User::strFileFormat"].Value.ToString();
+                string lvstrFileType = Dts.Variables["User::strFileType"].Value.ToString();
+                string lvstrSnapshotFlag = Dts.Variables["User::strSnapshotFlag"].Value.ToString();
+                string lvstrDataSource = Dts.Variables["User::strDataSource"].Value.ToString();
+                string SourceFolderPath = Dts.Variables["User::WinSCPDestinationPath"].Value.ToString();
+                string FileExtension = Dts.Variables["User::strFileExtension"].Value.ToString();
+                string lvFileName = Dts.Variables["User::WinSCPSourceFileName"].Value.ToString();
+                string FileName = Dts.Variables["User::WinSCPSourceFileName"].Value.ToString() + "*." + Dts.Variables["User::strFileExtension"].Value.ToString();
+
+
+                //Reading file names one by one
+                string SourceDirectory = SourceFolderPath;
+                string[] fileEntries = Directory.GetFiles(SourceDirectory, FileName, SearchOption.TopDirectoryOnly);
+                foreach (string fileName in fileEntries)
+                {
+
+                    //Writing Data of File Into Table
+                    //MessageBox.Show(fileName.Replace(SourceFolderPath, ""));
+
+                    string delquery = "delete from elig.filetrack where FileName = '" + fileName.Replace(SourceFolderPath, "") + "' and StatusCode = '100'";
+                    SqlCommand myCommand2 = new SqlCommand(delquery, myADONETConnection);
+                    myCommand2.ExecuteNonQuery();
+
+                    string query = "insert into elig.filetrack (FileInfoID,ClientCode,DirectionCode, FileName, FileFormat,FileType,SnapshotFlag,DataSource,DateReceived,StatusCode) ";
+                    query += " VALUES (" + lvintFileInfoId + ",'" + lvstrClientCode + "','" + lvstrDirection + "','" + fileName.Replace(SourceFolderPath, "") + "','" + lvstrFileFormat + "','" + lvstrFileType + "','" + lvstrSnapshotFlag + "','" + lvstrDataSource + "', getdate()," + "'100')";
+
+
+                    //MessageBox.Show(query.ToString());
+                    SqlCommand myCommand1 = new SqlCommand(query, myADONETConnection);
+                    myCommand1.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception exception)
+            {
+                // Create Log File for Errors
+                using (StreamWriter sw = File.CreateText(Dts.Variables["User::strLogFolder"].Value.ToString()
+                    + "\\" + "ErrorLog_" + Dts.Variables["User::strFileName"].Value.ToString() + datetime + ".log"))
+                {
+                    sw.WriteLine(exception.ToString());
+                    Dts.TaskResult = (int)ScriptResults.Failure;
+                }
+
+            }
+        }
+
+        #region ScriptResults declaration
+        /// <summary>
+        /// This enum provides a convenient shorthand within the scope of this class for setting the
+        /// result of the script.
+        /// 
+        /// This code was generated automatically.
+        /// </summary>
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        };
+        #endregion
+
+	}
+}]]></ProjectItem>
+              <ProjectItem
+                Name="Project"
+                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>ST_9450d10e5af741d7b9346d5645a8aacc</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>ST_9450d10e5af741d7b9346d5645a8aacc</msb:DisplayName>
+    <msb:ProjectId>{A3A7E2B9-7A3D-4AF3-A9C8-EDBCE1730481}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_9450d10e5af741d7b9346d5645a8aacc.csproj" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="ScriptMain.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_9450d10e5af741d7b9346d5645a8aacc")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_9450d10e5af741d7b9346d5645a8aacc")]
+[assembly: AssemblyCopyright("Copyright @  2019")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Resources.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_9450d10e5af741d7b9346d5645a8aacc.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_9450d10e5af741d7b9346d5645a8aacc.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_9450d10e5af741d7b9346d5645a8aacc.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_9450d10e5af741d7b9346d5645a8aacc.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_9450d10e5af741d7b9346d5645a8aacc.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <BinaryItem
+                Name="ST_9450d10e5af741d7b9346d5645a8aacc.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAMV94WIAAAAAAAAAAOAAIiALATAAABgAAAAIAAAAAAAAsjcA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAGA3AABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAuBcAAAAgAAAAGAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAQAAAAAYAAAAaAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAIAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACU
+NwAAAAAAAEgAAAACAAUAbCQAADwSAAABAAAAAAAAAKg2AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABswBgByAwAAAQAAESgQAAAKCxIBcgEAAHAoEQAACgpzEgAA
+CgwCKBMAAApvFAAACnIfAABwbxUAAAoCKBMAAApvFgAACm8XAAAKdRAAAAEMAigTAAAKbxgAAApy
+PQAAcG8ZAAAKbxoAAApvGwAACg0CKBMAAApvGAAACnJlAABwbxkAAApvGgAACm8bAAAKEwQCKBMA
+AApvGAAACnKNAABwbxkAAApvGgAACm8bAAAKEwUCKBMAAApvGAAACnKzAABwbxkAAApvGgAACm8b
+AAAKEwYCKBMAAApvGAAACnLbAABwbxkAAApvGgAACm8bAAAKEwcCKBMAAApvGAAACnL/AABwbxkA
+AApvGgAACm8bAAAKEwgCKBMAAApvGAAACnIrAQBwbxkAAApvGgAACm8bAAAKEwkCKBMAAApvGAAA
+CnJTAQBwbxkAAApvGgAACm8bAAAKEwoCKBMAAApvGAAACnKLAQBwbxkAAApvGgAACm8bAAAKJgIo
+EwAACm8YAAAKcrkBAHBvGQAACm8aAAAKbxsAAAomAigTAAAKbxgAAApyuQEAcG8ZAAAKbxoAAApv
+GwAACnLvAQBwAigTAAAKbxgAAApyiwEAcG8ZAAAKbxoAAApvGwAACigcAAAKEwsRChELFigdAAAK
+EwwWEw044gAAABEMEQ2aEw5y9QEAcBEOEQpyUQIAcG8eAAAKclMCAHAoHAAACghzHwAACm8gAAAK
+JnKFAgBwEw8fEo0hAAABJRYRD6IlF3KoAwBwoiUYCaIlGXK8AwBwoiUaEQSiJRtywgMAcKIlHBEF
+oiUdcsIDAHCiJR4RDhEKclECAHBvHgAACqIlHwlywgMAcKIlHwoRBqIlHwtywgMAcKIlHwwRB6Il
+Hw1ywgMAcKIlHw4RCKIlHw9ywgMAcKIlHxARCaIlHxFyygMAcKIoIQAAChMPEQ8Icx8AAApvIAAA
+CiYRDRdYEw0RDREMjmk/E////92WAAAAExAbjSEAAAElFgIoEwAACm8YAAAKcvIDAHBvGQAACm8a
+AAAKbxsAAAqiJRdyGAQAcKIlGAIoEwAACm8YAAAKci4EAHBvGQAACm8aAAAKbxsAAAqiJRkGoiUa
+clIEAHCiKCEAAAooIgAAChMREREREG8bAAAKbyMAAAoCKBMAAAoXbyQAAAreDBERLAcREW8lAAAK
+3N4AKgAAQTQAAAIAAABHAwAAHAAAAGMDAAAMAAAAAAAAAAAAAAATAAAAyAIAANsCAACWAAAAEQAA
+AR4CKCYAAAoqHgIoJwAACiqufgEAAAQtHnJcBABw0AMAAAIoKAAACm8pAAAKcyoAAAqAAQAABH4B
+AAAEKhp+AgAABCoeAoACAAAEKhp+AwAABCoeAigrAAAKKi5zCAAABoADAAAEKgAAQlNKQgEAAQAA
+AAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAhAQAACN+AADwBAAApAYAACNTdHJpbmdzAAAAAJQL
+AADQBAAAI1VTAGQQAAAQAAAAI0dVSUQAAAB0EAAAyAEAACNCbG9iAAAAAAAAAAIAAAFXHaIBCQMA
+AAD6ATMAFgAAAQAAACsAAAAFAAAABgAAAAkAAAABAAAAKwAAAAIAAAAQAAAAAQAAAAIAAAADAAAA
+BAAAAAEAAAAFAAAAAQAAAAEAAAAAANQDAQAAAAAABgCEAigFBgATAygFBgDQARUFDwCcBQAABgD9
+AWIEBgBnAmIEBgBIAmIEBgD6AmIEBgCkAmIEBgC9AmIEBgAUAmIEBgAvAkEDCgDYAoMDCgBHAYMD
+BgDfAAUEDgCGBFEGBgChBAUEBgDwBAoABgAMBAUEBgCzARUFBgAvBgUEBgDOBEgFBgC+BD0EEgCD
+Ab4DEgDkAb4DEgBjASgEBgCYASgFCgCsA4MDFgD+BegAFgDeBOgAFgDeBegAFgChAOgABgBdAwUE
+BgCXBgoABgCUBAoADgB+AFEGDgB0AKsEBgDaAAoABgD9BAoABgCqAAUEBgASAQUEBgC2AAUEBgB+
+BmIEAAAAAAEAAAAAAAEAAQABABAAHQRQADkAAQABAAAAEABPBasFVQABAAMAAAEQAPEFqwVpAAMA
+BwADAQAAGgYAAE0ABAAKABEAEQTJABEANwHNABEAkQDRAAYGMwDVAFaACgbYAFaAFwHYAFAgAAAA
+AIYAIwQGAAEABCQAAAAAhhgIBQYAAQAMJAAAAACDGAgFBgABABQkAAAAAJMIygTcAAEAQCQAAAAA
+kwgfAeEAAQBHJAAAAACTCCsB5gABAE8kAAAAAJYINgbsAAIAViQAAAAAhhgIBQYAAgBeJAAAAACR
+GA4F8QACAAAAAQA7AwkACAUBABEACAUGABkACAUKACkACAUQADEACAUQADkACAUQAEEACAUQAEkA
+CAUQAFEACAUQAFkACAUQAGEACAUQAGkACAUGAKEACAUGAMkACAUVANkACAUGAHkAcgY1AHkAWwM6
+AIEACAUGAHEAEgY/AOEA+gVEAOkA/ANJAOEAUgRPAPEAdARTAOEA2gVYAPkA/ANdAAEBMQNPAKkA
+WwNkAAkBKAZoABEB6AVvAAkBiQB5ACEBCAV/ACkBhwaGAAkBKAaKADEBZwaQADkBCAEQAOEAQgYB
+AEEBewEGAHEACAUGAKkACAUGAEkByACWAEkBegafALEACAWlANEACAUGAAgAFAC/AAgAGADEACkA
+cwAsAS4ACwAEAS4AEwANAS4AGwAsAS4AIwA1AS4AKwBeAS4AMwBeAS4AOwBeAS4AQwA1AS4ASwBk
+AS4AUwBeAS4AWwB7AUMAYwDEAEkAcwAsAWEAewDEAGMAawDEABsAAwABAAQAAwAAAM4E9QAAAD8B
++gAAADoG/wACAAQAAwACAAUABQABAAYABQACAAcABwAEgAAAAQAAADMgwmIAAAAAAABQAAAABAAA
+AAAAAAAAAAAArQBHAAAAAAAOAAAAAAAAAAAAAAC2AGQDAAAAAAQAAAAAAAAAAAAAAK0AOwAAAAAA
+BAAAAAAAAAAAAAAArQAFBAAAAAAOAAAAAAAAAAAAAAC2ABQAAAAAAAAAAAABAAAAWQUAAAUAAgAA
+AAA8TW9kdWxlPgBTeXN0ZW0uSU8ATWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRTAHZhbHVl
+X18AU3lzdGVtLkRhdGEAbXNjb3JsaWIAU1RfOTQ1MGQxMGU1YWY3NDFkN2I5MzQ2ZDU2NDVhOGFh
+Y2MARGJDb21tYW5kAFNxbENvbW1hbmQAUmVwbGFjZQBkZWZhdWx0SW5zdGFuY2UAVmFyaWFibGUA
+SURpc3Bvc2FibGUAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUARmlsZQBEYXRl
+VGltZQBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5SdW50aW1lAFdyaXRlTGluZQBUeXBlAEZhaWx1
+cmUAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VDdWx0dXJlAFZTVEFSVFNjcmlwdE9i
+amVjdE1vZGVsQmFzZQBBcHBsaWNhdGlvblNldHRpbmdzQmFzZQBEaXNwb3NlAEVkaXRvckJyb3dz
+YWJsZVN0YXRlAENvbXBpbGVyR2VuZXJhdGVkQXR0cmlidXRlAERlYnVnZ2VyTm9uVXNlckNvZGVB
+dHRyaWJ1dGUARGVidWdnYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUAQXNz
+ZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJnZXRGcmFt
+ZXdvcmtBdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5RGVz
+Y3JpcHRpb25BdHRyaWJ1dGUAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBBc3NlbWJs
+eVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAU1NJU1NjcmlwdFRh
+c2tFbnRyeVBvaW50QXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBSdW50aW1lQ29t
+cGF0aWJpbGl0eUF0dHJpYnV0ZQBnZXRfVmFsdWUAdmFsdWUAU3lzdGVtLlJ1bnRpbWUuVmVyc2lv
+bmluZwBUb1N0cmluZwBNaWNyb3NvZnQuU3FsU2VydmVyLlNjcmlwdFRhc2sATWljcm9zb2Z0LlNx
+bFNlcnZlci5EdHMuVGFza3MuU2NyaXB0VGFzawBTY3JpcHRPYmplY3RNb2RlbABTeXN0ZW0uQ29t
+cG9uZW50TW9kZWwAU1RfOTQ1MGQxMGU1YWY3NDFkN2I5MzQ2ZDU2NDVhOGFhY2MuZGxsAGdldF9J
+dGVtAFN5c3RlbQBFbnVtAHJlc291cmNlTWFuAFNjcmlwdE1haW4AU3lzdGVtLkNvbmZpZ3VyYXRp
+b24AU3lzdGVtLkdsb2JhbGl6YXRpb24AZ2V0X1RyYW5zYWN0aW9uAFN5c3RlbS5SZWZsZWN0aW9u
+AEFjcXVpcmVDb25uZWN0aW9uAFNxbENvbm5lY3Rpb24AU2VhcmNoT3B0aW9uAEV4Y2VwdGlvbgBT
+eXN0ZW0uRGF0YS5Db21tb24AQ3VsdHVyZUluZm8AZ2V0X1Jlc291cmNlTWFuYWdlcgBDb25uZWN0
+aW9uTWFuYWdlcgBTdHJlYW1Xcml0ZXIAVGV4dFdyaXRlcgAuY3RvcgAuY2N0b3IAU3lzdGVtLkRp
+YWdub3N0aWNzAFN5c3RlbS5SdW50aW1lLkNvbXBpbGVyU2VydmljZXMAU3lzdGVtLlJlc291cmNl
+cwBTVF85NDUwZDEwZTVhZjc0MWQ3YjkzNDZkNTY0NWE4YWFjYy5Qcm9wZXJ0aWVzLlJlc291cmNl
+cy5yZXNvdXJjZXMARGVidWdnaW5nTW9kZXMAU1RfOTQ1MGQxMGU1YWY3NDFkN2I5MzQ2ZDU2NDVh
+OGFhY2MuUHJvcGVydGllcwBnZXRfVmFyaWFibGVzAEdldEZpbGVzAFNldHRpbmdzAGdldF9Db25u
+ZWN0aW9ucwBTdWNjZXNzAGdldF9EdHMAU2NyaXB0UmVzdWx0cwBDb25jYXQAT2JqZWN0AGdldF9E
+ZWZhdWx0AHNldF9UYXNrUmVzdWx0AFN5c3RlbS5EYXRhLlNxbENsaWVudABDcmVhdGVUZXh0AGdl
+dF9Ob3cAZ2V0X0Fzc2VtYmx5AEV4ZWN1dGVOb25RdWVyeQBEaXJlY3RvcnkAAAAAAB15AHkAeQB5
+AE0ATQBkAGQASABIAG0AbQBzAHMAAB1OAEgAUwBRAEwARABCAEMAbwBuAG4AQQBEAE8AACdVAHMA
+ZQByADoAOgBpAG4AdABGAGkAbABlAEkAbgBmAG8ASQBkAAAnVQBzAGUAcgA6ADoAcwB0AHIAQwBs
+AGkAZQBuAHQAQwBvAGQAZQAAJVUAcwBlAHIAOgA6AHMAdAByAEQAaQByAGUAYwB0AGkAbwBuAAAn
+VQBzAGUAcgA6ADoAcwB0AHIARgBpAGwAZQBGAG8AcgBtAGEAdAAAI1UAcwBlAHIAOgA6AHMAdABy
+AEYAaQBsAGUAVAB5AHAAZQAAK1UAcwBlAHIAOgA6AHMAdAByAFMAbgBhAHAAcwBoAG8AdABGAGwA
+YQBnAAAnVQBzAGUAcgA6ADoAcwB0AHIARABhAHQAYQBTAG8AdQByAGMAZQAAN1UAcwBlAHIAOgA6
+AFcAaQBuAFMAQwBQAEQAZQBzAHQAaQBuAGEAdABpAG8AbgBQAGEAdABoAAAtVQBzAGUAcgA6ADoA
+cwB0AHIARgBpAGwAZQBFAHgAdABlAG4AcwBpAG8AbgAANVUAcwBlAHIAOgA6AFcAaQBuAFMAQwBQ
+AFMAbwB1AHIAYwBlAEYAaQBsAGUATgBhAG0AZQAABSoALgAAW2QAZQBsAGUAdABlACAAZgByAG8A
+bQAgAGUAbABpAGcALgBmAGkAbABlAHQAcgBhAGMAawAgAHcAaABlAHIAZQAgAEYAaQBsAGUATgBh
+AG0AZQAgAD0AIAAnAAEBADEnACAAYQBuAGQAIABTAHQAYQB0AHUAcwBDAG8AZABlACAAPQAgACcA
+MQAwADAAJwABgSFpAG4AcwBlAHIAdAAgAGkAbgB0AG8AIABlAGwAaQBnAC4AZgBpAGwAZQB0AHIA
+YQBjAGsAIAAoAEYAaQBsAGUASQBuAGYAbwBJAEQALABDAGwAaQBlAG4AdABDAG8AZABlACwARABp
+AHIAZQBjAHQAaQBvAG4AQwBvAGQAZQAsACAARgBpAGwAZQBOAGEAbQBlACwAIABGAGkAbABlAEYA
+bwByAG0AYQB0ACwARgBpAGwAZQBUAHkAcABlACwAUwBuAGEAcABzAGgAbwB0AEYAbABhAGcALABE
+AGEAdABhAFMAbwB1AHIAYwBlACwARABhAHQAZQBSAGUAYwBlAGkAdgBlAGQALABTAHQAYQB0AHUA
+cwBDAG8AZABlACkAIAAAEyAAVgBBAEwAVQBFAFMAIAAoAAAFLAAnAAEHJwAsACcAAScnACwAIABn
+AGUAdABkAGEAdABlACgAKQAsACcAMQAwADAAJwApAAElVQBzAGUAcgA6ADoAcwB0AHIATABvAGcA
+RgBvAGwAZABlAHIAABVcAEUAcgByAG8AcgBMAG8AZwBfAAAjVQBzAGUAcgA6ADoAcwB0AHIARgBp
+AGwAZQBOAGEAbQBlAAAJLgBsAG8AZwAAcVMAVABfADkANAA1ADAAZAAxADAAZQA1AGEAZgA3ADQA
+MQBkADcAYgA5ADMANAA2AGQANQA2ADQANQBhADgAYQBhAGMAYwAuAFAAcgBvAHAAZQByAHQAaQBl
+AHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAADETFAGOI9DS7iNhzWM9EIrAAQgAQEIAyAAAQUgAQER
+EQQgAQEOBSABARFhGQcSDhE9EkEODg4ODg4ODg4dDggODhJFEkkEAAARPQQgAQ4OBCAAEnEEIAAS
+dQUgARJ5HAMgABwEIAEcHAQgABJ9BiABEoCBHAMgAA4GAAMODg4OCQADHQ4ODhGAjQUgAg4ODgYg
+AgEOEkEDIAAIBQABDh0OBQABEkkOCAABEoClEYCpBSAAEoCtByACAQ4SgK0It3pcVhk04IkIiYRd
+zYCAzJEEAAAAAAQBAAAAAwYSWQMGEl0DBhIQAgYIAwYRFAQAABJZBAAAEl0FAAEBEl0EAAASEAMA
+AAEECAASWQQIABJdBAgAEhAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MB
+CAEAAgAAAAAAKAEAI1NUXzk0NTBkMTBlNWFmNzQxZDdiOTM0NmQ1NjQ1YThhYWNjAAAFAQAAAAAW
+AQARQ29weXJpZ2h0IEAgIDIwMTkAAEkBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuNQEAVA4U
+RnJhbWV3b3JrRGlzcGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC41AAAAtAAAAM7K774BAAAAkQAA
+AGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAu
+MC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkjU3lz
+dGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQQURQQURQtAAAAIg3
+AAAAAAAAAAAAAKI3AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAACUNwAAAAAAAAAAAAAAAF9Db3JE
+bGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgA
+AABYQAAAGgQAAAAAAAAAAAAAGgQ0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAA
+AL0E7/4AAAEAAAABAMJiMyAAAAEAwmIzID8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAA
+AQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAA
+AAAAAACwBHoDAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAFYDAAABADAAMAAwADAA
+MAA0AGIAMAAAABoAAQABAEMAbwBtAG0AZQBuAHQAcwAAAAAAAAAiAAEAAQBDAG8AbQBwAGEAbgB5
+AE4AYQBtAGUAAAAAAAAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAA
+UwBUAF8AOQA0ADUAMABkADEAMABlADUAYQBmADcANAAxAGQANwBiADkAMwA0ADYAZAA1ADYANAA1
+AGEAOABhAGEAYwBjAAAAPgAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADgA
+MgA0ADMALgAyADUAMgA4ADIAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBU
+AF8AOQA0ADUAMABkADEAMABlADUAYQBmADcANAAxAGQANwBiADkAMwA0ADYAZAA1ADYANAA1AGEA
+OABhAGEAYwBjAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABD
+AG8AcAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADkAAAAqAAEAAQBMAGUAZwBhAGwAVAByAGEA
+ZABlAG0AYQByAGsAcwAAAAAAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABlAG4AYQBt
+AGUAAABTAFQAXwA5ADQANQAwAGQAMQAwAGUANQBhAGYANwA0ADEAZAA3AGIAOQAzADQANgBkADUA
+NgA0ADUAYQA4AGEAYQBjAGMALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0AZQAA
+AAAAUwBUAF8AOQA0ADUAMABkADEAMABlADUAYQBmADcANAAxAGQANwBiADkAMwA0ADYAZAA1ADYA
+NAA1AGEAOABhAGEAYwBjAAAAQgAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAAMQAu
+ADAALgA4ADIANAAzAC4AMgA1ADIAOAAyAAAAAABGAA8AAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUA
+cgBzAGkAbwBuAAAAMQAuADAALgA4ADIANAAzAC4AMgA1ADIAOAAyAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAADAAAALQ3AAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
+            </ScriptProject>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{2FEDF2E9-D319-4E64-8F85-A46F12CBEE10}"
+          DTS:From="Package\Foreach ClientCode-FileInfoId Loop Container\Execute winscp get exe Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach ClientCode-FileInfoId Loop Container\Insert FileTrack Script Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{0FA07603-0146-4DB2-BCD5-63E1A4879A2D}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::strIsDelFileFromClientFTP]  != &quot;Y&quot;"
+          DTS:From="Package\Foreach ClientCode-FileInfoId Loop Container\Insert FileTrack Script Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Foreach ClientCode-FileInfoId Loop Container\Execute winscp move exe Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{C606C183-A2E1-4C8E-B51F-AC496F77FE1E}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::strIsDelFileFromClientFTP]  == &quot;Y&quot;"
+          DTS:From="Package\Foreach ClientCode-FileInfoId Loop Container\Insert FileTrack Script Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Foreach ClientCode-FileInfoId Loop Container\Execute winscp Delete file" />
+      </DTS:PrecedenceConstraints>
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{41CE5585-D8D2-433B-B81A-66643E11815C}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{9F38A31C-28BE-47C8-8CEA-993E9A3F2047}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnError]\Write to process detail talbe"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{8C53D04B-3830-43D6-A781-F9A0E576F05C}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Write to process detail talbe">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'I','E','Fatal Error " + (DT_WSTR,20)@[System::ErrorCode] + " " + REPLACE(@[System::ErrorDescription] , "'","") + "'"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+                  SQLTask:SqlStatementSource="exec elig.sp_process_detail '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','I','E','Fatal Error 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnError]\write to process summary table"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{B929B61A-91AF-4BB9-B5DE-5A522FB4A517}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="write to process summary table">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'U','E','Error " + (DT_WSTR,20)@[System::ErrorCode] + " " + REPLACE(@[System::ErrorDescription] , "'","") + "'"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+                  SQLTask:SqlStatementSource="exec elig.sp_process_summary '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','U','E','Error 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{2DB24406-FA25-428D-B84C-95DDD9D627F3}"
+              DTS:From="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnError]\write to process summary table"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnError]\Write to process detail talbe" />
+          </DTS:PrecedenceConstraints>
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnPreExecute]"
+          DTS:CreationName="OnPreExecute"
+          DTS:DTSID="{D0B6EDAE-5271-46D6-A01E-0D8845B0E454}"
+          DTS:EventID="0"
+          DTS:EventName="OnPreExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{DC941B33-945C-402B-83B5-699C5F994230}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnPreExecute]\Write to process detail talbe"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{4C3DAF99-BEBC-4A2F-B226-78C5CFD4C8A7}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Write to process detail talbe">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'I','R','DL files for "  + @[User::strClientCode] +" "+   @[System::SourceName]     +"'"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+                  SQLTask:SqlStatementSource="exec elig.sp_process_detail '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','I','R','DL files for H447 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnPreExecute]\write to process summary table"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{D988EB82-E1A8-416B-8333-12ABC1C2C7E9}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="write to process summary table">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'U','R','DL files for " +  @[User::strClientCode] +"'"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+                  SQLTask:SqlStatementSource="exec elig.sp_process_summary '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','U','R','DL files for H447'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{A707E0A3-205C-4275-9DB0-D136DE88E336}"
+              DTS:From="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnPreExecute]\write to process summary table"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnPreExecute]\Write to process detail talbe" />
+          </DTS:PrecedenceConstraints>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{C2BC9E02-7032-4BC1-9D78-92829981315E}"
+          DTS:ObjectName="{C2BC9E02-7032-4BC1-9D78-92829981315E}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::intFileInfoId" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{7AD7765C-C007-4961-87D2-1B392A5975DD}"
+          DTS:ObjectName="{7AD7765C-C007-4961-87D2-1B392A5975DD}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::WinSCPSourceFileName" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{5B9AA9CA-2812-4465-8D99-CA2D157C5CE8}"
+          DTS:ObjectName="{5B9AA9CA-2812-4465-8D99-CA2D157C5CE8}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::WinSCPSourcePath" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{607DD006-F0BD-4BF9-A9E3-3307BF94A666}"
+          DTS:ObjectName="{607DD006-F0BD-4BF9-A9E3-3307BF94A666}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::WinSCPDestinationPath" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{F54EFADD-0A5C-4DE3-8706-38EC76BA6F03}"
+          DTS:ObjectName="{F54EFADD-0A5C-4DE3-8706-38EC76BA6F03}"
+          DTS:ValueIndex="4"
+          DTS:VariableName="User::strDirection" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{B380D7A2-C018-41AE-8316-026B000FDE84}"
+          DTS:ObjectName="{B380D7A2-C018-41AE-8316-026B000FDE84}"
+          DTS:ValueIndex="5"
+          DTS:VariableName="User::strFileFormat" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{E30A54FF-8F65-4D3F-A5FF-9B9D7CE8B5D2}"
+          DTS:ObjectName="{E30A54FF-8F65-4D3F-A5FF-9B9D7CE8B5D2}"
+          DTS:ValueIndex="6"
+          DTS:VariableName="User::strSnapshotFlag" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{EF52AA85-5DF7-44DB-83A4-86EB62D7AB55}"
+          DTS:ObjectName="{EF52AA85-5DF7-44DB-83A4-86EB62D7AB55}"
+          DTS:ValueIndex="7"
+          DTS:VariableName="User::strDataSource" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{F3FACC0F-6CAD-45F9-9567-6EC36076719A}"
+          DTS:ObjectName="{F3FACC0F-6CAD-45F9-9567-6EC36076719A}"
+          DTS:ValueIndex="8"
+          DTS:VariableName="User::strFileExtension" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{431D4EA8-310A-43FF-AF1A-3E654535E5FE}"
+          DTS:ObjectName="{431D4EA8-310A-43FF-AF1A-3E654535E5FE}"
+          DTS:ValueIndex="9"
+          DTS:VariableName="User::strFileType" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{EEB7B8EE-4484-49CC-8F48-5FD3418DD1D7}"
+          DTS:ObjectName="{EEB7B8EE-4484-49CC-8F48-5FD3418DD1D7}"
+          DTS:ValueIndex="11"
+          DTS:VariableName="User::WinSCPLoginName" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{D5E1C69D-055D-4F75-80C3-C40BDB127FC6}"
+          DTS:ObjectName="{D5E1C69D-055D-4F75-80C3-C40BDB127FC6}"
+          DTS:ValueIndex="12"
+          DTS:VariableName="User::strIsDelFileFromClientFTP" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get FileInfoIds for ClientCode SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{FEA62E66-0ABC-4431-B71A-73E15450378A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get FileInfoIds for ClientCode SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{EDBD25FD-8A2C-47E7-BFAF-9D5481E60B8E}"
+          DTS:EventID="-3"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{B4696238-FB68-42B6-8654-A3D3747CF401}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnError]\Write to process detail talbe"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{34B4A12D-FCA5-4450-95DF-71AC06622A7D}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Write to process detail talbe">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'I','E','Fatal Error " + (DT_WSTR,20)@[System::ErrorCode] + " " + REPLACE(@[System::ErrorDescription] , "'","") + "'"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+                  SQLTask:SqlStatementSource="exec elig.sp_process_detail '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','I','E','Fatal Error 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnError]\write to process summary table"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{ACF5D6A9-5C28-41C3-8540-866CDB2E38E8}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="write to process summary table">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'U','E','Error " + (DT_WSTR,20)@[System::ErrorCode] + " " + REPLACE(@[System::ErrorDescription] , "'","") + "'"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+                  SQLTask:SqlStatementSource="exec elig.sp_process_summary '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','U','E','Error 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{C64D8719-D543-41AB-A282-B55BEBA6E832}"
+              DTS:From="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnError]\write to process summary table"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnError]\Write to process detail talbe" />
+          </DTS:PrecedenceConstraints>
+        </DTS:EventHandler>
+        <DTS:EventHandler
+          DTS:refId="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnPreExecute]"
+          DTS:CreationName="OnPreExecute"
+          DTS:DTSID="{EA743028-8467-4F48-8538-0B709CC3570C}"
+          DTS:EventID="1072693248"
+          DTS:EventName="OnPreExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{78291A99-F009-4FCD-B633-EC837EDE1D89}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnPreExecute]\Write to process detail talbe"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{5FCBB0D5-3F99-4EEA-863D-2CB1FD5A2EBE}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Write to process detail talbe">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'I','R','Get fileinfoIds for "  + @[User::strClientCode] +"'"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+                  SQLTask:SqlStatementSource="exec elig.sp_process_detail '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','I','R','Get fileinfoIds for H447'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnPreExecute]\write to process summary table"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{E74486A7-5798-4439-B00B-0DC8B316B67F}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="write to process summary table">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'U','R','get fileinfoids for " +  @[User::strClientCode] +"'"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+                  SQLTask:SqlStatementSource="exec elig.sp_process_summary '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','U','R','get fileinfoids for H447'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{7EF0C5C7-E274-4950-B13A-77D49943FFC0}"
+              DTS:From="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnPreExecute]\write to process summary table"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnPreExecute]\Write to process detail talbe" />
+          </DTS:PrecedenceConstraints>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DE3F2F3C-9FE9-47D0-BDB6-88088AB7DA52}"
+          SQLTask:SqlStatementSource="select  fi.FileInfoID as FileInfoID,&#xA;&#x9;--fi.FileName as FileName,&#xA;&#x9;[elig].[GetFileName](replace(fi.FileName,'&lt;CientCode&gt;',fi.ClientCode)) as FileName,&#xA;&#x9;fi.FromLocation FromLocation,&#xA;&#x9;fi.ToLocation as ToLocation,&#xA;&#x9;fi.Direction as Direction,&#xA;&#x9;fi.FileFormat as FileFormat,&#xA;&#x9;fi.SnapshotFlag as SnapshotFlag,&#xA;&#x9;fi.DataSource as DataSource,&#xA;&#x9;fi.FileExtension as FileExtension,&#xA;&#x9;fi.FileType as FileType,&#xA;&#x9;fi.DataSource as DataSource,&#xA;&#x9;ftpi.WinSCPLoginName as WinSCPLoginName,&#xA;&#x9;fi.IsDelFileFromClientFTP as IsDelFileFromClientFTP&#xA;from elig.FileInfo fi&#xA;join elig.FTPUserInfo ftpi on (fi.ClientCode = ftpi.ClientCode and ftpi.FileType = 'ELIG')&#xA;where 1=1&#xA;and fi.ClientCode = ?&#xA;and fi.FileType = ?&#xA;and fi.SnapshotFlag = ?&#xA;and fi.isActive = 1&#xA;and fi.Direction ='IN'"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::rsFileInfo" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::strClientCode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="20" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::strFileType"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="50" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::strSnapshotFlag"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="50" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process Monitor Appication Start"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C842EB90-EBB8-420A-A40E-560C0A459A11}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process Monitor Appication Start">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Process Monitor Appication Start\Delete from Process Detail Tbl"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{826F4EC8-EC55-41B8-A4C3-8A99658BBCAC}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete from Process Detail Tbl"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="2">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">1,7,OnError</DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'D'"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+              SQLTask:SqlStatementSource="exec elig.sp_process_detail '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','D'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Process Monitor Appication Start\Delete from Process Summary Tbl"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D820D483-341D-40F2-98F5-C47B7DB3C90C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete from Process Summary Tbl"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="2">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">1,7,OnError</DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'D'"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+              SQLTask:SqlStatementSource="exec elig.sp_process_summary '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','D'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Process Monitor Appication Start\Write To Process Detail Tbl"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E1373108-B3D4-4C8F-A0DC-A1DBA90B6ACE}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Write To Process Detail Tbl"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="2">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">1,7,OnError</DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'I','I','Startup: Idle'"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+              SQLTask:SqlStatementSource="exec elig.sp_process_detail '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','I','I','Startup: Idle'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Process Monitor Appication Start\Write To Process Summary Tbl"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B2E947D1-11F5-429C-BB33-AC794737D7F6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Write To Process Summary Tbl"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="2">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">1,7,OnError</DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'I','I','Idle'"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+              SQLTask:SqlStatementSource="exec elig.sp_process_summary '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','I','I','Idle'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Process Monitor Appication Start.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{359318C3-6B67-4F05-B5FC-D6D23E782C06}"
+          DTS:From="Package\Process Monitor Appication Start\Delete from Process Summary Tbl"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Process Monitor Appication Start\Delete from Process Detail Tbl" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Process Monitor Appication Start.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{B2A95403-E2F7-4F23-A7B8-A6A4A7733D67}"
+          DTS:From="Package\Process Monitor Appication Start\Delete from Process Detail Tbl"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Process Monitor Appication Start\Write To Process Summary Tbl" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Process Monitor Appication Start.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{39F3A0E0-A99B-49FE-A0ED-5671DB988B95}"
+          DTS:From="Package\Process Monitor Appication Start\Write To Process Summary Tbl"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Process Monitor Appication Start\Write To Process Detail Tbl" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process Monitor Application End"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{B6D0FFFA-96ED-4C76-97E2-1BC43738BFEC}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process Monitor Application End">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Process Monitor Application End\Done, write To Process Detail Tbl"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{32686B8C-7B54-46F4-918D-79C2E1411082}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Done, write To Process Detail Tbl"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="2">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">1,7,OnError</DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'I','D','Done: with 0 Non-Fatal Errors '"</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{4AEDA938-A996-41D8-9D50-953AF9010D06}"
+              DTS:EventID="-2139062144"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{053D2194-DEE4-4787-9F2A-7C3355C255A3}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError]\Write To Job Detail Table"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Write To Job Detail Tbl"
+                  DTS:DTSID="{AA3ECB0C-D4D1-4CA1-8F0B-08B771CD0092}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Write To Job Detail Table"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'I','E','Fatal Error: " + (DT_WSTR,20)@[System::ErrorCode]  + " " + @[System::ErrorDescription] + "'"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+                      SQLTask:SqlStatementSource="exec elig.sp_process_detail '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','I','E','Fatal Error: 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError]\Write To Job Summary Table"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{EB80971E-A7FE-4D33-A3EF-0EE73E85212D}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Write To Job Summary Table"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'U','E','Error: " + (DT_WSTR,20)@[System::ErrorCode]  + " " + @[System::ErrorDescription] + "'"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+                      SQLTask:SqlStatementSource="exec elig.sp_process_summary '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','U','E','Error: 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+              <DTS:PrecedenceConstraints>
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{7B8F75BB-2FAA-4D3E-AEB9-01F05335958B}"
+                  DTS:From="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError]\Write To Job Summary Table"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint"
+                  DTS:To="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError]\Write To Job Detail Table" />
+              </DTS:PrecedenceConstraints>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+              SQLTask:SqlStatementSource="exec elig.sp_process_detail '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','I','D','Done: with 0 Non-Fatal Errors '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Process Monitor Application End\Done, write To Process Summary Tbl"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{409678F1-2F75-4435-9FB2-653A023B6C25}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Done, write To Process Summary Tbl"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0"
+            DTS:LoggingMode="2">
+            <DTS:Property
+              DTS:DataType="8"
+              DTS:Name="EventFilter">1,7,OnError</DTS:Property>
+            <DTS:Property
+              DTS:EventName="OnError"
+              DTS:Name="ColumnFilter">
+              <DTS:Property
+                DTS:Name="Computer">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="Operator">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceName">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="SourceID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="ExecutionID">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="MessageText">-1</DTS:Property>
+              <DTS:Property
+                DTS:Name="DataBytes">-1</DTS:Property>
+            </DTS:Property>
+          </DTS:LoggingOptions>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'U','D','Done: with 0 Non-Fatal Errors '"</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{D31846D9-79DB-48CF-8049-BA2A1B8CD8BC}"
+              DTS:EventID="126438876"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{5C4F1A30-7C52-4DF4-BAF3-2D1223E70D22}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError]\Write To Job Detail Table"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Write To Job Detail Tbl"
+                  DTS:DTSID="{0597E6F2-9048-453F-8815-D825854B1D50}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Write To Job Detail Table"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'I','E','Fatal Error: " + (DT_WSTR,20)@[System::ErrorCode]  + " " + @[System::ErrorDescription] + "'"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+                      SQLTask:SqlStatementSource="exec elig.sp_process_detail '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','I','E','Fatal Error: 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError]\Write To Job Summary Table"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{87F303F1-64E7-4AB7-91D3-F6964043EBEB}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Write To Job Summary Table"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'U','E','Error: " + (DT_WSTR,20)@[System::ErrorCode]  + " " + @[System::ErrorDescription] + "'"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+                      SQLTask:SqlStatementSource="exec elig.sp_process_summary '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','U','E','Error: 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+              <DTS:PrecedenceConstraints>
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{A353D2F1-4E18-4ECB-8500-A293FD2C9DCE}"
+                  DTS:From="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError]\Write To Job Summary Table"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint"
+                  DTS:To="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError]\Write To Job Detail Table" />
+              </DTS:PrecedenceConstraints>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1E57C1E6-7B44-4CA6-9F76-D801477CFD6E}"
+              SQLTask:SqlStatementSource="exec elig.sp_process_summary '1_CovantageNBND_H447_FULL_DL','NB-HQ-LT116','U','D','Done: with 0 Non-Fatal Errors '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Process Monitor Application End.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{AD49DAD8-777C-47FD-8E32-6C63C1D6B68E}"
+          DTS:From="Package\Process Monitor Application End\Done, write To Process Summary Tbl"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Process Monitor Application End\Done, write To Process Detail Tbl" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{E6910866-C300-40A8-B70E-AA910048C1A9}"
+      DTS:From="Package\Process Monitor Appication Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get FileInfoIds for ClientCode SQL Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{FFF814CC-70F0-4D24-99A1-9BBC2EE015EF}"
+      DTS:From="Package\Get FileInfoIds for ClientCode SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Foreach ClientCode-FileInfoId Loop Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{377FD83E-CE09-44A0-B8BE-001F0FBBB9AC}"
+      DTS:From="Package\Foreach ClientCode-FileInfoId Loop Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Process Monitor Application End" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="214,42"
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container\Execute winscp get exe Task"
+          TopLeft="44.2285728493516,19.7647096488716" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container\Execute winscp move exe Task"
+          TopLeft="31.3714299435519,220.541181532652" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container\Insert FileTrack Script Task"
+          TopLeft="43,117" />
+        <EdgeLayout
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="150.364286424676,61.7647096488716">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.2352903511284"
+              Start="0,0"
+              End="0,47.7352903511284">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.7352903511284" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="146.935714971776,159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.541181532652"
+              Start="0,0"
+              End="0,54.041181532652">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.041181532652" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,19.020590766326,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="202,42"
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container\Execute winscp Delete file"
+          TopLeft="282,219" />
+        <EdgeLayout
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="183.666666666667,159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="199.333333333333,60"
+              Start="0,0"
+              End="199.333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2684063373719" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2684063373719"
+                    Point2="0,24.2684063373719"
+                    Point3="4,24.2684063373719" />
+                  <mssgle:LineSegment
+                    End="195.333333333333,24.2684063373719" />
+                  <mssgle:CubicBezierSegment
+                    Point1="195.333333333333,24.2684063373719"
+                    Point2="199.333333333333,24.2684063373719"
+                    Point3="199.333333333333,28.2684063373719" />
+                  <mssgle:LineSegment
+                    End="199.333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="91.6666666666667,29.2684063373719,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="511,325"
+          Size="511,368"
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container"
+          TopLeft="95.8571435188761,230.505882721871" />
+        <NodeLayout
+          Size="275,42"
+          Id="Package\Get FileInfoIds for ClientCode SQL Task"
+          TopLeft="213.000001566751,130.858825322583" />
+        <NodeLayout
+          Size="219.2,44"
+          Id="Package\Process Monitor Appication Start\Delete from Process Detail Tbl"
+          TopLeft="17.3584905660377,88.6603773584906" />
+        <NodeLayout
+          Size="219.2,44"
+          Id="Package\Process Monitor Appication Start\Delete from Process Summary Tbl"
+          TopLeft="17.3584905660377,26.7735849056604" />
+        <NodeLayout
+          Size="219.2,44"
+          Id="Package\Process Monitor Appication Start\Write To Process Detail Tbl"
+          TopLeft="17.3584905660377,212.471698113208" />
+        <NodeLayout
+          Size="219.2,44"
+          Id="Package\Process Monitor Appication Start\Write To Process Summary Tbl"
+          TopLeft="17.3584905660377,150.547169811321" />
+        <EdgeLayout
+          Id="Package\Process Monitor Appication Start.PrecedenceConstraints[Constraint]"
+          TopLeft="126.679245283019,70.6981132075472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,17.9622641509434"
+              Start="0,0"
+              End="0,10.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process Monitor Appication Start.PrecedenceConstraints[Constraint 1]"
+          TopLeft="85.1698113207548,132.584905660377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="41.5094339622641,17.9622641509434"
+              Start="0,0"
+              End="41.5094339622641,10.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.4716981132075" />
+                  <mssgle:LineSegment
+                    End="41.5094339622641,13.4716981132075" />
+                  <mssgle:LineSegment
+                    End="41.5094339622641,10.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process Monitor Appication Start.PrecedenceConstraints[Constraint 2]"
+          TopLeft="126.679245283019,194.471698113208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,18"
+              Start="0,0"
+              End="0,10.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="45"
+          IsExpanded="False"
+          PanelSize="257.6,271.2"
+          Size="255,45"
+          Id="Package\Process Monitor Appication Start"
+          TopLeft="220.857144676909,23.7058828677273" />
+        <NodeLayout
+          Size="208,44"
+          Id="Package\Process Monitor Application End\Done, write To Process Detail Tbl"
+          TopLeft="37.0188679245282,95.3773584905661" />
+        <NodeLayout
+          Size="193.6,44"
+          Id="Package\Process Monitor Application End\Done, write To Process Summary Tbl"
+          TopLeft="41.5471698113206,17.4528301886793" />
+        <EdgeLayout
+          Id="Package\Process Monitor Application End.PrecedenceConstraints[Constraint]"
+          TopLeft="138.377358490566,61.3773584905661">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.45283018867917,34"
+              Start="0,0"
+              End="2.45283018867917,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.9811320754717" />
+                  <mssgle:LineSegment
+                    End="2.45283018867917,16.9811320754717" />
+                  <mssgle:LineSegment
+                    End="2.45283018867917,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="False"
+          PanelSize="265.6,152.8"
+          Size="253,43"
+          Id="Package\Process Monitor Application End"
+          TopLeft="222.285720455404,649.847065567228" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="349.42857312183,68.7058828677273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.1529424548557"
+              Start="0,0"
+              End="0,54.6529424548557">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.6529424548557" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="350.928572542814,172.858825322583">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.647057399288"
+              Start="0,0"
+              End="0,50.147057399288">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.147057399288" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="350.07143198714,598.505882721871">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.341182845357"
+              Start="0,0"
+              End="0,43.841182845357">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.841182845357" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnPreExecute]\Write to process detail talbe"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnPreExecute]\write to process summary table"
+          TopLeft="NaN,NaN" />
+        <EdgeLayout
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="{assembly:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <assembly:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnError]\Write to process detail talbe"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnError]\write to process summary table"
+          TopLeft="NaN,NaN" />
+        <EdgeLayout
+          Id="Package\Foreach ClientCode-FileInfoId Loop Container.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="{assembly:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <assembly:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="210.4,41.6"
+          Id="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnPreExecute]\Write to process detail talbe"
+          TopLeft="139.2,172.8" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnPreExecute]\write to process summary table"
+          TopLeft="108.8,42.4" />
+        <EdgeLayout
+          Id="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="190,84">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="30.4000000000001,88.8"
+              Start="0,0"
+              End="30.4000000000001,81.3">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4"
+                    Point2="0,44.4"
+                    Point3="4,44.4" />
+                  <mssgle:LineSegment
+                    End="26.4000000000001,44.4" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26.4000000000001,44.4"
+                    Point2="30.4000000000001,44.4"
+                    Point3="30.4000000000001,48.4" />
+                  <mssgle:LineSegment
+                    End="30.4000000000001,81.3" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="210.4,41.6"
+          Id="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnError]\Write to process detail talbe"
+          TopLeft="90.4000000000001,190.4" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnError]\write to process summary table"
+          TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package\Get FileInfoIds for ClientCode SQL Task.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="141.2,101.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="30.4000000000001,88.8"
+              Start="0,0"
+              End="30.4000000000001,81.3">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4"
+                    Point2="0,44.4"
+                    Point3="4,44.4" />
+                  <mssgle:LineSegment
+                    End="26.4000000000001,44.4" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26.4000000000001,44.4"
+                    Point2="30.4000000000001,44.4"
+                    Point3="30.4000000000001,48.4" />
+                  <mssgle:LineSegment
+                    End="30.4000000000001,81.3" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError]\Write To Job Detail Table"
+          TopLeft="269,84" />
+        <NodeLayout
+          Size="222,42"
+          Id="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError]\Write To Job Summary Table"
+          TopLeft="262,233" />
+        <EdgeLayout
+          Id="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="371.75,233">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-107"
+              Start="0,0"
+              End="0,-99.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-99.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError]\Write To Job Detail Table"
+          TopLeft="185,41" />
+        <NodeLayout
+          Size="222,42"
+          Id="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError]\Write To Job Summary Table"
+          TopLeft="261,199" />
+        <EdgeLayout
+          Id="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="372,199">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-85.5,-116"
+              Start="0,0"
+              End="-85.5,-108.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-54" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-54"
+                    Point2="0,-58"
+                    Point3="-4,-58" />
+                  <mssgle:LineSegment
+                    End="-81.5,-58" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-81.5,-58"
+                    Point2="-85.5,-58"
+                    Point3="-85.5,-62" />
+                  <mssgle:LineSegment
+                    End="-85.5,-108.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

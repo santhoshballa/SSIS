@@ -1,0 +1,132 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/26/2022 11:45:46 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NB-HQ-LT116"
+  DTS:CreatorName="NH\SBalla"
+  DTS:DTSID="{716AD138-27BE-4A50-84B6-F2A6E476AA8E}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.132"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="pgpEncryption"
+  DTS:PackageType="5"
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{FDD68045-E0E7-4B6B-BC4D-479C2CC1FAA9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="C:\NHEligJobs\HAP_SSIS\HAP_CareRadius_pgpEncryptionConfiguration.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{0D202EC7-5D0D-41FD-B52E-6AA2068897A7}"
+      DTS:ObjectName="pgpEncryptionConfiguration" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{78B2410F-209F-49D9-BA9E-FBCBDB61373D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileLocationOut">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\HAP_SSIS\DAT\OUT\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{60F629F2-48B7-4462-824D-0879269AA978}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileNameFull">
+      <DTS:VariableValue
+        DTS:DataType="8">cme_nationsbenefits_20220726.dat</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{15C50C21-3385-4B05-9FD0-DF9659EEB3DB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="pgpEmail">
+      <DTS:VariableValue
+        DTS:DataType="8">sballa@nationsbenefits.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7B2725E9-144F-4065-9EDC-12FB2CB34E62}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::FileNameFull]+&quot;.pgp&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="pgpFileNameFull">
+      <DTS:VariableValue
+        DTS:DataType="8">cme_nationsbenefits_20220726.dat.pgp</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\pgp Encryption"
+      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:Description="Execute Process Task"
+      DTS:DTSID="{8A96A8C6-FE5C-40C9-9253-5312F6EF23F2}"
+      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="pgp Encryption"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Arguments">" --output " +"\""+ @[User::FileLocationOut] + @[User::pgpFileNameFull] +"\"" + " --encrypt" + " --recipient " + @[User::pgpEmail] +" "+"\"" +@[User::FileLocationOut]  + @[User::FileNameFull]+"\""</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="C:\Program Files (x86)\GnuPG\bin\gpg.exe"
+          Arguments=" --output &quot;C:\NHEligJobs\HAP_SSIS\DAT\OUT\cme_nationsbenefits_20220726.dat.pgp&quot; --encrypt --recipient sballa@nationsbenefits.com &quot;C:\NHEligJobs\HAP_SSIS\DAT\OUT\cme_nationsbenefits_20220726.dat&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\pgp Encryption 1"
+      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:Description="Execute Process Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{42f55f17-4032-411a-846f-3e7e086ed753}"
+      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="pgp Encryption 1"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Arguments">" --output " +"\""+ @[User::FileLocationOut] + @[User::pgpFileNameFull] +"\"" + " --encrypt" + " --recipient " + @[User::pgpEmail] +" "+"\"" +@[User::FileLocationOut]  + @[User::FileNameFull]+"\""</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="C:\Program Files (x86)\GnuPG\bin\gpg.exe"
+          Arguments=" --output &quot;C:\NHEligJobs\HAP_SSIS\DAT\OUT\cme_nationsbenefits_20220726.dat.pgp&quot; --encrypt --recipient sballa@nationsbenefits.com &quot;C:\NHEligJobs\HAP_SSIS\DAT\OUT\cme_nationsbenefits_20220726.dat&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\pgp Encryption"
+          TopLeft="406,106" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\pgp Encryption 1"
+          TopLeft="406,208" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

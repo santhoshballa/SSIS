@@ -1,0 +1,521 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/15/2019 11:35:49 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NHFLFTL1221"
+  DTS:CreatorName="NH\sdaggubati"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{263F58E9-6842-4B52-842B-CA039A8064CF}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.132"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Elig_834_File_Load"
+  DTS:PackageType="5"
+  DTS:VersionBuild="720"
+  DTS:VersionGUID="{D8003989-1B33-43AA-9D17-A71D538AA080}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NHCRM]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5EC614E6-3D36-4F02-B4F1-A5C80A372933}"
+      DTS:ObjectName="NHCRM">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=nhcrmstg.database.windows.net;User ID=stageadmin;Initial Catalog=NHCRM_STG;Provider=SQLNCLI11.1;Persist Security Info=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{102B0799-20E8-4D86-AE19-2BB73FAC01D7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EDI834FileName_woPGP">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A43C83AC-5FD2-4ADA-AC18-2C56B8B8EC62}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::SourceFolder]  +   @[User::EDI834FileName_woPGP]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EDI834_ArchiveFileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0AA56375-8D8D-4802-B8AA-E1457DE6F7A5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EDI_ReceiverId">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1EAA848E-F2E0-4978-B365-D6A2306760A7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EDI_SenderId">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{57C00B7A-C066-46AC-8FA7-F67CB29D08E2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileTrackID">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AEE5B8BE-4758-49FB-BD62-59FC564121D3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="rsControlNumbers">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F55DDA38-340E-4EE0-B242-954E41D4B4D9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="rsFileTrackInfo">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4DB8D49C-F497-462E-822B-6D85D0ADB5D9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceFolder">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B9BA3D84-EE1D-49A3-87B9-465199298A5D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="statusCode">
+      <DTS:VariableValue
+        DTS:DataType="20">200</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{31ECA6D7-F68F-44C4-AC66-5956972FD46E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strACKFileExtension">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1F238F3F-B5BB-40FE-ABD7-5E2240145490}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strACKFileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A5B9B4BB-DB21-410A-B065-C2834D8968E7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strClientCode">
+      <DTS:VariableValue
+        DTS:DataType="8">H488</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A758ED9E-DEC2-4BFF-A7C9-7EF4785FDC66}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strDataSource">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FB077FD3-5634-47C1-BBDD-CDD52FAE5B22}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strFileType">
+      <DTS:VariableValue
+        DTS:DataType="8">Elig</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FAA685FB-BE7A-4999-B079-41A913CAFBFB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strSnapshotFlag">
+      <DTS:VariableValue
+        DTS:DataType="8">FULL</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DF56F04A-E215-4E51-8C84-57A45B93AD38}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strTempTableSchema">
+      <DTS:VariableValue
+        DTS:DataType="8">eligtempCVTGND</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D86B198D-FEBF-4F9F-BA3D-ACCE4BD0323E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPLoginName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{27CE3A74-2623-4AB7-8503-B5D9EB51D557}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPScriptName">
+      <DTS:VariableValue
+        DTS:DataType="8">ScriptToUploadFilesV1-NBKEY.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{05125F00-C082-43C5-8D2F-B9C4C5D17AD8}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::SourceFolder]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Work_Dir">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{707D2503-B582-43AE-89D9-D37B1DDE2F7F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="XFileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task - file info collection"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F74ED84C-93F9-4B07-A4BE-00452EC1F1EB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task - file info collection"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5EC614E6-3D36-4F02-B4F1-A5C80A372933}"
+          SQLTask:SqlStatementSource="select  &#xA;    -- 834&#xA;&#x9;ft.FileinfoId as FileinfoId, -- 0&#xA;&#x9;ft.FileTrackID as FileTrackId, -- 1&#xA;&#x9;ft.FileName as FileName, -- 2&#xA;&#x9;fi.IsHeaderRecord as IsHeaderRecord,  -- 3&#xA;&#x9;fi.ToLocation as SourceFolder, -- 4&#xA;&#x9;fi.FileExtension as FileExtension, -- 5&#xA;&#x9;fi.FileFormatValue as FileDelimiter, -- 6&#xA;&#x9;fi.DataSource as DataSource, -- 7&#xA;&#x9;CASE WHEN fi.IsPGP = 'Y' then replace(ft.FileName,('.'+ fi.PGPFileExtension),'')  else ft.FileName END EDI834FileName_woPGP --8&#xA;from elig.filetrack ft&#xA;join elig.fileinfo fi on ft.FileInfoID = fi.FileInfoId and fi.FileType = ?&#xA;where 1=1&#xA;and ft.ClientCode = ?&#xA;AND ft.SnapshotFlag = ?&#xA;and ft.filetype = ?&#xA;and ft.StatusCode = '100'&#xA;and fi.Direction ='IN'&#xA;order by ft.FileInfoID,ft.FileTrackID"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::rsFileTrackInfo" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::strFileType"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="50" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::strClientCode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="20" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::strSnapshotFlag"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="50" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::strFileType"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="50" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container - Decrypt files"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:DelayValidation="True"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{5422803E-33E8-46AE-921F-CBC6721923AB}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container - Decrypt files">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{DA340670-3710-4FEA-9E3E-208AA650CC4A}"
+        DTS:ObjectName="{DA340670-3710-4FEA-9E3E-208AA650CC4A}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::rsFileTrackInfo" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{AA6B0044-DCC9-4919-8E8F-8FEF22CDA86F}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="XMLFiles">
+          <DTS:VariableValue
+            DTS:DataType="8">NULL</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container - Decrypt files\Execute SQL Task - GETDATE"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D39B07A0-5767-4291-8476-0E76F9E56375}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task - GETDATE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5EC614E6-3D36-4F02-B4F1-A5C80A372933}"
+              SQLTask:SqlStatementSource="update elig.FileTrack set StatusCode = ? where filetrackid = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::statusCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="10" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::FileTrackID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="10" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container - Decrypt files\file PGP Decryption"
+          DTS:CreationName="Microsoft.ExecuteProcess"
+          DTS:Description="Execute Process Task"
+          DTS:DTSID="{2265E9F7-EC40-4866-A6BA-CE85114AF049}"
+          DTS:ExecutableType="Microsoft.ExecuteProcess"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="file PGP Decryption"
+          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Arguments">"/C echo Bl3oqAp4E9|gpg --pinentry-mode loopback --batch --yes --ignore-mdc-error --keyring \"C:\\NHEligJobs\\NHEncryptionKeys\\NB PGP 2021 Keys\\NB2021Pub_PGP.pub\" --secret-keyring \"C:\\NHEligJobs\\NHEncryptionKeys\\NB PGP 2021 Keys\\NB2021Pri_PGP.ppk\" --passphrase-fd 0  -o " + @[User::EDI834_ArchiveFileName] + " -d " + @[User::Work_Dir]  +  @[User::XFileName]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="C:\Windows\system32\cmd.exe"
+              Arguments="/C echo Bl3oqAp4E9|gpg --pinentry-mode loopback --batch --yes --ignore-mdc-error --keyring &quot;C:\NHEligJobs\NHEncryptionKeys\NB PGP 2021 Keys\NB2021Pub_PGP.pub&quot; --secret-keyring &quot;C:\NHEligJobs\NHEncryptionKeys\NB PGP 2021 Keys\NB2021Pri_PGP.ppk&quot; --passphrase-fd 0  -o  -d "
+              WorkingDirectory="C:\Windows\system32\" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container - Decrypt files.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{D1AADC56-036C-4C10-A3ED-FB9AC62527E7}"
+          DTS:From="Package\Foreach Loop Container - Decrypt files\file PGP Decryption"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container - Decrypt files\Execute SQL Task - GETDATE" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{9D26A60C-6A56-4129-BE9B-8D7BC529262F}"
+          DTS:ObjectName="{9D26A60C-6A56-4129-BE9B-8D7BC529262F}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::FileTrackID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{09748C05-5818-4524-A056-C49A0E58816F}"
+          DTS:ObjectName="{09748C05-5818-4524-A056-C49A0E58816F}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::XFileName" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{17B30BFA-255B-40C4-870E-26C6950C6356}"
+          DTS:ObjectName="{17B30BFA-255B-40C4-870E-26C6950C6356}"
+          DTS:ValueIndex="4"
+          DTS:VariableName="User::SourceFolder" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{AB983AF1-5C38-4DF4-A55B-DDF30AD40AE2}"
+          DTS:ObjectName="{AB983AF1-5C38-4DF4-A55B-DDF30AD40AE2}"
+          DTS:ValueIndex="7"
+          DTS:VariableName="User::strDataSource" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{8B1B862A-389C-4879-A8CF-01059E7268A4}"
+          DTS:ObjectName="{8B1B862A-389C-4879-A8CF-01059E7268A4}"
+          DTS:ValueIndex="8"
+          DTS:VariableName="User::EDI834FileName_woPGP" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{9D49B0E2-B16F-403A-8474-DE2CD2A9C297}"
+      DTS:From="Package\Execute SQL Task - file info collection"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Foreach Loop Container - Decrypt files" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="276,42"
+          Id="Package\Execute SQL Task - file info collection"
+          TopLeft="230,249" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Foreach Loop Container - Decrypt files\Execute SQL Task - GETDATE"
+          TopLeft="100,108" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Foreach Loop Container - Decrypt files\file PGP Decryption"
+          TopLeft="121,17" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container - Decrypt files.PrecedenceConstraints[Constraint]"
+          TopLeft="209,59">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="453,243"
+          Size="453,286"
+          Id="Package\Foreach Loop Container - Decrypt files"
+          TopLeft="163,343" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="368,291">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="21.5,52"
+              Start="0,0"
+              End="21.5,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="4,26" />
+                  <mssgle:LineSegment
+                    End="17.5,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17.5,26"
+                    Point2="21.5,26"
+                    Point3="21.5,30" />
+                  <mssgle:LineSegment
+                    End="21.5,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

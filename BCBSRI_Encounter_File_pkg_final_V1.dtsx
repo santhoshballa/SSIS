@@ -1,0 +1,992 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/23/2019 7:32:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NHFLFTLDTC1242"
+  DTS:CreatorName="NH\SPottigari"
+  DTS:DTSID="{5E20E8F2-FF29-4437-A192-E887D3BDE238}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.132"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="BCBSRI_Encounter_File_pkg_final_V1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="407"
+  DTS:VersionGUID="{2867753D-74A0-468B-A458-B4D07E53FB12}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[IncommOutFileConnManager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{0AD70C92-B8F3-4976-9DEA-2B53AFB5F84E}"
+      DTS:ObjectName="IncommOutFileConnManager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::strIncommfromlocation] +""+  @[User::strIncommFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\NHEligJobs\BCBSRI_SSIS\DAT\OUT">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="200"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="outputText"
+              DTS:DTSID="{C6F2AF27-9830-4A46-8AE6-CA2903EDDAD7}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NHSQLDBConn]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4EED95C6-A96F-4830-BD8A-5F8A0CDE70FF}"
+      DTS:ObjectName="NHSQLDBConn">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=nhcrmprd.database.windows.net;User ID=appuser;Initial Catalog=NHCRM_PROD;Provider=SQLNCLI11.1;Persist Security Info=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ProcessMonitorDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{16384D84-133C-4C06-9028-B10D70CCDC17}"
+      DTS:ObjectName="ProcessMonitorDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=nhcrmprd.database.windows.net;User ID=appuser;Initial Catalog=NHCRM_PROD;Provider=SQLNCLI11.1;Persist Security Info=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{05CA4C4F-85A5-4F5F-8BFA-4791B6A1D0FD}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="rsIncommFileInfo">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D2D37791-15DA-4B28-906B-E96F0A18FE2E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strAppName">
+      <DTS:VariableValue
+        DTS:DataType="8">BCBSRI_Encounter_OutFile_H223</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5471E30D-1CF2-4FC8-9376-C4AA97AFF21D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strCarrierID">
+      <DTS:VariableValue
+        DTS:DataType="8">270</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CF9FE94D-B090-492A-9025-12F8F7755DDB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strDataSource">
+      <DTS:VariableValue
+        DTS:DataType="8">ELIG_BCBSRI</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{910AB97A-3020-4437-A7DD-B055778FE82E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strFileDelimiter">
+      <DTS:VariableValue
+        DTS:DataType="8">|</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{82344EC1-EC31-4B88-845A-C3E74A66E390}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strFileExtension">
+      <DTS:VariableValue
+        DTS:DataType="8">TXT</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2AE68A6F-C8A9-4803-8CE7-F41D58B13571}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strFileType">
+      <DTS:VariableValue
+        DTS:DataType="8">ENCOUNTER</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8D7C62B9-7C5D-4CBE-8B10-8CA2AD2BD45E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strInClientCode">
+      <DTS:VariableValue
+        DTS:DataType="8">H223</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6C2A1801-DAEF-4C80-A267-3B0D39E12505}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strIncommFileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0B8DEF76-3F72-48FD-ACFF-38F8E647644C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strIncommfromlocation">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\BCBSRI_SSIS\DAT\OUT</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C65C7DF9-0956-46E9-A342-312599DC3814}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;exec elig.sp_process_detail &quot; +  &quot;'&quot; + ( @[User::strAppName]!=&quot;&quot; ? @[User::strAppName] : @[System::PackageName])  + &quot;',&quot; +  &quot;'&quot; + @[System::MachineName] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strJobDetail">
+      <DTS:VariableValue
+        DTS:DataType="8">exec elig.sp_process_detail 'BCBSRI_Encounter_OutFile_H223','NB-HQ-LT116'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FF606EBB-D8CC-4193-8AE0-F12080163430}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;exec elig.sp_process_summary &quot; +  &quot;'&quot; + ( @[User::strAppName]!=&quot;&quot; ? @[User::strAppName] : @[System::PackageName]) + &quot;',&quot; +  &quot;'&quot; + @[System::MachineName] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strJobSummary">
+      <DTS:VariableValue
+        DTS:DataType="8">exec elig.sp_process_summary 'BCBSRI_Encounter_OutFile_H223','NB-HQ-LT116'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9BB308B6-A827-4A3E-A23A-DD0107D8C866}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strLogFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\BCBSRI_SSIS\LOG\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{91FEE6DB-839F-4C32-8A8D-2199A467B39D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strOutClientCode">
+      <DTS:VariableValue
+        DTS:DataType="8">H223</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1C98D70D-FEE0-42D9-A1FF-24C3D9F72719}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strSnapshotFlag">
+      <DTS:VariableValue
+        DTS:DataType="8">FULL</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7655BCD7-F670-487B-A8B9-65BF7C821C8A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strSourceFolder">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0DAC40D3-8903-4681-86BF-8F74B4469877}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;exec [elig].[sp_BCBSRI_Encounter_file] &quot; +  &quot;'&quot; + @[User::strCarrierID] +&quot;' WITH RESULT SETS&#xA;&#x9;&#x9;(&#xA;&#x9;&#x9; (&#xA;&#x9;&#x9; fororder int,&#xA;&#x9;&#x9; &#xA;&#x9;&#x9;fororderdesc varchar(30),&#xA;&#x9;&#x9; nhmemberid varchar(30),&#xA;&#x9;&#x9; serviceDate datetime,&#xA;&#x9;&#x9; outputText VARCHAR(max)&#xA;&#x9;&#x9; )&#xA;&#x9;&#x9;)&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strSPName">
+      <DTS:VariableValue
+        DTS:DataType="8">exec [elig].[sp_BCBSRI_Encounter_file] '270' WITH RESULT SETS
+		(
+		 (
+		 fororder int,
+		 
+		fororderdesc varchar(30),
+		 nhmemberid varchar(30),
+		 serviceDate datetime,
+		 outputText VARCHAR(max)
+		 )
+		)</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{88DA83F3-82AE-4329-A47C-4EEBE3EE34AC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPDestinationPath">
+      <DTS:VariableValue
+        DTS:DataType="8">/h223/fromNH</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{773AFDBC-CE35-486A-B30B-B8B6A14B44EC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPExePathName">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\NH_WinSCP_Scripts</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{10EBED46-5577-4C31-8520-9E88A6E95527}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPLoginName">
+      <DTS:VariableValue
+        DTS:DataType="8">nhitsftp</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E0C9799D-D868-4650-B3C8-7F72466A9E1C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPScriptFullyQualifiedPathName">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\NH_WinSCP_Scripts\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{341BBA69-7D45-4045-BE07-030AC376FAF8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPScriptName">
+      <DTS:VariableValue
+        DTS:DataType="8">ScriptToUploadFiles.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F55F9F54-9FF2-4D18-8107-676502E713B0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPSourceFileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4D8084D4-7E71-4918-B7B2-C2F8E9D35126}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPSourcePath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\BCBSRI_SSIS\LOG\</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7AB16891-5EE2-4BDA-AB81-AAD0345D0209}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4EED95C6-A96F-4830-BD8A-5F8A0CDE70FF}"
+          SQLTask:SqlStatementSource="Select  ? as InClientCode,&#xA;&#x9;fi.ClientCode,&#xA;replace(replace(fi.FileName,'YYYYMMDD',cast(format(CONVERT(datetime, SWITCHOFFSET(getdate(), DATEPART(TZOFFSET,getdate() AT TIME ZONE 'Eastern Standard Time'))),'yyyyMMdd') as varchar(16))),'HHmmss',cast(format(CONVERT(datetime, SWITCHOFFSET(getdate(), DATEPART(TZOFFSET,getdate() AT TIME ZONE 'Eastern Standard Time'))),'HHmmss') as varchar(16))  ) +'.'+fi.fileExtension as Outfilename,&#xA;&#x9;fi.fileExtension,&#xA;&#x9;fi.FromLocation,&#xA;&#x9;fi.ToLocation,&#xA;&#x9;fi.DataSource,&#xA;&#x9;ftp.WinSCPLoginName&#xA;&#xA;from elig.fileinfo fi &#xA;join elig.FTPUserInfo ftp on fi.ClientCode = ftp.ClientCode&#xA;where 1=1&#xA;and fi.ClientCode = ?&#xA;AND Fi.SnapshotFlag ='FULL'&#xA;and fi.filetype ='ENCOUNTER'&#xA;and fi.Direction ='OUT'&#xA;&#xA;"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::rsIncommFileInfo" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::strInClientCode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="20" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::strOutClientCode"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="20" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{7717EAC5-3905-4EB3-8834-2051A1E283B4}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{E25FA9FE-339D-48E4-826A-EC557954FE15}"
+        DTS:ObjectName="{E25FA9FE-339D-48E4-826A-EC557954FE15}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::rsIncommFileInfo" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{CBFE207A-39DE-419E-82B4-44E80E2B14E0}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task bcbsri Encounter"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\Flat File Destination"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="Flat File Destination">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                    <property
+                      dataType="System.Boolean"
+                      description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                      name="EscapeQualifier">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\Flat File Destination.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[IncommOutFileConnManager]"
+                      connectionManagerRefId="Package.ConnectionManagers[IncommOutFileConnManager]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\Flat File Destination.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\Flat File Destination.Inputs[Flat File Destination Input].Columns[outputText]"
+                          cachedCodepage="1252"
+                          cachedDataType="text"
+                          cachedName="outputText"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[outputText]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].Columns[outputText]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[outputText]"
+                          dataType="wstr"
+                          length="200"
+                          name="outputText" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">exec [elig].[sp_AccumulatorsOutbound_File]  'Clear Spring' WITH RESULT SETS
+		(
+		 (
+		 outputText VARCHAR(max)
+		 )
+		)</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable">User::strSPName</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[NHSQLDBConn]"
+                      connectionManagerRefId="Package.ConnectionManagers[NHSQLDBConn]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].Columns[outputText]"
+                          codePage="1252"
+                          dataType="text"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[outputText]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].Columns[outputText]"
+                          name="outputText"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].Columns[fororder]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fororder]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].Columns[fororder]"
+                          name="fororder"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].Columns[fororderdesc]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fororderdesc]"
+                          length="30"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].Columns[fororderdesc]"
+                          name="fororderdesc"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].Columns[nhmemberid]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nhmemberid]"
+                          length="30"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].Columns[nhmemberid]"
+                          name="nhmemberid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].Columns[serviceDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[serviceDate]"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].Columns[serviceDate]"
+                          name="serviceDate"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[outputText]"
+                          codePage="1252"
+                          dataType="text"
+                          name="outputText" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fororder]"
+                          dataType="i4"
+                          name="fororder" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fororderdesc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="fororderdesc" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nhmemberid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="nhmemberid" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[serviceDate]"
+                          dataType="dbTimeStamp"
+                          name="serviceDate" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fororder]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fororder]"
+                          name="fororder" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fororderdesc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fororderdesc]"
+                          name="fororderdesc" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nhmemberid]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nhmemberid]"
+                          name="nhmemberid" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[serviceDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[serviceDate]"
+                          name="serviceDate" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[outputText]"
+                          codePage="1252"
+                          dataType="text"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[outputText]"
+                          name="outputText" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter.Paths[OLE DB Source Output]"
+                  endId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\Flat File Destination.Inputs[Flat File Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Exec batch to move Encounter files"
+          DTS:CreationName="Microsoft.ExecuteProcess"
+          DTS:Description="Execute Process Task"
+          DTS:DTSID="{E9F8B210-4566-4488-8E3E-0D23348D785D}"
+          DTS:ExecutableType="Microsoft.ExecuteProcess"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Exec batch to move Encounter files"
+          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Arguments">"/c " +  @[User::WinSCPScriptFullyQualifiedPathName] + "MoveOutFileToArchive.BAT"  +" "+ @[User::strIncommfromlocation] +""+ @[User::strIncommFileName]  +" "+ @[User::strIncommfromlocation] + "Archive\\" + "" +@[User::strIncommFileName]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="C:\Windows\System32\cmd.exe"
+              Arguments="/c C:\NHEligJobs\NH_WinSCP_Scripts\MoveOutFileToArchive.BAT C:\NHEligJobs\BCBSRI_SSIS\DAT\OUT C:\NHEligJobs\BCBSRI_SSIS\DAT\OUTArchive\" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Exec winscp to upload Encounter file"
+          DTS:CreationName="Microsoft.ExecuteProcess"
+          DTS:Description="Execute Process Task"
+          DTS:DTSID="{FC6EB4FB-91CC-4664-94FF-25A49A41F724}"
+          DTS:ExecutableType="Microsoft.ExecuteProcess"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Exec winscp to upload Encounter file"
+          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Arguments">"/script=" +  @[User::WinSCPScriptFullyQualifiedPathName] + @[User::WinSCPScriptName] + " /parameter " + @[User::WinSCPLoginName]+" \""+ @[User::WinSCPDestinationPath] +"\" "+ @[User::strIncommfromlocation] +" "+ @[User::strIncommFileName]+" "+ @[User::strIncommFileName]  + " /Log=" +  @[User::strLogFolder] + @[User::strOutClientCode]+"_"+  @[User::strFileType]+"_"+@[User::strSnapshotFlag]+"_"+ SUBSTRING((DT_STR,30, 1252) GETDATE(), 1, 10) + "_Incomm_Log_"+ @[User::WinSCPScriptName]</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Foreach Loop Container\Exec winscp to upload Encounter file.EventHandlers[OnPostExecute]"
+              DTS:CreationName="OnPostExecute"
+              DTS:DTSID="{56531957-0AFC-4A24-9AFF-2B0740134606}"
+              DTS:EventID="11136"
+              DTS:EventName="OnPostExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{6188A7B1-ADD6-4534-A505-41787E29D105}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Foreach Loop Container\Exec winscp to upload Encounter file.EventHandlers[OnPostExecute]\Execute SQL Task"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{1DE1FCB0-ECC3-464E-B79E-AABC68265884}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Execute SQL Task">
+                  <DTS:Variables />
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{4EED95C6-A96F-4830-BD8A-5F8A0CDE70FF}"
+                      SQLTask:SqlStatementSource="insert into  elig.filetrack (clientcode,DirectionCode,FileName,filetype,DateReceived,statuscode)&#xA;values (?,'OUT',?,'ELIG_INCOMM',getdate(),'999')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="User::strOutClientCode"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="20" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="1"
+                        SQLTask:DtsVariableName="User::strIncommFileName"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="200" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="C:\NHEligJobs\NH_WinSCP_Scripts\WinSCP.com"
+              Arguments="/script=C:\NHEligJobs\NH_WinSCP_Scripts\ScriptToUploadFiles.txt /parameter nhitsftp &quot;/h223/fromNH&quot; C:\NHEligJobs\BCBSRI_SSIS\DAT\OUT   /Log=C:\NHEligJobs\BCBSRI_SSIS\LOG\H223_ENCOUNTER_FULL_2022-07-27_Incomm_Log_ScriptToUploadFiles.txt" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{6F099ABA-8BDF-47BA-B85C-ED8222D19B64}"
+          DTS:From="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container\Exec winscp to upload Encounter file" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{7A85EC3A-1429-4868-A3AE-095A469DAE48}"
+          DTS:From="Package\Foreach Loop Container\Exec winscp to upload Encounter file"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Foreach Loop Container\Exec batch to move Encounter files" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{A89B8CDD-3EB2-4EC5-96E4-A9E4B1AFBA0B}"
+          DTS:ObjectName="{A89B8CDD-3EB2-4EC5-96E4-A9E4B1AFBA0B}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::strIncommFileName" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{8FF68497-DEA8-44F0-8297-E5AE35270124}"
+          DTS:ObjectName="{8FF68497-DEA8-44F0-8297-E5AE35270124}"
+          DTS:ValueIndex="4"
+          DTS:VariableName="User::strIncommfromlocation" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{CD908773-791E-4076-B5BA-A8C0CFCBB1B6}"
+          DTS:ObjectName="{CD908773-791E-4076-B5BA-A8C0CFCBB1B6}"
+          DTS:ValueIndex="5"
+          DTS:VariableName="User::WinSCPDestinationPath" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{2F3DA623-0C44-4453-B485-D0D806241D51}"
+          DTS:ObjectName="{2F3DA623-0C44-4453-B485-D0D806241D51}"
+          DTS:ValueIndex="6"
+          DTS:VariableName="User::strDataSource" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{C4C871DC-D56D-4755-B394-F4A3B2C8AB25}"
+          DTS:ObjectName="{C4C871DC-D56D-4755-B394-F4A3B2C8AB25}"
+          DTS:ValueIndex="7"
+          DTS:VariableName="User::WinSCPLoginName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{E29C7F22-F55C-49F9-903D-99164A56610F}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Foreach Loop Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="234.25714460879,40.4941185908334" />
+        <NodeLayout
+          Size="233,42"
+          Id="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter"
+          TopLeft="26.8571422927233,25.129411275659" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\Foreach Loop Container\Exec batch to move Encounter files"
+          TopLeft="30.0571442000721,195.623533075326" />
+        <NodeLayout
+          Size="251,42"
+          Id="Package\Foreach Loop Container\Exec winscp to upload Encounter file"
+          TopLeft="23.5428583884726,104.517651374447" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="127.657142292723,66.729411275659">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="21.4857160957493,37.788240098788"
+              Start="0,0"
+              End="21.4857160957493,30.288240098788">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.894120049394" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.894120049394"
+                    Point2="0,18.894120049394"
+                    Point3="4,18.894120049394" />
+                  <mssgle:LineSegment
+                    End="17.4857160957493,18.894120049394" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17.4857160957493,18.894120049394"
+                    Point2="21.4857160957493,18.894120049394"
+                    Point3="21.4857160957493,22.894120049394" />
+                  <mssgle:LineSegment
+                    End="21.4857160957493,30.288240098788" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="150.600001294272,146.117651374447">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.505881700879"
+              Start="0,0"
+              End="0,42.005881700879">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.005881700879" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="312,311"
+          Size="312,354"
+          Id="Package\Foreach Loop Container"
+          TopLeft="107.142857979755,203.282355189076" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="315.25714460879,82.4941185908334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-52.114286629035,120.788236598243"
+              Start="0,0"
+              End="-52.114286629035,113.288236598243">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.3941182991213" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,56.3941182991213"
+                    Point2="0,60.3941182991213"
+                    Point3="-4,60.3941182991213" />
+                  <mssgle:LineSegment
+                    End="-48.114286629035,60.3941182991213" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-48.114286629035,60.3941182991213"
+                    Point2="-52.114286629035,60.3941182991213"
+                    Point3="-52.114286629035,64.3941182991213" />
+                  <mssgle:LineSegment
+                    End="-52.114286629035,113.288236598243" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\OLE DB Source"
+          TopLeft="184.571431714661,21.4117650061743" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter\Flat File Destination"
+          TopLeft="165.714288536383,127.858825322584" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Data Flow Task bcbsri Encounter.Paths[OLE DB Source Output]"
+          TopLeft="259.571431714661,63.4117650061743">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.35714317827799,64.4470603164097"
+              Start="0,0"
+              End="-8.35714317827799,56.9470603164097">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.2235301582048" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.2235301582048"
+                    Point2="0,32.2235301582048"
+                    Point3="-4,32.2235301582048" />
+                  <mssgle:LineSegment
+                    End="-4.35714317827799,32.2235301582048" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.35714317827799,32.2235301582048"
+                    Point2="-8.35714317827799,32.2235301582048"
+                    Point3="-8.35714317827799,36.2235301582048" />
+                  <mssgle:LineSegment
+                    End="-8.35714317827799,56.9470603164097" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\Foreach Loop Container\Exec winscp to upload Encounter file.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Foreach Loop Container\Exec winscp to upload Encounter file.EventHandlers[OnPostExecute]\Execute SQL Task"
+          TopLeft="248.8,100.8" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

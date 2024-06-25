@@ -1,0 +1,194 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/13/2022 7:59:25 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NB-HQ-LT116"
+  DTS:CreatorName="NH\SBalla"
+  DTS:DTSID="{84CCFE29-1975-4A20-A6D7-BDA9E6080016}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.132"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="FISCCXEncryption"
+  DTS:PackageType="5"
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{FA157885-FD2A-4593-9A5E-DB4D36C7FDBE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5B9A6376-6801-4451-93D4-245CF6A1918F}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;--recipient &quot;+  &quot;\&quot;&quot;+@[User::gpgRecipient]+ &quot;\&quot;&quot;+ &quot; --passphrase &quot;+ &quot;\&quot;&quot;+  @[User::gpgPassphrase] + &quot;\&quot;&quot;+ &quot; --yes &quot; + &quot; --output &quot; + &quot;\&quot;&quot;+ @[User::gpgFileDirectoryIn] +  @[User::gpgOutputFile] +&quot;\&quot;&quot; + &quot; --decrypt &quot; +&quot;\&quot;&quot;+  @[User::gpgFileDirectoryIn]  +  @[User::gpgFileNameFull] + &quot;\&quot;&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="gpgDecrypt">
+      <DTS:VariableValue
+        DTS:DataType="8">--recipient "jamesbond@nationsbenefits.com" --passphrase "N@t10nS!" --yes  --output "C:\NHEligJobs\CCX_SSIS\DAT\IN\test.txt" --decrypt "C:\NHEligJobs\CCX_SSIS\DAT\IN\test.txt.pgp"</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{57AC2C0B-1CBE-4700-8D48-3126A80ABF6B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;--recipient &quot;+  &quot;\&quot;&quot;+@[User::gpgRecipient]+ &quot;\&quot;&quot;+ &quot; --yes &quot; + &quot; --output &quot; + &quot;\&quot;&quot;+ @[User::gpgFileDirectoryIn] +  @[User::gpgFileNameFull] +&quot;.pgp&quot; +&quot;\&quot;&quot; + &quot; --encrypt &quot; +&quot;\&quot;&quot;+  @[User::gpgFileDirectoryIn]  +  @[User::gpgFileNameFull] + &quot;\&quot;&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="gpgEncrypt">
+      <DTS:VariableValue
+        DTS:DataType="8">--recipient "jamesbond@nationsbenefits.com" --yes  --output "C:\NHEligJobs\CCX_SSIS\DAT\IN\test.txt.pgp.pgp" --encrypt "C:\NHEligJobs\CCX_SSIS\DAT\IN\test.txt.pgp"</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F6320839-2CDC-4F3C-8AE7-2B8383258E57}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="gpgFileDirectoryIn">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\CCX_SSIS\DAT\IN\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{73FD9889-2EB6-4EB3-BE10-E77837E5496A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="gpgFileDirectoryOut">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\CCX_SSIS\DAT\OUT\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6CC3E6BC-8E82-49AF-A459-5EBABB6D0A13}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="gpgFileExtension">
+      <DTS:VariableValue
+        DTS:DataType="8">*.pgp</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EC99BEB2-F04A-44E6-B095-79CF76BED215}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="gpgFileNameFull">
+      <DTS:VariableValue
+        DTS:DataType="8">test.txt.pgp</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EC561019-5D70-4AD9-BE42-0038EDFDF18B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="SUBSTRING( @[User::gpgFileNameFull] , 1, (LEN( @[User::gpgFileNameFull] ) -4)  )"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="gpgOutputFile">
+      <DTS:VariableValue
+        DTS:DataType="8">test.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EB3D2354-BE58-4642-BEAB-50BD1E1F0742}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="gpgPassphrase">
+      <DTS:VariableValue
+        DTS:DataType="8">N@t10nS!</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D7999B7E-1779-4B36-997D-7526D972C05E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="gpgRecipient">
+      <DTS:VariableValue
+        DTS:DataType="8">jamesbond@nationsbenefits.com</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{C49AD4C4-2EA6-4AD7-B52E-92E9A73CF9CF}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{9FCA9E1E-6877-4368-8C7D-01B58E61C963}"
+        DTS:ObjectName="{9FCA9E1E-6877-4368-8C7D-01B58E61C963}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::gpgFileDirectoryIn]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\NHEligJobs\CCX_SSIS\DAT\IN\" />
+            <FEFEProperty
+              FileSpec="*.txt" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\pgp Encryption"
+          DTS:CreationName="Microsoft.ExecuteProcess"
+          DTS:Description="Execute Process Task"
+          DTS:DTSID="{E7503BBC-79D1-4A56-BA3C-AA0F225B6D5F}"
+          DTS:ExecutableType="Microsoft.ExecuteProcess"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="pgp Encryption"
+          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Arguments">@[User::gpgEncrypt]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="C:\Program Files (x86)\GnuPG\bin\gpg.exe"
+              Arguments="--recipient &quot;jamesbond@nationsbenefits.com&quot; --yes  --output &quot;C:\NHEligJobs\CCX_SSIS\DAT\IN\test.txt.pgp.pgp&quot; --encrypt &quot;C:\NHEligJobs\CCX_SSIS\DAT\IN\test.txt.pgp&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{7CD0E7E3-39B2-41F8-8DBB-1F1AACE4BEA7}"
+          DTS:ObjectName="{7CD0E7E3-39B2-41F8-8DBB-1F1AACE4BEA7}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::gpgFileNameFull" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Foreach Loop Container\pgp Encryption"
+          TopLeft="109,46" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="355,180"
+          Size="355,223"
+          Id="Package\Foreach Loop Container"
+          TopLeft="287,57" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

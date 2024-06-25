@@ -1,0 +1,1537 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/1/2022 7:47:29 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NB-HQ-LT116"
+  DTS:CreatorName="NH\SBalla"
+  DTS:DTSID="{CFF8B13A-5EC2-48AC-8EC2-B0275E3576D5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.132"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="AetnaBenefitSummary"
+  DTS:PackageType="5"
+  DTS:VersionBuild="46"
+  DTS:VersionGUID="{9636D1A1-BD2A-49AB-82BD-5E52B265FB31}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DatabaseConnection]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0C5ED7E2-4F68-4505-99F1-26D5DB85C196}"
+      DTS:ObjectName="DatabaseConnection">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Retain="True"
+          DTS:ConnectionString="Data Source=nhcrmstg.database.windows.net;User ID=stageadmin;Initial Catalog=NHCRM_STG;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-Package2-{0C5ED7E2-4F68-4505-99F1-26D5DB85C196}nhcrmstg.database.windows.net.sballa@nationsbenefits.com;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA3JsNParAFEuNNUsCWll0uAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADIM7jyYnpT4F71w8YzI2t7AAAAAASAAACgAAAAEAAAAJm1Ylcog5RhuEOFq+Z8scQYAAAA88g0QVWX+KOLOMSDf7uBiaA24NEKr+1VFAAAAO3hKDM0P3PshM1nthW02C0s5B1r</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PipeDelimitedOutputFile]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{9A5F66B1-D468-407B-99F6-E680C6104A18}"
+      DTS:ObjectName="PipeDelimitedOutputFile">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FileNameOut]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowsToSkip="1"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\NHEligJobs\AetnaOHL_SSIS\DAT\OUT\H671_OUTLF3_NPP_DLY_TEST_20221115_1410.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="495"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 0"
+              DTS:DTSID="{F404EECF-497E-49E9-9FBF-21BED4977530}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9FEB1AB8-E74C-4C81-B159-EAB9C81D4824}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ClientCode">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{33CD9908-AC47-4EB7-BDB1-19FC92D1A64C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DatabaseConnection">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{078D3F6B-7CA9-4B79-8C56-60B19EB3FCCC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailBCC">
+      <DTS:VariableValue
+        DTS:DataType="8">sballa@nationsbenefits.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{91ACFF7A-E2DE-4816-B6B4-5BD268CD21D2}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::FileNameOut] + &quot; file has been successfully uploaded.&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailBody">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\AetnaOHL_SSIS\DAT\OUT\H671_OUTLF3_NPP_DLY_TEST_20221115_1410.txt file has been successfully uploaded.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4DF20280-69CD-4AE5-9D34-064266C7653A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailCC">
+      <DTS:VariableValue
+        DTS:DataType="8">sballa@nationsbenefits.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F65476E1-861E-4EB5-97F3-9CB4B8889DF2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailFrom">
+      <DTS:VariableValue
+        DTS:DataType="8">itreports@nationshearing.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CCCCC262-B708-4D7E-B6D5-9F392509FBEA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailFromName">
+      <DTS:VariableValue
+        DTS:DataType="8">ITReports</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6B79904A-DA54-4A8E-AB55-380BDBB2D511}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailHostname">
+      <DTS:VariableValue
+        DTS:DataType="8">smtp.office365.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DFE0F717-62D4-47E9-B4F1-E8ED8820E6FC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailPassword">
+      <DTS:VariableValue
+        DTS:DataType="8">SSN@tions!RSQ220</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5B4311CD-5A6C-47B2-8EDF-036EEB79734C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailPort">
+      <DTS:VariableValue
+        DTS:DataType="8">587</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DEB84DB8-7CDB-4511-A7EB-721CB2637091}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;Aetna | OHL | Benefit Summary Report |  Out | &quot; +  @[User::FileNameFull]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailSubject">
+      <DTS:VariableValue
+        DTS:DataType="8">Aetna | OHL | Benefit Summary Report |  Out | H671_OUTLF3_NPP_DLY_TEST_20221115_1410.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{25A712EA-5B73-4E83-BF04-3F072ACB12B5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailTo">
+      <DTS:VariableValue
+        DTS:DataType="8">sballa@nationsbenefits.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2E6AB356-585B-4C49-93F1-B8BF927EA5C1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailUsername">
+      <DTS:VariableValue
+        DTS:DataType="8">itreports@nationshearing.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{93F0746B-7D8E-4BD2-B85A-FA5C5F71F400}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="RIGHT(&quot;0&quot; + (DT_STR,4,1252)DATEPART ( &quot;yyyy&quot; , getdate() ), 4)&#xA;+ RIGHT(&quot;0&quot; + (DT_STR,4,1252)DATEPART ( &quot;mm&quot; , getdate() ),2) &#xA;+ RIGHT(&quot;0&quot; + (DT_STR,4,1252)DATEPART ( &quot;dd&quot; , getdate() ), 2)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileDate">
+      <DTS:VariableValue
+        DTS:DataType="8">20221115</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4BBBF7CB-8594-4D7D-B70D-713D5961CF50}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="RIGHT(&quot;0&quot; + (DT_STR,4,1252)DATEPART ( &quot;yyyy&quot; , getdate() ), 4)&#xA;+ RIGHT(&quot;0&quot; + (DT_STR,4,1252)DATEPART ( &quot;mm&quot; , getdate() ),2) &#xA;+ RIGHT(&quot;0&quot; + (DT_STR,4,1252)DATEPART ( &quot;dd&quot; , getdate() ), 2)&#xA;+&quot;_&quot;&#xA;+ RIGHT(&quot;0&quot; + (DT_STR,4,1252)DATEPART ( &quot;HH&quot; , getdate() ), 2)&#xA;+ RIGHT(&quot;0&quot; + (DT_STR,4,1252)DATEPART ( &quot;MI&quot; , getdate() ), 2)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FIleDateTime">
+      <DTS:VariableValue
+        DTS:DataType="8">20221115_1410</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C6E84D85-2FB6-46BF-B017-A88262BF4ECE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileExtensionOut">
+      <DTS:VariableValue
+        DTS:DataType="8">.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{03D64C09-B632-41F6-8B02-453B188BF4AB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileLocationOut">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\AetnaOHL_SSIS\DAT\OUT\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AC5FA67A-D7B8-406C-AA8A-2062F4CD31C3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileLocationOutArchive">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\AetnaOHL_SSIS\DAT\OUT\Archive\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{93B031B7-085D-4A75-B445-BD5182B8D202}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileLocationStats">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AD4B753F-B4CB-48F1-9A7F-821A26CA0E69}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::FileNameOutBegin]+ @[User::FileNameOutEnvironment] + @[User::FIleDateTime]+ @[User::FileExtensionOut]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileNameFull">
+      <DTS:VariableValue
+        DTS:DataType="8">H671_OUTLF3_NPP_DLY_TEST_20221115_1410.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9EF0E0A8-9424-4A8D-8713-74E1201A6756}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::FileLocationOut] +  @[User::FileNameFull]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileNameOut">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\AetnaOHL_SSIS\DAT\OUT\H671_OUTLF3_NPP_DLY_TEST_20221115_1410.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{341ECC6F-52D3-4C65-B127-DFB40E13BCA5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileNameOutBegin">
+      <DTS:VariableValue
+        DTS:DataType="8">H671_OUTLF3_NPP_DLY_</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B200DCCE-AB6D-4780-9A51-F5E8AED348B4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileNameOutEnvironment">
+      <DTS:VariableValue
+        DTS:DataType="8">TEST_</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{59BB91DA-8F05-4145-8FD9-F8FD7689914C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileNameStats">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EC9E991E-BDBB-46E7-B6F9-9DC37DCF8A81}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LogFileExtension">
+      <DTS:VariableValue
+        DTS:DataType="8">.log</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{63C475C9-5AC9-4111-AD0E-17959585B087}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::FileNameFull]+ @[User::LogFileExtension]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LogFileNameFull">
+      <DTS:VariableValue
+        DTS:DataType="8">H671_OUTLF3_NPP_DLY_TEST_20221115_1410.txt.log</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5BA65136-52AC-45A2-84DE-805724C334C2}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::LogLocation] +  @[User::LogFileNameFull]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LogFileOut">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\AetnaOHL_SSIS\LOG\H671_OUTLF3_NPP_DLY_TEST_20221115_1410.txt.log</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C9AC0B2E-1860-40B7-A4ED-959096B063D3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LogLocation">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\AetnaOHL_SSIS\LOG\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{05300415-908B-40AC-8F78-097BB3500FB6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="pgpEmail">
+      <DTS:VariableValue
+        DTS:DataType="8">sballa@gmail.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A33795AD-33DC-404F-8A3C-ABB22DC5ED4E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="pgpFileNameFull">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7FD18D7A-15B9-4AF9-A5D8-DAF211CE67AF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPDestinationPath">
+      <DTS:VariableValue
+        DTS:DataType="8">/fromNB/</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{645C6593-D9C7-4A5E-8733-0E83C6D8101D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPEXEPathName">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\NH_WinSCP_Scripts</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0137A629-308B-44AE-9922-4DC34ABD105C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPLoginName">
+      <DTS:VariableValue
+        DTS:DataType="8">OneHealthLinkFTP</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9D10EC95-85C1-4B32-A579-CB76AD131BEC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPScriptFullyQualifiedPathName">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\NH_WinSCP_Scripts\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{76D21202-0220-4D2D-80A4-CC5DC4A0B2A2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPScriptName">
+      <DTS:VariableValue
+        DTS:DataType="8">ScriptToUploadFiles.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B532F046-A5E9-4EEB-A408-5960A5BFF5FF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPSourceFileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D52ED55C-C5D6-4A2A-8BCD-10726D6BE043}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPSourcePath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\NHEligJobs\AetnaOHL_SSIS\DAT\OUT\</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E1F688B1-B606-494D-96DA-60797189A5B9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Flat File Destination"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[PipeDelimitedOutputFile]"
+                  connectionManagerRefId="Package.ConnectionManagers[PipeDelimitedOutputFile]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Output]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="495"
+                      cachedName="Output"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Column 0]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Output]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Column 0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="495"
+                      name="Column 0" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select Output from dbo.BenefitSummary</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DatabaseConnection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DatabaseConnection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Output]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Output]"
+                      length="495"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Output]"
+                      name="Output"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Output]"
+                      codePage="1252"
+                      dataType="str"
+                      length="495"
+                      name="Output" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Output]"
+                      codePage="1252"
+                      dataType="str"
+                      length="495"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Output]"
+                      name="Output" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{26F8CAC3-D720-453A-866D-B323122969B8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0C5ED7E2-4F68-4505-99F1-26D5DB85C196}"
+          SQLTask:SqlStatementSource="DROP TABLE IF EXISTS #AetnaAllMembers&#xA;select distinct * into #AetnaAllMembers from&#xA;(&#xA;select 'Aetna_500K_Members_In_Elig_20221013' as TableName, IsActive, BenefitCardNumber, NHLinkID, insCarrierID, insHealthPlanID, BenefitLevel, BenefitStartDate, BenefitEndDate from dbo.Aetna_500K_Members_In_Elig_20221013 where IsActive =1&#xA;UNION&#xA;select 'Aetna_500K_Members_NotIn_Elig_20221013' as TableName, 1 as IsActive, '' as BenefitCardNumber, Member_ID as NHlinkID, 16 as insCarrierID, AetnaNew_HealthPlanID as insHealthPlanID, Contract as BenefitLevel, BenefitStartDate, BenefitEndDate from dbo.Aetna_500K_Members_NotIn_Elig_20221013&#xA;) a&#xA;&#xA;&#xA;DROP TABLE IF EXISTS #Members&#xA;select * into #Members from &#xA;(&#xA;select distinct 'Members' as TableName, NHlinkID, MemberID, IsActive, FirstName, LastName, MiddleInitial, DateOfBirth, Gender, &#xA;ROW_NUMBER() OVER (PARTITION BY NHLinkID ORDER BY NHLinkID, CreateDate desc ) AS rowid&#xA;from master.Members&#xA;where NHlinkID in (select distinct NHlinkID from #AetnaAllMembers ) and IsActive = 1 and DataSource = 'ELIG_Aetna'&#xA;) a&#xA;where a.rowid = 1&#xA;&#xA;&#xA;DROP TABLE IF EXISTS #CardBenefitLoad_CI&#xA; Select * into #CardBenefitLoad_CI from (&#xA; select IsActive, NHLinkID, RequestRecordStatus, ResponseRecordStatus, BenefitCardNumber, MemberDataID, ClientCode,  insCarrierID, InsHealthPlanID, FirstTimeCardIssued, BenefitType, BenefitSource,&#xA; FirstName, LastName, MiddleInitial, DOB, MailingState, MailingZipCode, HomePhoneNbr, &#xA; BenefitValidFrom, BenefitValidTo, BenefitFreqInMonth, BenefitYear, BenefitPeriod,&#xA; ROW_NUMBER() OVER (PARTITION BY NHLinkID ORDER BY NHLinkID, CreateDate desc ) AS rowid&#xA; from otcfunds.CardBenefitLoad_CI where insCarrierID = 16 and InsHealthPlanID in (5666,5667,5668,5669,5670,5671) -- and Getdate() between BenefitValidFrom and BenefitValidTo&#xA; and RequestRecordStatus = 'SUCCESS' and ResponseRecordStatus = 'SUCCESS' and BenefitCardNumber is not null&#xA; ) a&#xA; where a.rowid = 1&#xA;&#xA;&#xA;DROP TABLE IF EXISTS #Monetary_AllRecords&#xA;select * into #Monetary_AllRecords from (&#xA;select 'fisxtract.Monetary' as TableName_ValueLoad, PANProxyNumber, MerchantName, PurseName,PurseNo,PurseStatus,PurseStatusDate, txnsign, substring(PurseName, 4,2) as PurseNameYear, substring(PurseName, 6,2) as PurseNameMonth, &#xA;AuthorizationBalance, SettleAmount,AdjustAmount,AuthorizationAmount,DiscountAmount,PurseCreationDate,PurseEffectiveDate,PurseExpirationDate,SettleBalance,TxnLocalAmount,&#xA;TxnLocDateTime, WCSUTCPostDate, WCSLocalPostDate, WCSLocalInserted,WCSUTCInserted,WCSUTCUpdated&#xA;from fisxtract.Monetary where PANProxyNumber in (select BenefitCardNumber from #CardBenefitLoad_CI) &#xA;) a&#xA;&#xA;&#xA;&#xA;DROP TABLE IF EXISTS #Monetary_ValueLoad_Amount&#xA;select * into #Monetary_ValueLoad_Amount from (&#xA;select 'fisxtract.Monetary' as TableName_ValueLoad, PANProxyNumber --, PurseName,  substring(PurseName, 4,2) as PurseNameYear, substring(PurseName, 6,2) as PurseNameMonth&#xA;-- , sum(AuthorizationBalance) as TotalBalance, sum(AuthorizationBalance) as AuthorizationBalanceTotal -- This contains cumulative Record keeping ( funds added and substracted, runninig balance)&#xA;, sum(settleAmount) as TotalBalance, sum(SettleAmount) as SettleAmountFundsCredited&#xA;from fisxtract.Monetary where PANProxyNumber in (select BenefitCardNumber from #CardBenefitLoad_CI) -- and MerchantName = 'MANUAL BATCH LOADER' and txnTypeName = 'ValueLoad'&#xA;--and month(Getdate()) = substring(PurseName, 6,2) and substring( cast(year(getdate()) as varchar), 3,2) = substring(PurseName, 4,2)&#xA;and txnsign = 1 &#xA;group by PANProxyNumber --, PurseName&#xA;) a&#xA;&#xA;&#xA;-- Use This | ALL records | Funds added to the account | credit&#xA;DROP TABLE IF EXISTS #Monetary_ValueLoad_Records&#xA;select * into #Monetary_ValueLoad_Records from (&#xA;select 'fisxtract.Monetary' as TableName_ValueLoad, PANProxyNumber, MerchantName, PurseName,PurseNo,PurseStatus,PurseStatusDate, txnsign, substring(PurseName, 4,2) as PurseNameYear, substring(PurseName, 6,2) as PurseNameMonth, &#xA;AuthorizationBalance, SettleAmount,AdjustAmount,AuthorizationAmount,DiscountAmount,PurseCreationDate,PurseEffectiveDate,PurseExpirationDate,SettleBalance,TxnLocalAmount&#xA;from fisxtract.Monetary where PANProxyNumber in (select BenefitCardNumber from #CardBenefitLoad_CI) -- and MerchantName = 'MANUAL BATCH LOADER' and txnTypeName = 'ValueLoad'&#xA;and txnsign = 1 &#xA;) a&#xA;&#xA;DROP TABLE IF EXISTS #Monetary_Transactions&#xA;select * into #Monetary_Transactions from (&#xA;select 'fisxtract.Monetary' as TableName_Transactions, PANProxyNumber, &#xA;--PurseName, &#xA;txnsign, sum(settleAmount) as TotalTransactionAmount, sum(settleAmount) as settleAmountFundsDebited  from &#xA;fisxtract.Monetary where PANProxyNumber in (select BenefitCardNumber from #CardBenefitLoad_CI) -- and MerchantName not in ( 'CUSTOMER SERVICE')&#xA;--and month(Getdate()) = substring(PurseName, 6,2) and substring( cast(year(getdate()) as varchar), 3,2) = substring(PurseName, 4,2)&#xA;-- and Len(PurseName) = 7&#xA;and txnsign = -1&#xA;group by PANProxyNumber&#xA;--, PurseName&#xA;, txnsign&#xA;) a&#xA;&#xA;&#xA;DROP TABLE IF EXISTS #Monetary_Transactions_Records&#xA;select * into #Monetary_Transactions_Records from (&#xA;select 'fisxtract.Monetary' as TableName_Transactions, PANProxyNumber, MerchantName,  PurseName,PurseNo,PurseStatus,PurseStatusDate,txnsign, SettleAmount,AdjustAmount,AuthorizationAmount,AuthorizationBalance,DiscountAmount,PurseCreationDate,PurseEffectiveDate,PurseExpirationDate,SettleBalance,TxnLocalAmount&#xA;from fisxtract.Monetary where PANProxyNumber in (select BenefitCardNumber from #CardBenefitLoad_CI) -- and MerchantName not in  ('CUSTOMER SERVICE')&#xA;--and month(Getdate()) = substring(PurseName, 6,2) and substring( cast(year(getdate()) as varchar), 3,2) = substring(PurseName, 4,2)&#xA;-- and Len(PurseName) = 7&#xA;and txnsign = -1&#xA;) a&#xA;&#xA;&#xA;&#xA;DROP TABLE IF EXISTS #NonMonetary_CardShipped&#xA;select * into #NonMonetary_CardShipped from (&#xA;select PANProxyNumber, CardStatus, CardNumberLocCreationDate as card_mail_date, CardNumberLocExpirationDate,&#xA;ROW_NUMBER() OVER (PARTITION BY PANProxyNumber ORDER BY PANProxyNumber, CardNumberLocCreationDate DESC) AS rowid&#xA;from fisxtract.NonMonetary where PANProxyNumber in (select BenefitCardNumber from #CardBenefitLoad_CI)&#xA;and RequestCodeDescription like '%shipping%' and RequestCodeDescription like '%Complete%'&#xA;-- and PANProxyNumber = '0015067103231'&#xA;) a&#xA;where a.rowid = 1&#xA;&#xA;&#xA;&#xA;DROP TABLE IF EXISTS #NonMonetary_CardActivate&#xA;select * into #NonMonetary_CardActivate from (&#xA;select PANProxyNumber, CardStatus, CardStatusDescription, &#xA;CASE WHEN UPPER(LTRIM(RTRIM(CardStatusDescription))) in ('ACTIVE') THEN 1&#xA;&#x9;&#x9;ELSE 0&#xA;&#x9;&#x9;END &#xA;AS card_activation_status,&#xA;CardNumberLocCreationDate, CardNumberLocExpirationDate, ActivateDate,&#xA;&#xA;CASE WHEN UPPER(LTRIM(RTRIM(CardStatusDescription))) in ('ACTIVE') THEN ActivateDate&#xA;     ELSE NULL&#xA;&#x9; END&#xA;AS card_activation_date,&#xA;&#xA;ROW_NUMBER() OVER (PARTITION BY PANProxyNumber ORDER BY PANProxyNumber, ActivateDate DESC) AS rowid&#xA;from fisxtract.NonMonetary where PANProxyNumber in (select BenefitCardNumber from #CardBenefitLoad_CI)&#xA;and RequestCodeDescription like '%Activate%' and RequestCodeDescription like '%account%'&#xA;-- and PANProxyNumber = '0015067103231'&#xA;) a&#xA;where a.rowid = 1&#xA;&#xA;&#xA;DROP TABLE IF EXISTS #BenefitSummary&#xA;select * into #BenefitSummary from (&#xA;select ci.NHlinkID as member_id, m.FirstName as first_name, m.LastName as last_name, m.gender as gender, format(m.DateOfBirth, 'MM/dd/yyyy') as dob, &#xA;ci.MailingState as state, ci.MailingZipCode as zipcode, ci.HomePhoneNbr as primary_phone_num, ci.HomePhoneNbr as secondary_phone_num,&#xA;aal.BenefitLevel as contract_id&#xA;&#xA;,format(c.card_mail_date,'MM/dd/yyyy') as card_mail_date, d.card_activation_status, format(d.card_activation_date,'MM/dd/yyyy') as card_activation_date,&#xA;b.TotalBalance as card_allowance, a.TotalTransactionAmount as card_spend, ( b.TotalBalance - a.TotalTransactionAmount) as card_balance, format(cast(getdate() as date), 'MM/dd/yyyy') as update_date&#xA;--,a.PurseName, &#xA;,ci.BenefitCardNumber&#xA;&#xA;from&#xA;&#xA;#CardBenefitLoad_CI ci&#xA;left join #Members m on ci.NHlinkID = m.NHLinkID&#xA;left join #AetnaAllMembers aal on ci.NHlinkID = aal.NHlinkID&#xA;left join #Monetary_Transactions a on a.PANProxyNumber = ci.BenefitCardNumber&#xA;left join #Monetary_ValueLoad_Amount b on b.PANProxyNumber = ci.BenefitCardNumber&#xA;left join #NonMonetary_CardShipped c on c.PANProxyNumber = ci.BenefitCardNumber&#xA;left join #NonMonetary_CardActivate d on d.PANProxyNumber = ci.BenefitCardNumber&#xA;) a&#xA;&#xA;&#xA;drop table if exists dbo.BenefitSummary&#xA;&#xA;select * into dbo.BenefitSummary from&#xA;&#xA;(&#xA;select Output from (&#xA;&#xA;select 1 as ForOrder,&#xA;('member_id'+'|'+ &#xA;'first_name'+'|'+ &#xA;'last_name'+'|'+ &#xA;'gender'+'|'+ &#xA;'dob'+'|'+ &#xA;'state'+'|'+ &#xA;'zipcode'+'|'+ &#xA;'primary_phone_num'+'|'+ &#xA;'secondary_phone_num'+'|'+ &#xA;'contract_id'+'|'+ &#xA;'card_mail_date'+'|'+ &#xA;'card_activation_status'+'|'+ &#xA;'card_activation_date'+'|'+ &#xA;'card_allowance'+'|'+ &#xA;'card_balance'+'|'+ &#xA;'update_date') as Output&#xA;UNION&#xA;&#xA;Select 2 as ForOrder,&#xA;(&#xA;ltrim(rtrim(isnull(cast(member_id as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(first_name as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(last_name as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(gender as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(dob as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(state as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(zipcode as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(primary_phone_num as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(secondary_phone_num as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(contract_id as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(card_mail_date as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(card_activation_status as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(card_activation_date as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(card_allowance as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(card_balance as varchar), ''))) + '|' +&#xA;ltrim(rtrim(isnull(cast(update_date as varchar), ''))) &#xA;) as Output&#xA;from #BenefitSummary&#xA;) a&#xA;&#xA;) a" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\File Transfer using WinSCP"
+      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:Description="Execute Process Task"
+      DTS:DTSID="{D9A07CFB-8C58-48C6-9E3B-13E7C477380F}"
+      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="File Transfer using WinSCP"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Arguments">"/script=" +  @[User::WinSCPScriptFullyQualifiedPathName] + 
+@[User::WinSCPScriptName] + " /parameter " + 
+@[User::WinSCPLoginName]+" \"" +
+@[User::WinSCPDestinationPath] +"\" "+ 
+@[User::FileLocationOut]  + 
+@[User::FileNameFull]+ " /Log=" +  
+@[User::LogLocation] + 
+@[User::FileNameFull] + "_" +
+SUBSTRING((DT_STR,30, 1252) GETDATE(), 1, 10) +"_"+
+"AetnaOHL_"+ @[User::WinSCPScriptName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="C:\NHEligJobs\NH_WinSCP_Scripts\WinSCP.com"
+          Arguments="/script=C:\NHEligJobs\NH_WinSCP_Scripts\ScriptToUploadFiles.txt /parameter OneHealthLinkFTP &quot;/fromNB/&quot; C:\NHEligJobs\AetnaOHL_SSIS\DAT\OUT\H671_OUTLF3_NPP_DLY_TEST_20221115_1410.txt /Log=C:\NHEligJobs\AetnaOHL_SSIS\LOG\H671_OUTLF3_NPP_DLY_TEST_20221115_1410.txt_2022-11-15_AetnaOHL_ScriptToUploadFiles.txt" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Script Task"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Script Task"
+      DTS:DTSID="{c3f0d561-bdad-4aff-b79c-eb9902178cad}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Script Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_45b03e40545948f094ad9f18fbb3ff97"
+          VSTAMajorVersion="14"
+          VSTAMinorVersion="0"
+          Language="CSharp"
+          ReadOnlyVariables="User::EmailBCC,User::EmailBody,User::EmailCC,User::EmailFrom,User::EmailFromName,User::EmailHostname,User::EmailPassword,User::EmailPort,User::EmailSubject,User::EmailTo,User::EmailUsername,User::FileLocationStats,User::FileNameStats">
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+/* The Script Task allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services control flow. 
+ * 
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script task. */
+#endregion
+
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using System.Net.Mail;
+#endregion
+
+namespace ST_723bc0f21b89498293b2a5c0dd48fbbf
+{
+    /// <summary>
+    /// ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+    /// or parent of this class.
+    /// </summary>
+	[Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+	public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+	{
+        #region Help:  Using Integration Services variables and parameters in a script
+        /* To use a variable in this script, first ensure that the variable has been added to 
+         * either the list contained in the ReadOnlyVariables property or the list contained in 
+         * the ReadWriteVariables property of this script task, according to whether or not your
+         * code needs to write to the variable.  To add the variable, save this script, close this instance of
+         * Visual Studio, and update the ReadOnlyVariables and 
+         * ReadWriteVariables properties in the Script Transformation Editor window.
+         * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+         * 
+         * Example of reading from a variable:
+         *  DateTime startTime = (DateTime) Dts.Variables["System::StartTime"].Value;
+         * 
+         * Example of writing to a variable:
+         *  Dts.Variables["User::myStringVariable"].Value = "new value";
+         * 
+         * Example of reading from a package parameter:
+         *  int batchId = (int) Dts.Variables["$Package::batchId"].Value;
+         *  
+         * Example of reading from a project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].Value;
+         * 
+         * Example of reading from a sensitive project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].GetSensitiveValue();
+         * */
+
+        #endregion
+
+        #region Help:  Firing Integration Services events from a script
+        /* This script task can fire events for logging purposes.
+         * 
+         * Example of firing an error event:
+         *  Dts.Events.FireError(18, "Process Values", "Bad value", "", 0);
+         * 
+         * Example of firing an information event:
+         *  Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, ref fireAgain)
+         * 
+         * Example of firing a warning event:
+         *  Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0);
+         * */
+        #endregion
+
+        #region Help:  Using Integration Services connection managers in a script
+        /* Some types of connection managers can be used in this script task.  See the topic 
+         * "Working with Connection Managers Programatically" for details.
+         * 
+         * Example of using an ADO.Net connection manager:
+         *  object rawConnection = Dts.Connections["Sales DB"].AcquireConnection(Dts.Transaction);
+         *  SqlConnection myADONETConnection = (SqlConnection)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Sales DB"].ReleaseConnection(rawConnection);
+         *
+         * Example of using a File connection manager
+         *  object rawConnection = Dts.Connections["Prices.zip"].AcquireConnection(Dts.Transaction);
+         *  string filePath = (string)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Prices.zip"].ReleaseConnection(rawConnection);
+         * */
+        #endregion
+
+
+		/// <summary>
+        /// This method is called when this script task executes in the control flow.
+        /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+        /// To open Help, press F1.
+        /// </summary>
+		public void Main()
+        {
+            string EmailSubject = Dts.Variables["EmailSubject"].Value.ToString();  //"Stats File From Nations Benefits" ;
+            string EmailBody = Dts.Variables["EmailBody"].Value.ToString();  //"Please Do Not Reply";
+            int iPriority = 2;
+
+            if (SendMail(EmailSubject, EmailBody, iPriority))
+            {
+                Dts.TaskResult = (int)ScriptResults.Success;
+            }
+            else
+            {
+                //Fails the Task
+                Dts.TaskResult = (int)ScriptResults.Failure;
+            }
+        }
+
+        public bool SendMail(string EmailSubject, string EmailBody, int iPriority)
+        {
+            try
+            {
+                string EmailHostname = Dts.Variables["EmailHostname"].Value.ToString();
+                string EmailPort = Dts.Variables["EmailPort"].Value.ToString();
+                string EmailUsername = Dts.Variables["EmailUsername"].Value.ToString();
+                string EmailPassword = Dts.Variables["EmailPassword"].Value.ToString();
+                //string EmailBody = Dts.Variables["EmailBody"].Value.ToString();
+                string EmailTo = Dts.Variables["EmailTo"].Value.ToString();
+                string EmailCC = Dts.Variables["EmailCC"].Value.ToString();
+                string EmailBCC = Dts.Variables["EmailBCC"].Value.ToString();
+                string EmailFrom = Dts.Variables["EmailFrom"].Value.ToString();
+                string EmailFromName = Dts.Variables["EmailFromName"].Value.ToString();
+                string FileNameStats = Dts.Variables["FileNameStats"].Value.ToString();
+                string FileLocationStats = Dts.Variables["FileLocationStats"].Value.ToString();
+
+
+                Console.WriteLine(EmailHostname);
+                Console.WriteLine(EmailPort);
+                Console.WriteLine(EmailUsername);
+                Console.WriteLine(EmailPassword);
+                Console.WriteLine(EmailTo);
+                Console.WriteLine(EmailCC);
+                Console.WriteLine(EmailBCC);
+                Console.WriteLine(EmailFrom);
+                Console.WriteLine(EmailFromName);
+                Console.WriteLine(FileNameStats);
+                Console.WriteLine(FileLocationStats);
+                Console.WriteLine(EmailSubject);
+                Console.WriteLine(EmailBody);
+
+                SmtpClient smtpClient = new SmtpClient();
+                MailMessage message = new MailMessage();
+
+                MailAddress fromAddress = new MailAddress(EmailFrom, EmailFromName);
+
+                //You can have multiple emails separated by ; the regex method splits the EmailTo to a number of emails
+                string[] EmailToArray = Regex.Split(EmailTo, ";");
+                string[] EmailCCArray = Regex.Split(EmailCC, ";");
+                string[] EmailBCCArray = Regex.Split(EmailBCC, ";");
+
+                /*int EmailPortInt = int.Parse(EmailPort);  Not required */  
+
+                smtpClient.Host = EmailHostname;
+                smtpClient.Port = int.Parse(EmailPort);
+                
+
+                System.Net.NetworkCredential EmailCredentials = new System.Net.NetworkCredential(EmailUsername, EmailPassword);
+                smtpClient.Credentials = EmailCredentials;
+                smtpClient.EnableSsl = true;
+                message.From = fromAddress;
+
+                if (EmailTo != null)
+                {
+                    for (int i = 0; i < EmailToArray.Length; ++i)
+                    {
+                        if (EmailToArray[i] != null && EmailToArray[i] != "")
+                        {
+                            message.To.Add(EmailToArray[i]);
+                        }
+                    }
+                }
+
+                if (EmailCC != null)
+                {
+                    for (int i = 0; i < EmailCCArray.Length; ++i)
+                    {
+                        if (EmailCCArray[i] != null && EmailCCArray[i] != "")
+                        {
+                            message.CC.Add(EmailCCArray[i]);
+                        }
+                    }
+                }
+
+                if (EmailBCC != null)
+                {
+                    for (int i = 0; i < EmailBCCArray.Length; ++i)
+                    {
+                        if (EmailBCCArray[i] != null && EmailBCCArray[i] != "")
+                        {
+                            message.CC.Add(EmailBCCArray[i]);
+                        }
+                    }
+                }
+
+                /* Santhosh Balla Commented
+                            switch (iPriority)
+                            {
+                               case 1:
+                                   message.Priority = MailPriority.High;
+                                  break;
+                             case 3:
+                               message.Priority = MailPriority.Low;
+                             break;
+                       default:
+                         message.Priority = MailPriority.Normal;
+                       break;
+                }
+
+                You can enable this for Attachments.  
+                SingleFile is a string variable for the file path.
+                 foreach (string SingleFile in myFiles)
+                {
+
+                */
+
+                
+                /* 
+                 If you have attachments that you would like to send, you will have to configure here.  
+                 Please do not send any files with details about members. Just alerts, notification emails 
+                */
+
+                /* Santhosh Balla | Uncomment the below two lines of code to send attachements
+                   //Attachment myAttachment = new Attachment(FileLocationStats + FileNameStats);
+                   // message.Attachments.Add(myAttachment);
+                */
+               // }
+
+                message.Subject = EmailSubject;
+                message.IsBodyHtml = true;
+                message.Body = EmailBody;
+
+                smtpClient.Send(message);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return true;
+            }
+        }
+
+
+        #region ScriptResults declaration
+        /// <summary>
+        /// This enum provides a convenient shorthand within the scope of this class for setting the
+        /// result of the script.
+        /// 
+        /// This code was generated automatically.
+        /// </summary>
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        };
+        #endregion
+
+	}
+}]]></ProjectItem>
+          <ProjectItem
+            Name="ST_45b03e40545948f094ad9f18fbb3ff97.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><PropertyGroup><ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids><Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProductVersion>8.0.30703</ProductVersion><SchemaVersion>2.0</SchemaVersion><ProjectGuid>{f0d1d7ea-90a2-4d1d-86b6-fedc1fcf6d3e}</ProjectGuid><OutputType>Library</OutputType><AppDesignerFolder>Properties</AppDesignerFolder><RootNamespace>ST_723bc0f21b89498293b2a5c0dd48fbbf</RootNamespace><AssemblyName>ST_45b03e40545948f094ad9f18fbb3ff97</AssemblyName><TargetFrameworkVersion>v4.5</TargetFrameworkVersion><FileAlignment>512</FileAlignment><ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch><TargetFrameworkProfile></TargetFrameworkProfile></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize><OutputPath>.\bin\Debug\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>DEBUG;TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Release' "><DebugSymbols>false</DebugSymbols><Optimize>true</Optimize><OutputPath>.\bin\Release\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><ItemGroup><Reference Include="System" /><Reference Include="System.Data" /><Reference Include="System.Windows.Forms" /><Reference Include="System.Xml" /><Reference Include="Microsoft.SqlServer.ManagedDTS, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.ScriptTask, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" /></ItemGroup><ItemGroup><AppDesigner Include="Properties\" /><Compile Include="Properties\AssemblyInfo.cs"><SubType>Code</SubType></Compile><EmbeddedResource Include="Properties\Resources.resx"><Generator>ResXFileCodeGenerator</Generator><LastGenOutput>Resources.Designer.cs</LastGenOutput></EmbeddedResource><Compile Include="Properties\Resources.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Resources.resx</DependentUpon></Compile><None Include="Properties\Settings.settings"><Generator>SettingsSingleFileGenerator</Generator><LastGenOutput>Settings.Designer.cs</LastGenOutput></None><Compile Include="Properties\Settings.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Settings.settings</DependentUpon></Compile><Compile Include="ScriptMain.cs"><SubType>Code</SubType></Compile></ItemGroup><!-- Include the build rules for a C# project.--><Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" /><ProjectExtensions><VisualStudio><FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}"><ProjectProperties HostName="ScriptTask" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" /><Host Name="ScriptTask" GeneratedNamespace="$safeprojectname" IconIndex=""></Host><ProjectClient><HostIdentifier>SSIS_ST130</HostIdentifier></ProjectClient></FlavorProperties></VisualStudio></ProjectExtensions></Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>ST_b44e1044a360496082d03d8d3d7e5fba</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>ST_b44e1044a360496082d03d8d3d7e5fba</msb:DisplayName>
+		<msb:ProjectId>{D97A8177-D20F-40A8-B777-3F5F9C99C4B6}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_45b03e40545948f094ad9f18fbb3ff97.csproj"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ScriptMain.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_723bc0f21b89498293b2a5c0dd48fbbf.Properties.Settings.get_Default():ST_723bc0f21b89498293b2a5c0dd48fbbf.Properties.Sett" +
+    "ings")]
+
+namespace ST_723bc0f21b89498293b2a5c0dd48fbbf.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_723bc0f21b89498293b2a5c0dd48fbbf")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_723bc0f21b89498293b2a5c0dd48fbbf")]
+[assembly: AssemblyCopyright("Copyright @  2020")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_723bc0f21b89498293b2a5c0dd48fbbf.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_723bc0f21b89498293b2a5c0dd48fbbf.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_723bc0f21b89498293b2a5c0dd48fbbf.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_723bc0f21b89498293b2a5c0dd48fbbf.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_723bc0f21b89498293b2a5c0dd48fbbf.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <BinaryItem
+            Name="ST_45b03e40545948f094ad9f18fbb3ff97.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAMTUYmMAAAAAAAAAAOAAIiALATAAABYAAAAIAAAAAAAADjUA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAALw0AABPAAAAAEAAAHgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAFBUAAAAgAAAAFgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAQAAAAAYAAAAYAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAHgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAADw
+NAAAAAAAAEgAAAACAAUAeCQAAIwPAAABAAAAAAAAAAQ0AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwBABnAAAAAQAAEQIoEAAACm8RAAAKcgEAAHBvEgAACm8T
+AAAKbxQAAAoKAigQAAAKbxEAAApyGwAAcG8SAAAKbxMAAApvFAAACgsYDAIGBwgoAgAABiwNAigQ
+AAAKFm8VAAAKKgIoEAAAChdvFQAACioAGzADACIDAAACAAARAigQAAAKbxEAAApyLwAAcG8SAAAK
+bxMAAApvFAAACgoCKBAAAApvEQAACnJLAABwbxIAAApvEwAACm8UAAAKCwIoEAAACm8RAAAKcl8A
+AHBvEgAACm8TAAAKbxQAAAoMAigQAAAKbxEAAApyewAAcG8SAAAKbxMAAApvFAAACg0CKBAAAApv
+EQAACnKXAABwbxIAAApvEwAACm8UAAAKEwQCKBAAAApvEQAACnKnAABwbxIAAApvEwAACm8UAAAK
+EwUCKBAAAApvEQAACnK3AABwbxIAAApvEwAACm8UAAAKEwYCKBAAAApvEQAACnLJAABwbxIAAApv
+EwAACm8UAAAKEwcCKBAAAApvEQAACnLdAABwbxIAAApvEwAACm8UAAAKEwgCKBAAAApvEQAACnL5
+AABwbxIAAApvEwAACm8UAAAKEwkCKBAAAApvEQAACnIVAQBwbxIAAApvEwAACm8UAAAKBigWAAAK
+BygWAAAKCCgWAAAKCSgWAAAKEQQoFgAAChEFKBYAAAoRBigWAAAKEQcoFgAAChEIKBYAAAoRCSgW
+AAAKKBYAAAoDKBYAAAoEKBYAAApzFwAAChMKcxgAAAoTCxEHEQhzGQAAChMMEQRyOQEAcCgaAAAK
+Ew0RBXI5AQBwKBoAAAoTDhEGcjkBAHAoGgAAChMPEQoGbxsAAAoRCgcoHAAACm8dAAAKCAlzHgAA
+ChMQEQoREG8fAAAKEQoXbyAAAAoRCxEMbyEAAAoRBCw8FhMRKy8RDRERmiwiEQ0REZpyPQEAcCgi
+AAAKLBERC28jAAAKEQ0REZpvJAAAChERF1gTEREREQ2OaTLJEQUsPBYTEisvEQ4REposIhEOERKa
+cj0BAHAoIgAACiwREQtvJQAAChEOERKabyQAAAoREhdYExIREhEOjmkyyREGLDwWExMrLxEPEROa
+LCIRDxETmnI9AQBwKCIAAAosERELbyUAAAoRDxETmm8kAAAKERMXWBMTERMRD45pMskRCwNvJgAA
+ChELF28nAAAKEQsEbygAAAoRChELbykAAAoXExTeBiYXExTeABEUKgAAQRwAAAAAAAAAAAAAGQMA
+ABkDAAAGAAAAEwAAAR4CKCoAAAoqHgIoKwAACiqufgEAAAQtHnI/AQBw0AMAAAIoLAAACm8tAAAK
+cy4AAAqAAQAABH4BAAAEKhp+AgAABCoeAoACAAAEKhp+AwAABCoeAigvAAAKKi5zCQAABoADAAAE
+KgAAQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAmAQAACN+AAAEBQAA+AYAACNT
+dHJpbmdzAAAAAPwLAAC0AQAAI1VTALANAAAQAAAAI0dVSUQAAADADQAAzAEAACNCbG9iAAAAAAAA
+AAIAAAFXHaIBCQMAAAD6ATMAFgAAAQAAACgAAAAFAAAABgAAAAoAAAAEAAAALwAAAAIAAAAQAAAA
+AgAAAAIAAAADAAAABAAAAAEAAAAEAAAAAQAAAAEAAAAAAP4DAQAAAAAABgBfAhsFBgDuAhsFBgCr
+AQgFDwCPBQAABgDYAaIEBgBCAqIEBgAjAqIEBgDVAqIEBgB/AqIEBgCYAqIEBgDvAaIEBgAKAkAD
+CgCzAoIDCgAkAYIDDgCJBuUDDgCEAOUDDgAbBuUDDgCrA10GBgDKBEwEBgBcBEwEBgCOAQgFBgA9
+BkwEBgDrBDsFBgDbBI0EDgBeAc8DDgC/Ac8DDgBAAXgEBgBzARsFCgC9A4IDEgDRBcUAEgCQAMUA
+BgC9AEwEDgC5BvQFBgABAEwEDgCmBl0GBgBcA0wEDgC0BOUDBgDvAEwEBgCZAEwEBgDWBqIEAAAA
+ACsAAAAAAAEAAQABABAAbQQcAzkAAQABAAAAEABCBZ4FWQABAAQAAAEQANsFngVtAAMACAADAQAA
+LwYAAFEABAALABEAYQTGABEAFAHKABEAdADOAAYGWgDSAFaAEwbVAFaA9ADVAFAgAAAAAIYAcwQG
+AAEAxCAAAAAAhgD1A9kAAQAQJAAAAACGGPsEBgAEABgkAAAAAIMY+wQGAAQAICQAAAAAkwjnBOAA
+BABMJAAAAACTCPwA5QAEAFMkAAAAAJMICAHqAAQAWyQAAAAAlghuBvAABQBiJAAAAACGGPsEBgAF
+AGokAAAAAJEYAQX1AAUAAAABAFAGAAACAMgGAAADAO0GAAABABYDCQD7BAEAEQD7BAYAGQD7BAoA
+KQD7BBAAMQD7BBAAOQD7BBAAQQD7BBAASQD7BBAAUQD7BBAAWQD7BBAAYQD7BBAAaQD7BAYAqQD7
+BAYA0QD7BBUA4QD7BAYAcQAnBiEA6QDNBSYA8QBDBCsA+QAMAzEAsQBaAzUA6QB6BgEAAQHlAFgA
+eQD7BAYAgQD7BAYAiQD7BF0ACQFoBmMAeQCdBhAAEQFYAWoAeQCUBgEAkQD7BF0AeQDkBW8AeQA1
+BHYAgQBTBHsAIQHfBoEAgQDUBIcAKQFrABAAgQA0AIcAgQBEBhAAgQAmBHYAgQC/BhAAeQBvAI0A
+cQD7BAYAsQD7BAYAMQGrAJMAMQHSBpwAuQD7BKIA2QD7BAYACAAUALwACAAYAMEAKQBzADABLgAL
+AAgBLgATABEBLgAbADABLgAjADkBLgArAGIBLgAzAGIBLgA7AGIBLgBDADkBLgBLAGgBLgBTAGIB
+LgBbAH8BQwBjAMEASQBzADABYQB7AMEAYwBrAMEAGwA5AAMAAQAEAAMAAADrBPkAAAAcAf4AAABy
+BgMBAgAFAAMAAgAGAAUAAQAHAAUAAgAIAAcABIAAAAEAAACVIMJ0AAAAAAAABwAAAAQAAAAAAAAA
+AAAAAKoAYgAAAAAADQAAAAAAAAAAAAAAswBjAwAAAAAEAAAAAAAAAAAAAACqAEwEAAAAAA0AAAAA
+AAAAAAAAALMAOwAAAAAAAAAAAAEAAABMBQAABQACAAAAAEludDMyAFNUXzQ1YjAzZTQwNTQ1OTQ4
+ZjA5NGFkOWYxOGZiYjNmZjk3ADxNb2R1bGU+AGdldF9DQwBNaWNyb3NvZnQuU3FsU2VydmVyLk1h
+bmFnZWREVFMAdmFsdWVfXwBtc2NvcmxpYgBBZGQAU2VuZABkZWZhdWx0SW5zdGFuY2UATWFpbE1l
+c3NhZ2UAVmFyaWFibGUAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUAQ29uc29s
+ZQBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5SdW50aW1lAFdyaXRlTGluZQBUeXBlAEZhaWx1cmUA
+Z2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VDdWx0dXJlAFZTVEFSVFNjcmlwdE9iamVj
+dE1vZGVsQmFzZQBBcHBsaWNhdGlvblNldHRpbmdzQmFzZQBQYXJzZQBFZGl0b3JCcm93c2FibGVT
+dGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJpYnV0ZQBEZWJ1Z2dlck5vblVzZXJDb2RlQXR0cmli
+dXRlAERlYnVnZ2FibGVBdHRyaWJ1dGUARWRpdG9yQnJvd3NhYmxlQXR0cmlidXRlAEFzc2VtYmx5
+VGl0bGVBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAVGFyZ2V0RnJhbWV3b3Jr
+QXR0cmlidXRlAEFzc2VtYmx5Q29uZmlndXJhdGlvbkF0dHJpYnV0ZQBBc3NlbWJseURlc2NyaXB0
+aW9uQXR0cmlidXRlAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAQXNzZW1ibHlQcm9k
+dWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJpZ2h0QXR0cmlidXRlAFNTSVNTY3JpcHRUYXNrRW50
+cnlQb2ludEF0dHJpYnV0ZQBBc3NlbWJseUNvbXBhbnlBdHRyaWJ1dGUAUnVudGltZUNvbXBhdGli
+aWxpdHlBdHRyaWJ1dGUAZ2V0X1ZhbHVlAHZhbHVlAFNUXzcyM2JjMGYyMWI4OTQ5ODI5M2IyYTVj
+MGRkNDhmYmJmAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAVG9TdHJpbmcATWljcm9zb2Z0LlNx
+bFNlcnZlci5TY3JpcHRUYXNrAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlRhc2tzLlNjcmlwdFRh
+c2sATmV0d29ya0NyZWRlbnRpYWwAU2NyaXB0T2JqZWN0TW9kZWwAU3lzdGVtLkNvbXBvbmVudE1v
+ZGVsAFN5c3RlbS5OZXQuTWFpbABTZW5kTWFpbABTVF80NWIwM2U0MDU0NTk0OGYwOTRhZDlmMThm
+YmIzZmY5Ny5kbGwAc2V0X0lzQm9keUh0bWwAc2V0X0VuYWJsZVNzbABnZXRfSXRlbQBTeXN0ZW0A
+c2V0X0Zyb20ARW51bQByZXNvdXJjZU1hbgBTY3JpcHRNYWluAFN5c3RlbS5Db25maWd1cmF0aW9u
+AFN5c3RlbS5HbG9iYWxpemF0aW9uAFN5c3RlbS5SZWZsZWN0aW9uAE1haWxBZGRyZXNzQ29sbGVj
+dGlvbgBFeGNlcHRpb24AZ2V0X1RvAEN1bHR1cmVJbmZvAGdldF9SZXNvdXJjZU1hbmFnZXIALmN0
+b3IALmNjdG9yAFN5c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZp
+Y2VzAFN5c3RlbS5SZXNvdXJjZXMAU1RfNzIzYmMwZjIxYjg5NDk4MjkzYjJhNWMwZGQ0OGZiYmYu
+UHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVzAFNUXzcyM2JjMGYy
+MWI4OTQ5ODI5M2IyYTVjMGRkNDhmYmJmLlByb3BlcnRpZXMAZ2V0X1ZhcmlhYmxlcwBTZXR0aW5n
+cwBzZXRfQ3JlZGVudGlhbHMAU3lzdGVtLlRleHQuUmVndWxhckV4cHJlc3Npb25zAFN1Y2Nlc3MA
+TWFpbEFkZHJlc3MAZ2V0X0R0cwBTY3JpcHRSZXN1bHRzAE9iamVjdABzZXRfU3ViamVjdABFbWFp
+bFN1YmplY3QAU3lzdGVtLk5ldABTcGxpdABnZXRfRGVmYXVsdABzZXRfVGFza1Jlc3VsdABTbXRw
+Q2xpZW50AHNldF9Qb3J0AHNldF9Ib3N0AElDcmVkZW50aWFsc0J5SG9zdABSZWdleABzZXRfQm9k
+eQBFbWFpbEJvZHkAZ2V0X0Fzc2VtYmx5AG9wX0luZXF1YWxpdHkAaVByaW9yaXR5AAAAGUUAbQBh
+AGkAbABTAHUAYgBqAGUAYwB0AAATRQBtAGEAaQBsAEIAbwBkAHkAABtFAG0AYQBpAGwASABvAHMA
+dABuAGEAbQBlAAATRQBtAGEAaQBsAFAAbwByAHQAABtFAG0AYQBpAGwAVQBzAGUAcgBuAGEAbQBl
+AAAbRQBtAGEAaQBsAFAAYQBzAHMAdwBvAHIAZAAAD0UAbQBhAGkAbABUAG8AAA9FAG0AYQBpAGwA
+QwBDAAARRQBtAGEAaQBsAEIAQwBDAAATRQBtAGEAaQBsAEYAcgBvAG0AABtFAG0AYQBpAGwARgBy
+AG8AbQBOAGEAbQBlAAAbRgBpAGwAZQBOAGEAbQBlAFMAdABhAHQAcwAAI0YAaQBsAGUATABvAGMA
+YQB0AGkAbwBuAFMAdABhAHQAcwAAAzsAAAEAcVMAVABfADcAMgAzAGIAYwAwAGYAMgAxAGIAOAA5
+ADQAOQA4ADIAOQAzAGIAMgBhADUAYwAwAGQAZAA0ADgAZgBiAGIAZgAuAFAAcgBvAHAAZQByAHQA
+aQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAAAAb/BgCTGAgEm53i5pw2wRNgAEIAEBCAMgAAEF
+IAEBEREEIAEBDgUgAQERZQUHAw4OCAQgABJ1BCAAEnkFIAESfRwDIAAcAyAADh4HFQ4ODg4ODg4O
+Dg4SPRJBEkUdDh0OHQ4SSQgICAIEAAEBDgUgAgEODgYAAh0ODg4EAAEIDgYgAQESgI0EIAEBAgUg
+AQESRQUAAgIODgUgABKAlQUgAQESQQgAARKAmRGAnQUgABKAoQcgAgEOEoChCLd6XFYZNOCJCImE
+Xc2AgMyRBAAAAAAEAQAAAAMGEl0DBhJhAwYSEAIGCAMGERQGIAMCDg4IBAAAEl0EAAASYQUAAQES
+YQQAABIQAwAAAQQIABJdBAgAEmEECAASEAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlv
+blRocm93cwEIAQACAAAAAAAoAQAjU1RfNzIzYmMwZjIxYjg5NDk4MjkzYjJhNWMwZGQ0OGZiYmYA
+AAUBAAAAABYBABFDb3B5cmlnaHQgQCAgMjAyMAAASQEAGi5ORVRGcmFtZXdvcmssVmVyc2lvbj12
+NC41AQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRIuTkVUIEZyYW1ld29yayA0LjUAAAC0AAAAzsrv
+vgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJz
+aW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0
+ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBB
+RFC0AAAA5DQAAAAAAAAAAAAA/jQAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA0AAAAAAAAAAAA
+AAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABI
+AAAAWEAAABoEAAAAAAAAAAAAABoENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAA
+AAC9BO/+AAABAAAAAQDCdJUgAAABAMJ0lSA/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
+AAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4A
+AAAAAAAAsAR6AwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABWAwAAAQAwADAAMAAw
+ADAANABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4A
+eQBOAGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAA
+AFMAVABfADcAMgAzAGIAYwAwAGYAMgAxAGIAOAA5ADQAOQA4ADIAOQAzAGIAMgBhADUAYwAwAGQA
+ZAA0ADgAZgBiAGIAZgAAAD4ADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA4
+ADMANAAxAC4AMgA5ADgAOQAwAAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMA
+VABfADQANQBiADAAMwBlADQAMAA1ADQANQA5ADQAOABmADAAOQA0AGEAZAA5AGYAMQA4AGYAYgBi
+ADMAZgBmADkANwAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAA
+QwBvAHAAeQByAGkAZwBoAHQAIABAACAAIAAyADAAMgAwAAAAKgABAAEATABlAGcAYQBsAFQAcgBh
+AGQAZQBtAGEAcgBrAHMAAAAAAAAAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEA
+bQBlAAAAUwBUAF8ANAA1AGIAMAAzAGUANAAwADUANAA1ADkANAA4AGYAMAA5ADQAYQBkADkAZgAx
+ADgAZgBiAGIAMwBmAGYAOQA3AC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUA
+AAAAAFMAVABfADcAMgAzAGIAYwAwAGYAMgAxAGIAOAA5ADQAOQA4ADIAOQAzAGIAMgBhADUAYwAw
+AGQAZAA0ADgAZgBiAGIAZgAAAEIADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEA
+LgAwAC4AOAAzADQAMQAuADIAOQA4ADkAMAAAAAAARgAPAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBl
+AHIAcwBpAG8AbgAAADEALgAwAC4AOAAzADQAMQAuADIAOQA4ADkAMAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAwAAAAQNQAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D4D66886-DCD1-4AA3-B7CA-896E7A17FE19}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{CC24C17D-3EDF-40D8-B8EB-0F24C9350AB9}"
+      DTS:From="Package\Data Flow Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\File Transfer using WinSCP" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{F40D4AB3-BD92-42A5-A700-009C24216264}"
+      DTS:From="Package\File Transfer using WinSCP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Send Mail Script Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data Flow Task"
+          TopLeft="350,161" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="339,72" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\File Transfer using WinSCP"
+          TopLeft="322,252" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Send Mail Script Task"
+          TopLeft="341,334" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="425.75,114">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="428.5,203">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="431.75,294">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Data Flow Task\OLE DB Source"
+          TopLeft="302,54" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Data Flow Task\Flat File Destination"
+          TopLeft="297,187" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="382.75,96">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,91"
+              Start="0,0"
+              End="0,83.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,83.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

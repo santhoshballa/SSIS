@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DeploymentModel>Package</DeploymentModel>
+  <ProductVersion>15.0.2000.132</ProductVersion>
+  <SchemaVersion>9.0.1.0</SchemaVersion>
+  <State>$base64$PFNvdXJjZUNvbnRyb2xJbmZvIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOmRkbDI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yIiB4bWxuczpkZGwyXzI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yLzIiIHhtbG5zOmRkbDEwMF8xMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDA4L2VuZ2luZS8xMDAvMTAwIiB4bWxuczpkZGwyMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAiIHhtbG5zOmRkbDIwMF8yMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAvMjAwIiB4bWxuczpkZGwzMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAiIHhtbG5zOmRkbDMwMF8zMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAvMzAwIiB4bWxuczpkZGw0MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAiIHhtbG5zOmRkbDQwMF80MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAvNDAwIiB4bWxuczpkZGw1MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAiIHhtbG5zOmRkbDUwMF81MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAvNTAwIiB4bWxuczpkd2Q9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vRGF0YVdhcmVob3VzZS9EZXNpZ25lci8xLjAiPg0KICA8RW5hYmxlZD5mYWxzZTwvRW5hYmxlZD4NCiAgPFByb2plY3ROYW1lPjwvUHJvamVjdE5hbWU+DQogIDxBdXhQYXRoPjwvQXV4UGF0aD4NCiAgPExvY2FsUGF0aD48L0xvY2FsUGF0aD4NCiAgPFByb3ZpZGVyPjwvUHJvdmlkZXI+DQo8L1NvdXJjZUNvbnRyb2xJbmZvPg==</State>
+  <Database>
+    <Name>ClientDataLoading.database</Name>
+    <FullPath>ClientDataLoading.database</FullPath>
+  </Database>
+  <DataSources />
+  <DataSourceViews />
+  <DeploymentModelSpecificContent>
+    <Manifest>
+      <DTSPackages>
+        <DtsPackage FormatVersion="8">
+          <Name>2021_Generic_UL_Out_File_pkg.dtsx</Name>
+          <FullPath>2021_Generic_UL_Out_File_pkg.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>3_Alignment_H462_EL_Full_PipeToStg_PurseEligibility.dtsx</Name>
+          <FullPath>3_Alignment_H462_EL_Full_PipeToStg_PurseEligibility.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>3_Alignment_H462_RE_Full_PipeToStg_Rewards.dtsx</Name>
+          <FullPath>3_Alignment_H462_RE_Full_PipeToStg_Rewards.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>3_BCBSKC_H488_RE_Full_PipeToStg.dtsx</Name>
+          <FullPath>3_BCBSKC_H488_RE_Full_PipeToSTG.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>4_Alignment_H462_EL_Full_StgToMstr_PurseEligibility.dtsx</Name>
+          <FullPath>4_Alignment_H462_EL_Full_StgToMstr_PurseEligibility.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>4_Alignment_H462_RE_Full_StgToMstr_Rewards.dtsx</Name>
+          <FullPath>4_Alignment_H462_RE_Full_StgToMstr_Rewards.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>4_BCBSKC_H88_RE_StgToMstr.dtsx</Name>
+          <FullPath>4_BCBSKC_H88_RE_StgToMstr.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>AetnaBenefitSummary.dtsx</Name>
+          <FullPath>AetnaBenefitSummary.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>BankCorp.dtsx</Name>
+          <FullPath>BankCorp.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>BankCorpSSISPackage.dtsx</Name>
+          <FullPath>BankCorpSSISPackage.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>BankCorpSSISPackageV1 1.dtsx</Name>
+          <FullPath>BankCorpSSISPackageV1 1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>BankCorpSSISPackageV1.dtsx</Name>
+          <FullPath>BankCorpSSISPackageV1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>BankCorpSSISPackageWithSP.dtsx</Name>
+          <FullPath>BankCorpSSISPackageWithSP.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>BCBSRI_Encounter_File_pkg_final_V1.dtsx</Name>
+          <FullPath>BCBSRI_Encounter_File_pkg_final_V1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>CompareAndCheckSSISPackage (1).dtsx</Name>
+          <FullPath>CompareAndCheckSSISPackage (1).dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>CompareAndCheckSSISPackage.dtsx</Name>
+          <FullPath>CompareAndCheckSSISPackage.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_834_File_Load.dtsx</Name>
+          <FullPath>Elig_834_File_Load.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_File_Download_pkg.dtsx</Name>
+          <FullPath>Elig_File_Download_pkg.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_File_Download_pkg_EDI.dtsx</Name>
+          <FullPath>Elig_File_Download_pkg_EDI.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_File_Download_pkg_EDI_V1.dtsx</Name>
+          <FullPath>Elig_File_Download_pkg_EDI_V1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_File_Download_pkg_V1.dtsx</Name>
+          <FullPath>Elig_File_Download_pkg_V1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_Move_EligToCRM_pkg.dtsx</Name>
+          <FullPath>Elig_Move_EligToCRM_pkg.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_Move_StgToMstr_pkg.dtsx</Name>
+          <FullPath>Elig_Move_StgToMstr_pkg.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_Move_StgToMstr_pkg_2021_V1_Rewards.dtsx</Name>
+          <FullPath>Elig_Move_StgToMstr_pkg_2021_V1_Rewards.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_Move_StgToMstr_pkg_2021_V1SanthoshArchive.dtsx</Name>
+          <FullPath>Elig_Move_StgToMstr_pkg_2021_V1SanthoshArchive.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_Move_StgToMstr_pkg_2021_V2_Rewards.dtsx</Name>
+          <FullPath>Elig_Move_StgToMstr_pkg_2021_V2_Rewards.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_Move_StgToMstr_pkg_EDI.dtsx</Name>
+          <FullPath>Elig_Move_StgToMstr_pkg_EDI.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_Move_StgToMstr_pkg_EDI_TBA.dtsx</Name>
+          <FullPath>Elig_Move_StgToMstr_pkg_EDI_TBA.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_Move_StgToMstr_pkg_V1.dtsx</Name>
+          <FullPath>Elig_Move_StgToMstr_pkg_V1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_Unstructured_FileLoad_Pkg.dtsx</Name>
+          <FullPath>Elig_Unstructured_FileLoad_Pkg.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_Unstructured_FileLoad_Pkg_2021_V1.dtsx</Name>
+          <FullPath>Elig_Unstructured_FileLoad_Pkg_2021_V1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_Unstructured_FileLoad_Pkg_2022_PurseEligibility.dtsx</Name>
+          <FullPath>Elig_Unstructured_FileLoad_Pkg_2022_PurseEligibility.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_Unstructured_FileLoad_Pkg_2022_V1.dtsx</Name>
+          <FullPath>Elig_Unstructured_FileLoad_Pkg_2022_V1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Elig_Unstructured_FileLoad_Pkg_2022_V1_original.dtsx</Name>
+          <FullPath>Elig_Unstructured_FileLoad_Pkg_2022_V1_original.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>ExcelImport.dtsx</Name>
+          <FullPath>ExcelImport.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>ExcelImportV1.dtsx</Name>
+          <FullPath>ExcelImportV1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>ExperienceHealthLoad.dtsx</Name>
+          <FullPath>ExperienceHealthLoad.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>File_Decryption.dtsx</Name>
+          <FullPath>File_Decryption.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>File_Decryption_V1.dtsx</Name>
+          <FullPath>File_Decryption_V1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>File_Encryption.dtsx</Name>
+          <FullPath>File_Encryption.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>File_Upload_pkg_v1.dtsx</Name>
+          <FullPath>File_Upload_pkg_v1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>FISCCXDataLoad 1.dtsx</Name>
+          <FullPath>FISCCXDataLoad 1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>FISCCXDataLoad 2.dtsx</Name>
+          <FullPath>FISCCXDataLoad 2.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>FISCCXDataLoad.dtsx</Name>
+          <FullPath>FISCCXDataLoad.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>FISCCXDataLoadV1.dtsx</Name>
+          <FullPath>FISCCXDataLoadV1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>FISCCXDecryption.dtsx</Name>
+          <FullPath>FISCCXDecryption.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>FISCCXEncryption.dtsx</Name>
+          <FullPath>FISCCXEncryption.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>FISFileFormatLoad.dtsx</Name>
+          <FullPath>FISFileFormatLoad.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>FISXMLDataLoad.dtsx</Name>
+          <FullPath>FISXMLDataLoad.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>FISXMLLogDataLoad.dtsx</Name>
+          <FullPath>FISXMLLogDataLoad.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>HAP_H376_RE_CareRadius.dtsx</Name>
+          <FullPath>HAP_H376_RE_CareRadius.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>HAP_H376_RE_CareRadiusV1.dtsx</Name>
+          <FullPath>HAP_H376_RE_CareRadiusV1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>HapSampleFixedFormatTestFile.dtsx</Name>
+          <FullPath>HapSampleFixedFormatTestFile.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>HapSampleFixedFormatTestFileNew.dtsx</Name>
+          <FullPath>HapSampleFixedFormatTestFileNew.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>MFT_FileUpload_DownLoad_IN.dtsx</Name>
+          <FullPath>MFT_FileUpload_DownLoad_IN.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>MFT_FileUpload_DownLoad_OUT.dtsx</Name>
+          <FullPath>MFT_FileUpload_DownLoad_OUT.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Package1.dtsx</Name>
+          <FullPath>Package1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Package2.dtsx</Name>
+          <FullPath>Package2.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Package3.dtsx</Name>
+          <FullPath>Package3.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Package4.dtsx</Name>
+          <FullPath>Package4.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Package5.dtsx</Name>
+          <FullPath>Package5.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Package6.dtsx</Name>
+          <FullPath>Package6.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Package7.dtsx</Name>
+          <FullPath>Package7.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Package8.dtsx</Name>
+          <FullPath>Package8.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Package9.dtsx</Name>
+          <FullPath>Package9.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>pgpEncryption.dtsx</Name>
+          <FullPath>pgpEncryption.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>RewardsResponseSampleTestFileCreating.dtsx</Name>
+          <FullPath>RewardsResponseSampleTestFileCreating.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>ScriptTask.dtsx</Name>
+          <FullPath>ScriptTask.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>SendMailScriptTask.dtsx</Name>
+          <FullPath>SendMailScriptTask.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+      </DTSPackages>
+    </Manifest>
+  </DeploymentModelSpecificContent>
+  <ControlFlowParts />
+  <Miscellaneous>
+    <ProjectItem>
+      <Name>SSIS Jobs Send Email.dtsConfig</Name>
+      <FullPath>SSIS Jobs Send Email.dtsConfig</FullPath>
+    </ProjectItem>
+  </Miscellaneous>
+  <Configurations>
+    <Configuration>
+      <Name>Development</Name>
+      <Options>
+        <OutputPath>bin</OutputPath>
+        <ConnectionMappings />
+        <ConnectionProviderMappings />
+        <ConnectionSecurityMappings />
+        <DatabaseStorageLocations />
+        <TargetServerVersion>SQLServer2016</TargetServerVersion>
+        <AzureMode>false</AzureMode>
+        <LinkedAzureTenantId />
+        <LinkedAzureAccountId />
+        <LinkedAzureSSISIR />
+        <LinkedAzureStorage />
+        <RemoteExecutionFolder />
+        <ParameterConfigurationValues />
+      </Options>
+    </Configuration>
+  </Configurations>
+</Project>

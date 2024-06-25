@@ -1,0 +1,40 @@
+<?xml version="1.0"?><DTSConfiguration>
+
+
+<DTSConfigurationHeading>
+<DTSConfigurationFileInfo GeneratedBy="NH\sdaggubati" GeneratedFromPackageName="SSIS Jobs Send Email Configuration" GeneratedFromPackageID="{189E6CF4-34D4-4F25-AD97-D570222FA9DF}" GeneratedDate="7/12/2018 12:53:24 PM"/>
+</DTSConfigurationHeading>
+
+<Configuration ConfiguredType="Property" Path="\Package.Variables[User::sEmailPassword].Properties[Value]" ValueType="String">
+<ConfiguredValue>JON@tions!BSQ3</ConfiguredValue>
+</Configuration>
+
+<Configuration ConfiguredType="Property" Path="\Package.Variables[User::sEmailPort].Properties[Value]" ValueType="String">
+<ConfiguredValue>587</ConfiguredValue>
+</Configuration>
+
+<Configuration ConfiguredType="Property" Path="\Package.Variables[User::sEmailSendCC].Properties[Value]" ValueType="String">
+<ConfiguredValue>sdaggubati@nationshearing.com</ConfiguredValue>
+</Configuration>
+
+<Configuration ConfiguredType="Property" Path="\Package.Variables[User::sEmailSendFrom].Properties[Value]" ValueType="String">
+<ConfiguredValue>ITjobs@nationshearing.com</ConfiguredValue>
+</Configuration>
+
+<Configuration ConfiguredType="Property" Path="\Package.Variables[User::sEmailSendFromName].Properties[Value]" ValueType="String">
+<ConfiguredValue>IT Job Alerts</ConfiguredValue>
+</Configuration>
+
+<Configuration ConfiguredType="Property" Path="\Package.Variables[User::sEmailSendTo].Properties[Value]" ValueType="String">
+<ConfiguredValue>sdaggubati@nationshearing.com</ConfiguredValue>
+</Configuration>
+
+<Configuration ConfiguredType="Property" Path="\Package.Variables[User::sEmailServer].Properties[Value]" ValueType="String">
+<ConfiguredValue>smtp.office365.com</ConfiguredValue>
+</Configuration>
+
+<Configuration ConfiguredType="Property" Path="\Package.Variables[User::sEmailUser].Properties[Value]" ValueType="String">
+<ConfiguredValue>ITjobs@nationshearing.com</ConfiguredValue>
+</Configuration>
+
+</DTSConfiguration>

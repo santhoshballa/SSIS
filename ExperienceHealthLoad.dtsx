@@ -1,0 +1,1472 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/13/2022 3:40:52 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NB-HQ-LT116"
+  DTS:CreatorName="NH\SBalla"
+  DTS:Description="SSIS Package Description"
+  DTS:DTSID="{4A37BED2-D324-43AE-8DD9-64FB00D79ACF}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.132"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="ExperienceHealthLoad"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{E6E5A77B-3289-485D-BCEC-6453A8FEE17B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{66C28CC9-351C-4F77-A23D-B7E337D2E42E}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=nhcrmstg.database.windows.net;User ID=stageadmin;Initial Catalog=NHCRM_STG;Provider=SQLOLEDB;Auto Translate=false;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtf2RK0j3ikGRvwYDfrRI9wAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADvLf1+ySbn0zHtyuDhzMmVAAAAAASAAACgAAAAEAAAAM9EgE+RayuBHHglpwcIELAYAAAANoJOTyBTuosc1oBns1t/7ux0xNuFfHbtFAAAAC1HEY1JreMI6qRFSvBa7cxCVY85</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionExcel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{660ECB97-90EF-42E2-9F08-1D55A7A68B0F}"
+      DTS:ObjectName="SourceConnectionExcel">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\sballa\Documents\NationsBenefits\Projects\CommunityCare\ExperienceHealthJune2022MLR.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task 1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{94AE1845-C72C-46F6-B4CC-574AFBFA63CE}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - MemberLevelBreakDown$"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[MemberLevelBreakDownMain]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[VisitID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="VisitID"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[VisitID]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[VisitID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Virtual]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Virtual"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Virtual]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Virtual]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[GroceryDelivery]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GroceryDelivery"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[GroceryDelivery]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[GroceryDelivery]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[RDMedicationsDelivery]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RDMedicationsDelivery"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[RDMedicationsDelivery]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[RDMedicationsDelivery]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[MemberID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MemberID"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[MemberID]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[MemberID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[FirstName]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[DOB]"
+                      cachedDataType="date"
+                      cachedName="DOB"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[DOB]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[DOB]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Gender]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Gender"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Gender]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Gender]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Phone]"
+                      cachedDataType="r8"
+                      cachedName="Phone"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Phone]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Phone]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Address1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Address1"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Address1]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Address1]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Address2]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Address2"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Address2]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Address2]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[City]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[State]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="State"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[State]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[State]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Zip]"
+                      cachedDataType="r8"
+                      cachedName="Zip"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Zip]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Zip]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[County]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="County"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[County]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[County]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Language]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Language"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Language]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Language]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[PlanID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PlanID"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[PlanID]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[PlanID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[MedicareID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MedicareID"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[MedicareID]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[MedicareID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[DateOfVisit]"
+                      cachedDataType="date"
+                      cachedName="DateOfVisit"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[DateOfVisit]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[DateOfVisit]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[StartTime]"
+                      cachedDataType="date"
+                      cachedName="StartTime"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[StartTime]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[StartTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[EndTime]"
+                      cachedDataType="date"
+                      cachedName="EndTime"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[EndTime]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[EndTime]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Hours]"
+                      cachedDataType="r8"
+                      cachedName="Hours"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Hours]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Hours]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[BillableMiles]"
+                      cachedDataType="cy"
+                      cachedName="BillableMiles"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[BillableMiles]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[BillableMiles]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Cost]"
+                      cachedDataType="r8"
+                      cachedName="Cost"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Cost]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Cost]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Tasks1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Tasks1"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks1]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks1]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Tasks2]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Tasks2"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks2]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks2]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Tasks3]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Tasks3"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks3]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks3]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Tasks4]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Tasks4"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks4]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks4]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Tasks5]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Tasks5"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks5]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks5]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Tasks6]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Tasks6"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks6]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks6]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].Columns[Tasks7]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Tasks7"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks7]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks7]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[VisitID]"
+                      dataType="wstr"
+                      length="255"
+                      name="VisitID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Virtual]"
+                      dataType="wstr"
+                      length="255"
+                      name="Virtual" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[GroceryDelivery]"
+                      dataType="wstr"
+                      length="255"
+                      name="GroceryDelivery" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[RDMedicationsDelivery]"
+                      dataType="wstr"
+                      length="255"
+                      name="RDMedicationsDelivery" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[MemberID]"
+                      dataType="wstr"
+                      length="255"
+                      name="MemberID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="255"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[DOB]"
+                      dataType="wstr"
+                      length="255"
+                      name="DOB" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="255"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Address1]"
+                      dataType="wstr"
+                      length="255"
+                      name="Address1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Address2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Address2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="255"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="255"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Zip]"
+                      dataType="wstr"
+                      length="255"
+                      name="Zip" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[County]"
+                      dataType="wstr"
+                      length="255"
+                      name="County" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Language]"
+                      dataType="wstr"
+                      length="255"
+                      name="Language" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[PlanID]"
+                      dataType="wstr"
+                      length="255"
+                      name="PlanID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[MedicareID]"
+                      dataType="wstr"
+                      length="255"
+                      name="MedicareID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[DateOfVisit]"
+                      dataType="wstr"
+                      length="255"
+                      name="DateOfVisit" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[StartTime]"
+                      dataType="wstr"
+                      length="255"
+                      name="StartTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[EndTime]"
+                      dataType="wstr"
+                      length="255"
+                      name="EndTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Hours]"
+                      dataType="wstr"
+                      length="255"
+                      name="Hours" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[BillableMiles]"
+                      dataType="wstr"
+                      length="255"
+                      name="BillableMiles" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Cost]"
+                      dataType="wstr"
+                      length="255"
+                      name="Cost" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks1]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks3]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks4]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks4" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks5]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks6]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks6" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Tasks7]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Companionship]"
+                      dataType="i4"
+                      name="Companionship" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[HouseTasks]"
+                      dataType="i4"
+                      name="HouseTasks" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Transportation]"
+                      dataType="i4"
+                      name="Transportation" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[DrVisits]"
+                      dataType="i4"
+                      name="DrVisits" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[TechHelp]"
+                      dataType="i4"
+                      name="TechHelp" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[GroceryShopping]"
+                      dataType="i4"
+                      name="GroceryShopping" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[PetHelp]"
+                      dataType="i4"
+                      name="PetHelp" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[RunErrands]"
+                      dataType="i4"
+                      name="RunErrands" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Exercise]"
+                      dataType="i4"
+                      name="Exercise" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[MedicationRX]"
+                      dataType="i4"
+                      name="MedicationRX" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[ConsultaionInPerson]"
+                      dataType="wstr"
+                      length="20"
+                      name="ConsultaionInPerson" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[Consultation]"
+                      dataType="i4"
+                      name="Consultation" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input].ExternalColumns[InPerson]"
+                      dataType="i4"
+                      name="InPerson" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Source - MemberLevelBreakDown$"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">MemberLevelBreakDown$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionExcel]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionExcel]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[VisitID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[VisitID]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[VisitID]"
+                      name="VisitID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Virtual]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Virtual]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Virtual]"
+                      name="Virtual"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[GroceryDelivery]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[GroceryDelivery]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[GroceryDelivery]"
+                      name="GroceryDelivery"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[RDMedicationsDelivery]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[RDMedicationsDelivery]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[RDMedicationsDelivery]"
+                      name="RDMedicationsDelivery"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[MemberID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[MemberID]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[MemberID]"
+                      name="MemberID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[FirstName]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[LastName]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[DOB]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[DOB]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[DOB]"
+                      name="DOB"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Gender]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Gender]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Gender]"
+                      name="Gender"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Phone]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Phone]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Phone]"
+                      name="Phone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Address1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Address1]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Address1]"
+                      name="Address1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Address2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Address2]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Address2]"
+                      name="Address2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[City]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[State]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[State]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[State]"
+                      name="State"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Zip]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Zip]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Zip]"
+                      name="Zip"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[County]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[County]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[County]"
+                      name="County"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Language]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Language]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Language]"
+                      name="Language"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[PlanID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[PlanID]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[PlanID]"
+                      name="PlanID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[MedicareID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[MedicareID]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[MedicareID]"
+                      name="MedicareID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[DateOfVisit]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[DateOfVisit]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[DateOfVisit]"
+                      name="DateOfVisit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[StartTime]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[StartTime]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[StartTime]"
+                      name="StartTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[EndTime]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[EndTime]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[EndTime]"
+                      name="EndTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Hours]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Hours]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Hours]"
+                      name="Hours"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[BillableMiles]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[BillableMiles]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[BillableMiles]"
+                      name="BillableMiles"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Cost]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Cost]"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Cost]"
+                      name="Cost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks1]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks1]"
+                      name="Tasks1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks2]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks2]"
+                      name="Tasks2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks3]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks3]"
+                      name="Tasks3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks4]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks4]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks4]"
+                      name="Tasks4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks5]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks5]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks5]"
+                      name="Tasks5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks6]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks6]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks6]"
+                      name="Tasks6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks7]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks7]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].Columns[Tasks7]"
+                      name="Tasks7"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[VisitID]"
+                      dataType="wstr"
+                      length="255"
+                      name="VisitID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Virtual]"
+                      dataType="wstr"
+                      length="255"
+                      name="Virtual" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[GroceryDelivery]"
+                      dataType="wstr"
+                      length="255"
+                      name="GroceryDelivery" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[RDMedicationsDelivery]"
+                      dataType="wstr"
+                      length="255"
+                      name="RDMedicationsDelivery" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[MemberID]"
+                      dataType="wstr"
+                      length="255"
+                      name="MemberID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="255"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[DOB]"
+                      dataType="date"
+                      name="DOB" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Phone]"
+                      dataType="r8"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Address1]"
+                      dataType="wstr"
+                      length="255"
+                      name="Address1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Address2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Address2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="255"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="255"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Zip]"
+                      dataType="r8"
+                      name="Zip" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[County]"
+                      dataType="wstr"
+                      length="255"
+                      name="County" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Language]"
+                      dataType="wstr"
+                      length="255"
+                      name="Language" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[PlanID]"
+                      dataType="wstr"
+                      length="255"
+                      name="PlanID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[MedicareID]"
+                      dataType="wstr"
+                      length="255"
+                      name="MedicareID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[DateOfVisit]"
+                      dataType="date"
+                      name="DateOfVisit" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[StartTime]"
+                      dataType="date"
+                      name="StartTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[EndTime]"
+                      dataType="date"
+                      name="EndTime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Hours]"
+                      dataType="r8"
+                      name="Hours" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[BillableMiles]"
+                      dataType="cy"
+                      name="BillableMiles" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Cost]"
+                      dataType="r8"
+                      name="Cost" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks1]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks3]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks4]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks4" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks5]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks6]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks6" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output].ExternalColumns[Tasks7]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tasks7" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[VisitID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[VisitID]"
+                      name="VisitID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Virtual]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Virtual]"
+                      name="Virtual" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[GroceryDelivery]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[GroceryDelivery]"
+                      name="GroceryDelivery" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[RDMedicationsDelivery]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[RDMedicationsDelivery]"
+                      name="RDMedicationsDelivery" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[MemberID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[MemberID]"
+                      name="MemberID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[DOB]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[DOB]"
+                      name="DOB" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Gender]"
+                      name="Gender" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Phone]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Phone]"
+                      name="Phone" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Address1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Address1]"
+                      name="Address1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Address2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Address2]"
+                      name="Address2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[City]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[State]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[State]"
+                      name="State" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Zip]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Zip]"
+                      name="Zip" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[County]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[County]"
+                      name="County" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Language]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Language]"
+                      name="Language" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[PlanID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[PlanID]"
+                      name="PlanID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[MedicareID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[MedicareID]"
+                      name="MedicareID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[DateOfVisit]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[DateOfVisit]"
+                      name="DateOfVisit" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[StartTime]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[StartTime]"
+                      name="StartTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[EndTime]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[EndTime]"
+                      name="EndTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Hours]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Hours]"
+                      name="Hours" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[BillableMiles]"
+                      dataType="cy"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[BillableMiles]"
+                      name="BillableMiles" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Cost]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Cost]"
+                      name="Cost" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks1]"
+                      name="Tasks1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks2]"
+                      name="Tasks2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks3]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks3]"
+                      name="Tasks3" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks4]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks4]"
+                      name="Tasks4" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks5]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks5]"
+                      name="Tasks5" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks6]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks6]"
+                      name="Tasks6" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks7]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[Tasks7]"
+                      name="Tasks7" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task 1.Paths[Excel Source Output]"
+              endId="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$.Inputs[Destination Input]"
+              name="Excel Source Output"
+              startId="Package\Data Flow Task 1\Source - MemberLevelBreakDown$.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Preparation SQL Task 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Disabled="True"
+      DTS:DTSID="{C95D5E0E-A58C-44F4-AB0C-136265AF8908}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Preparation SQL Task 1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{66C28CC9-351C-4F77-A23D-B7E337D2E42E}"
+          SQLTask:SqlStatementSource="CREATE TABLE [dbo].[MemberLevelBreakDown$] (&#xA;[VisitID] nvarchar(255),&#xA;[Virtual] nvarchar(255),&#xA;[GroceryDelivery] nvarchar(255),&#xA;[RDMedicationsDelivery] nvarchar(255),&#xA;[MemberID] nvarchar(255),&#xA;[FirstName] nvarchar(255),&#xA;[LastName] nvarchar(255),&#xA;[DOB] datetime,&#xA;[Gender] nvarchar(255),&#xA;[Phone] float,&#xA;[Address1] nvarchar(255),&#xA;[Address2] nvarchar(255),&#xA;[City] nvarchar(255),&#xA;[State] nvarchar(255),&#xA;[Zip] float,&#xA;[County] nvarchar(255),&#xA;[Language] nvarchar(255),&#xA;[PlanID] nvarchar(255),&#xA;[MedicareID] nvarchar(255),&#xA;[DateOfVisit] datetime,&#xA;[StartTime] datetime,&#xA;[EndTime] datetime,&#xA;[Hours] float,&#xA;[BillableMiles] money,&#xA;[Cost] float,&#xA;[Tasks1] nvarchar(255),&#xA;[Tasks2] nvarchar(255),&#xA;[Tasks3] nvarchar(255),&#xA;[Tasks4] nvarchar(255),&#xA;[Tasks5] nvarchar(255),&#xA;[Tasks6] nvarchar(255),&#xA;[Tasks7] nvarchar(255)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{C8279BB1-19CB-41F7-B8B7-A899A7364CF5\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{C8279BB1-19CB-41F7-B8B7-A899A7364CF5}"
+      DTS:From="Package\Preparation SQL Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{C8279BB1-19CB-41F7-B8B7-A899A7364CF5}"
+      DTS:To="Package\Data Flow Task 1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Data Flow Task 1"
+          TopLeft="22,107.5" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\Preparation SQL Task 1"
+          TopLeft="5.50000000000001,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[{C8279BB1-19CB-41F7-B8B7-A899A7364CF5\}]"
+          TopLeft="104,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task 1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="253,42"
+          Id="Package\Data Flow Task 1\Source - MemberLevelBreakDown$"
+          TopLeft="15.5,5.5" />
+        <NodeLayout
+          Size="273,42"
+          Id="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$"
+          TopLeft="5.50000000000003,107.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[Excel Source Output]"
+          TopLeft="142,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.45359375,21.4658203125,30.9071875,9.568359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task 1\Destination - MemberLevelBreakDown$">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task 1\Source - MemberLevelBreakDown$">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

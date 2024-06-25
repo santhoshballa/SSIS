@@ -1,0 +1,2804 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/5/2020 6:03:24 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NB-HQ-LT5"
+  DTS:CreatorName="NH\JMakwana"
+  DTS:DTSID="{C68176D7-078C-481E-AF15-4A7E98E26D67}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.121"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Mitel_Survey_Data_To_DW"
+  DTS:PackageType="5"
+  DTS:VersionBuild="104"
+  DTS:VersionGUID="{B2C7C875-09DD-4048-A032-4A410D22E9B0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Mitel_Survey]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{455A2AF3-2665-4AAB-A51F-E05A307B485A}"
+      DTS:ObjectName="Mitel_Survey">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=10.20.24.7;User ID=RPTUSER;Initial Catalog=PSCCMDATA;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAXjV8f6NreUeOe4yKBHnOTgAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAC34gr0mw3lIOR+hUJefl0qAAAAAASAAACgAAAAEAAAAALC30eVjowkCqHFw6qVx08YAAAAKpx/qKQA1lk07+GATExiQgTPkPBk96lRFAAAAInLiBKnMYJADouaSoonikDUnWMW</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NHSQLDBConn]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BA496169-9812-446B-BA8A-0558F28D68C9}"
+      DTS:ObjectName="NHSQLDBConn">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=nhcrmprd.database.windows.net;User ID=appuser;Initial Catalog=NHCRM_PROD;Provider=SQLNCLI11.1;Persist Security Info=True;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAXjV8f6NreUeOe4yKBHnOTgAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADSCXB1o7MfoeCafpFGfmhvAAAAAASAAACgAAAAEAAAAPxRtuuz35mQiC9B3J3duTAYAAAAuyVZ6Wl9S+IiY8uhUYarkxb5SQZbsIjaFAAAAOmG1WSDHdXIVuGkxGBHjjpkZ4FL</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="C:\NHEligJobs\ConfigurationData\NationsHearingDBConfigPROD.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{41203EC1-233B-4D91-8E00-916B34CAFF8C}"
+      DTS:ObjectName="Configuration 1" />
+    <DTS:Configuration
+      DTS:ConfigurationString="C:\NHEligJobs\Internal_SSIS\Mitel_Survey_Data_To_DW_config.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{30548AA5-26B4-44D0-9D52-2238BB81F1AC}"
+      DTS:ObjectName="Configuration 2" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{390A35E6-CD60-432A-B326-D2E7407B2D73}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FromDays">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{43215F54-28DA-4BC1-93C6-FB1C1644D31C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ToDays">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\exec bireport-sp_mitel_survey_load_stg_to_fact"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{94C93FBB-9447-4CBF-A559-13A8512BF4DE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="exec bireport-sp_mitel_survey_load_stg_to_fact"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BA496169-9812-446B-BA8A-0558F28D68C9}"
+          SQLTask:SqlStatementSource="EXEC [bireports].[sp_mitel_survey_load_stg_to_fact] ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::FromDays"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="10" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::ToDays"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="10" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mitel Survey_Programs To CRM STG table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5BB41FAB-7517-4001-92DC-0968F2838AE3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mitel Survey_Programs To CRM STG table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[bireports].[stg_tblData_Programs]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NHSQLDBConn]"
+                  connectionManagerRefId="Package.ConnectionManagers[NHSQLDBConn]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Pkey]"
+                      cachedDataType="guid"
+                      cachedName="Pkey"
+                      externalMetadataColumnId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Pkey]"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Pkey]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TFN]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TFN"
+                      externalMetadataColumnId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TFN]"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[TFN]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Program]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Program"
+                      externalMetadataColumnId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Program]"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Program]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PlanType]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="PlanType"
+                      externalMetadataColumnId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PlanType]"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PlanType]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastDateTimeEdited]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LastDateTimeEdited"
+                      externalMetadataColumnId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastDateTimeEdited]"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDateTimeEdited]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i8"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Pkey]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="Pkey" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TFN]"
+                      dataType="wstr"
+                      length="50"
+                      name="TFN" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Program]"
+                      dataType="wstr"
+                      length="50"
+                      name="Program" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PlanType]"
+                      dataType="wstr"
+                      length="50"
+                      name="PlanType" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastDateTimeEdited]"
+                      dataType="dbTimeStamp"
+                      name="LastDateTimeEdited" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT *,GETDATE() RunDate FROM  [dbo].[tblData_Programs]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Mitel_Survey]"
+                  connectionManagerRefId="Package.ConnectionManagers[Mitel_Survey]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Pkey]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Pkey]"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Pkey]"
+                      name="Pkey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[TFN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TFN]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[TFN]"
+                      name="TFN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Program]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Program]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Program]"
+                      name="Program"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PlanType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PlanType]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PlanType]"
+                      name="PlanType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDateTimeEdited]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastDateTimeEdited]"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDateTimeEdited]"
+                      name="LastDateTimeEdited"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[RunDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RunDate]"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[RunDate]"
+                      name="RunDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Pkey]"
+                      dataType="guid"
+                      name="Pkey" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TFN]"
+                      dataType="wstr"
+                      length="50"
+                      name="TFN" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Program]"
+                      dataType="wstr"
+                      length="50"
+                      name="Program" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PlanType]"
+                      dataType="wstr"
+                      length="50"
+                      name="PlanType" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastDateTimeEdited]"
+                      dataType="dbTimeStamp"
+                      name="LastDateTimeEdited" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RunDate]"
+                      dataType="dbTimeStamp"
+                      name="RunDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Pkey]"
+                      dataType="guid"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Pkey]"
+                      name="Pkey" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TFN]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TFN]"
+                      name="TFN" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Program]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Program]"
+                      name="Program" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PlanType]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PlanType]"
+                      name="PlanType" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastDateTimeEdited]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastDateTimeEdited]"
+                      name="LastDateTimeEdited" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RunDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RunDate]"
+                      name="RunDate" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Mitel Survey_Programs To CRM STG table.Paths[OLE DB Source Output]"
+              endId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mitel Survey_Respondents To CRM STG table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{490E98D0-4924-42C5-A1B3-4CAC3DD366D2}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mitel Survey_Respondents To CRM STG table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[bireports].[stg_tblData_Respondents]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NHSQLDBConn]"
+                  connectionManagerRefId="Package.ConnectionManagers[NHSQLDBConn]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PKEY]"
+                      cachedDataType="guid"
+                      cachedName="PKEY"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PKEY]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PKEY]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastCallDateTime]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="LastCallDateTime"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastCallDateTime]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastCallDateTime]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastDNIS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="LastDNIS"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastDNIS]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDNIS]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CallerANI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="CallerANI"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CallerANI]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerANI]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CallerName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CallerName"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CallerName]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerName]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[GlobalCallID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="GlobalCallID"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GlobalCallID]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[GlobalCallID]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[HuntGroup]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="HuntGroup"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HuntGroup]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[HuntGroup]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PortDN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="PortDN"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PortDN]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PortDN]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FKLastSurveyResponse]"
+                      cachedDataType="guid"
+                      cachedName="FKLastSurveyResponse"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FKLastSurveyResponse]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[FKLastSurveyResponse]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastSurveyOffered]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LastSurveyOffered"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastSurveyOffered]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastSurveyOffered]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyOffered]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SurveyOffered"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyOffered]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyOffered]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DestinationPath]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="DestinationPath"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationPath]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[DestinationPath]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i8"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PKEY]"
+                      dataType="guid"
+                      name="PKEY" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastCallDateTime]"
+                      dataType="dbTimeStamp2"
+                      name="LastCallDateTime"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastDNIS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="LastDNIS" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CallerANI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="CallerANI" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CallerName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CallerName" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GlobalCallID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="GlobalCallID" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HuntGroup]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="HuntGroup" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PortDN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PortDN" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FKLastSurveyResponse]"
+                      dataType="guid"
+                      name="FKLastSurveyResponse" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastSurveyOffered]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LastSurveyOffered" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyOffered]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyOffered" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationPath]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="DestinationPath" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
+                      dataType="dbTimeStamp"
+                      name="CreateDate" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreateUser]"
+                      dataType="wstr"
+                      length="50"
+                      name="CreateUser" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[tblData_Respondents] 
+WHERE cast(LastCallDateTime as date) between cast(getdate()-cast(? as int) as date) and cast(getdate()- cast(? as int) as date)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{390A35E6-CD60-432A-B326-D2E7407B2D73};"Parameter1:Input",{43215F54-28DA-4BC1-93C6-FB1C1644D31C};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Mitel_Survey]"
+                  connectionManagerRefId="Package.ConnectionManagers[Mitel_Survey]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PKEY]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PKEY]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PKEY]"
+                      name="PKEY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastCallDateTime]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastCallDateTime]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastCallDateTime]"
+                      name="LastCallDateTime"
+                      scale="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDNIS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastDNIS]"
+                      length="15"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDNIS]"
+                      name="LastDNIS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerANI]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CallerANI]"
+                      length="15"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerANI]"
+                      name="CallerANI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CallerName]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerName]"
+                      name="CallerName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[GlobalCallID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GlobalCallID]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[GlobalCallID]"
+                      name="GlobalCallID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[HuntGroup]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HuntGroup]"
+                      length="10"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[HuntGroup]"
+                      name="HuntGroup"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PortDN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PortDN]"
+                      length="10"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PortDN]"
+                      name="PortDN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[FKLastSurveyResponse]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FKLastSurveyResponse]"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[FKLastSurveyResponse]"
+                      name="FKLastSurveyResponse"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastSurveyOffered]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastSurveyOffered]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastSurveyOffered]"
+                      name="LastSurveyOffered"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyOffered]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyOffered]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyOffered]"
+                      name="SurveyOffered"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[DestinationPath]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DestinationPath]"
+                      length="7"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[DestinationPath]"
+                      name="DestinationPath"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PKEY]"
+                      dataType="guid"
+                      name="PKEY" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastCallDateTime]"
+                      dataType="dbTimeStamp2"
+                      name="LastCallDateTime"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastDNIS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="LastDNIS" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CallerANI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="CallerANI" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CallerName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CallerName" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GlobalCallID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="GlobalCallID" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HuntGroup]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="HuntGroup" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PortDN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PortDN" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FKLastSurveyResponse]"
+                      dataType="guid"
+                      name="FKLastSurveyResponse" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastSurveyOffered]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LastSurveyOffered" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyOffered]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyOffered" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DestinationPath]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="DestinationPath" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PKEY]"
+                      dataType="guid"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PKEY]"
+                      name="PKEY" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastCallDateTime]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastCallDateTime]"
+                      name="LastCallDateTime"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastDNIS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastDNIS]"
+                      name="LastDNIS" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CallerANI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CallerANI]"
+                      name="CallerANI" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CallerName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CallerName]"
+                      name="CallerName" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GlobalCallID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GlobalCallID]"
+                      name="GlobalCallID" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HuntGroup]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HuntGroup]"
+                      name="HuntGroup" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PortDN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PortDN]"
+                      name="PortDN" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FKLastSurveyResponse]"
+                      dataType="guid"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FKLastSurveyResponse]"
+                      name="FKLastSurveyResponse" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastSurveyOffered]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastSurveyOffered]"
+                      name="LastSurveyOffered" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyOffered]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyOffered]"
+                      name="SurveyOffered" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DestinationPath]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DestinationPath]"
+                      name="DestinationPath" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Mitel Survey_Respondents To CRM STG table.Paths[OLE DB Source Output]"
+              endId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mitel Survey_Responses To CRM STG table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{38ACF75E-249A-4566-ACC9-8A046AAF8AC9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mitel Survey_Responses To CRM STG table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[bireports].[stg_tblData_Responses]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NHSQLDBConn]"
+                  connectionManagerRefId="Package.ConnectionManagers[NHSQLDBConn]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Pkey]"
+                      cachedDataType="guid"
+                      cachedName="Pkey"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Pkey]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Pkey]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyDateTime]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="SurveyDateTime"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyDateTime]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyDateTime]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SurveyName"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyName]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyName]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[GlobalCallID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="GlobalCallID"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GlobalCallID]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[GlobalCallID]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AssocGlobalCallID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="AssocGlobalCallID"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AssocGlobalCallID]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[AssocGlobalCallID]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CallerANI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="CallerANI"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CallerANI]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerANI]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CallerName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CallerName"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CallerName]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerName]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[HandlingAgent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="HandlingAgent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HandlingAgent]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[HandlingAgent]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RecordingLocation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="300"
+                      cachedName="RecordingLocation"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RecordingLocation]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[RecordingLocation]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CallerOptedForRecall]"
+                      cachedDataType="bool"
+                      cachedName="CallerOptedForRecall"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CallerOptedForRecall]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerOptedForRecall]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CallerRecallNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="CallerRecallNumber"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CallerRecallNumber]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerRecallNumber]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PortDN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="PortDN"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PortDN]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PortDN]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FKRespondent]"
+                      cachedDataType="guid"
+                      cachedName="FKRespondent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FKRespondent]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[FKRespondent]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyResponse1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SurveyResponse1"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse1]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse1]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyResponse2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SurveyResponse2"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse2]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse2]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyResponse3]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SurveyResponse3"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse3]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse3]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyResponse4]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SurveyResponse4"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse4]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse4]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyResponse5]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SurveyResponse5"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse5]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse5]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyResponse6]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SurveyResponse6"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse6]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse6]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyResponse7]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SurveyResponse7"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse7]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse7]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyResponse8]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SurveyResponse8"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse8]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse8]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyResponse9]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SurveyResponse9"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse9]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse9]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyResponse10]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SurveyResponse10"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse10]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse10]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SurveyResponse11]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SurveyResponse11"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse11]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse11]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FKContactRequest]"
+                      cachedDataType="guid"
+                      cachedName="FKContactRequest"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FKContactRequest]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[FKContactRequest]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ReceivedFromPath]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="ReceivedFromPath"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ReceivedFromPath]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReceivedFromPath]" />
+                    <inputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TimeLastQuestionAnswered]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TimeLastQuestionAnswered"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TimeLastQuestionAnswered]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[TimeLastQuestionAnswered]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i8"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Pkey]"
+                      dataType="guid"
+                      name="Pkey" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyDateTime]"
+                      dataType="dbTimeStamp2"
+                      name="SurveyDateTime"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyName" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GlobalCallID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="GlobalCallID" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AssocGlobalCallID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="AssocGlobalCallID" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CallerANI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="CallerANI" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CallerName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CallerName" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HandlingAgent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="HandlingAgent" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RecordingLocation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="300"
+                      name="RecordingLocation" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CallerOptedForRecall]"
+                      dataType="bool"
+                      name="CallerOptedForRecall" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CallerRecallNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="CallerRecallNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PortDN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PortDN" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FKRespondent]"
+                      dataType="guid"
+                      name="FKRespondent" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse1" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse2" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse3" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse4" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse5]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse5" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse6]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse6" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse7]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse7" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse8]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse8" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse9]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse9" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse10]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse10" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SurveyResponse11]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse11" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FKContactRequest]"
+                      dataType="guid"
+                      name="FKContactRequest" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ReceivedFromPath]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="ReceivedFromPath" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TimeLastQuestionAnswered]"
+                      dataType="dbTimeStamp"
+                      name="TimeLastQuestionAnswered" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
+                      dataType="dbTimeStamp"
+                      name="CreateDate" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreateUser]"
+                      dataType="wstr"
+                      length="50"
+                      name="CreateUser" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT *,GETDATE() RunDate from dbo.tblData_Responses 
+WHERE cast(SurveyDateTime as date) between cast(getdate()-cast(? as int) as date) and cast(getdate()- cast(? as int) as date)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{390A35E6-CD60-432A-B326-D2E7407B2D73};"Parameter1:Input",{43215F54-28DA-4BC1-93C6-FB1C1644D31C};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Mitel_Survey]"
+                  connectionManagerRefId="Package.ConnectionManagers[Mitel_Survey]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Pkey]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Pkey]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Pkey]"
+                      name="Pkey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyDateTime]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyDateTime]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyDateTime]"
+                      name="SurveyDateTime"
+                      scale="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyName]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyName]"
+                      name="SurveyName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[GlobalCallID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GlobalCallID]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[GlobalCallID]"
+                      name="GlobalCallID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[AssocGlobalCallID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AssocGlobalCallID]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[AssocGlobalCallID]"
+                      name="AssocGlobalCallID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerANI]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CallerANI]"
+                      length="15"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerANI]"
+                      name="CallerANI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CallerName]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerName]"
+                      name="CallerName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[HandlingAgent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HandlingAgent]"
+                      length="10"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[HandlingAgent]"
+                      name="HandlingAgent"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[RecordingLocation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RecordingLocation]"
+                      length="300"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[RecordingLocation]"
+                      name="RecordingLocation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerOptedForRecall]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CallerOptedForRecall]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerOptedForRecall]"
+                      name="CallerOptedForRecall"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerRecallNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CallerRecallNumber]"
+                      length="20"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CallerRecallNumber]"
+                      name="CallerRecallNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PortDN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PortDN]"
+                      length="10"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PortDN]"
+                      name="PortDN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[FKRespondent]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FKRespondent]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[FKRespondent]"
+                      name="FKRespondent"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse1]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse1]"
+                      name="SurveyResponse1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse2]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse2]"
+                      name="SurveyResponse2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse3]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse3]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse3]"
+                      name="SurveyResponse3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse4]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse4]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse4]"
+                      name="SurveyResponse4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse5]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse5]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse5]"
+                      name="SurveyResponse5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse6]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse6]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse6]"
+                      name="SurveyResponse6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse7]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse7]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse7]"
+                      name="SurveyResponse7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse8]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse8]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse8]"
+                      name="SurveyResponse8"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse9]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse9]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse9]"
+                      name="SurveyResponse9"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse10]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse10]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse10]"
+                      name="SurveyResponse10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse11]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse11]"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[SurveyResponse11]"
+                      name="SurveyResponse11"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[FKContactRequest]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FKContactRequest]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[FKContactRequest]"
+                      name="FKContactRequest"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReceivedFromPath]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ReceivedFromPath]"
+                      length="7"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReceivedFromPath]"
+                      name="ReceivedFromPath"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[TimeLastQuestionAnswered]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TimeLastQuestionAnswered]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[TimeLastQuestionAnswered]"
+                      name="TimeLastQuestionAnswered"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[RunDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RunDate]"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].Columns[RunDate]"
+                      name="RunDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Pkey]"
+                      dataType="guid"
+                      name="Pkey" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyDateTime]"
+                      dataType="dbTimeStamp2"
+                      name="SurveyDateTime"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyName" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GlobalCallID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="GlobalCallID" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AssocGlobalCallID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="AssocGlobalCallID" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CallerANI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="CallerANI" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CallerName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CallerName" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HandlingAgent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="HandlingAgent" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RecordingLocation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="300"
+                      name="RecordingLocation" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CallerOptedForRecall]"
+                      dataType="bool"
+                      name="CallerOptedForRecall" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CallerRecallNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="CallerRecallNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PortDN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PortDN" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FKRespondent]"
+                      dataType="guid"
+                      name="FKRespondent" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse1" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse2" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse3" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse4" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse5]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse5" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse6]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse6" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse7]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse7" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse8]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse8" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse9]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse9" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse10]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse10" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SurveyResponse11]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SurveyResponse11" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FKContactRequest]"
+                      dataType="guid"
+                      name="FKContactRequest" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ReceivedFromPath]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="ReceivedFromPath" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TimeLastQuestionAnswered]"
+                      dataType="dbTimeStamp"
+                      name="TimeLastQuestionAnswered" />
+                    <externalMetadataColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RunDate]"
+                      dataType="dbTimeStamp"
+                      name="RunDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Pkey]"
+                      dataType="guid"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Pkey]"
+                      name="Pkey" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyDateTime]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyDateTime]"
+                      name="SurveyDateTime"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyName]"
+                      name="SurveyName" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GlobalCallID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GlobalCallID]"
+                      name="GlobalCallID" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AssocGlobalCallID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AssocGlobalCallID]"
+                      name="AssocGlobalCallID" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CallerANI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CallerANI]"
+                      name="CallerANI" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CallerName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CallerName]"
+                      name="CallerName" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HandlingAgent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HandlingAgent]"
+                      name="HandlingAgent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RecordingLocation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="300"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RecordingLocation]"
+                      name="RecordingLocation" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CallerOptedForRecall]"
+                      dataType="bool"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CallerOptedForRecall]"
+                      name="CallerOptedForRecall" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CallerRecallNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CallerRecallNumber]"
+                      name="CallerRecallNumber" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PortDN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PortDN]"
+                      name="PortDN" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FKRespondent]"
+                      dataType="guid"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FKRespondent]"
+                      name="FKRespondent" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse1]"
+                      name="SurveyResponse1" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse2]"
+                      name="SurveyResponse2" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse3]"
+                      name="SurveyResponse3" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse4]"
+                      name="SurveyResponse4" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse5]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse5]"
+                      name="SurveyResponse5" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse6]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse6]"
+                      name="SurveyResponse6" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse7]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse7]"
+                      name="SurveyResponse7" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse8]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse8]"
+                      name="SurveyResponse8" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse9]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse9]"
+                      name="SurveyResponse9" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse10]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse10]"
+                      name="SurveyResponse10" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse11]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SurveyResponse11]"
+                      name="SurveyResponse11" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FKContactRequest]"
+                      dataType="guid"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FKContactRequest]"
+                      name="FKContactRequest" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ReceivedFromPath]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ReceivedFromPath]"
+                      name="ReceivedFromPath" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TimeLastQuestionAnswered]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TimeLastQuestionAnswered]"
+                      name="TimeLastQuestionAnswered" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RunDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RunDate]"
+                      name="RunDate" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Mitel Survey_Responses To CRM STG table.Paths[OLE DB Source Output]"
+              endId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate bireports-Mitel_QueuePerformanceByDNISStats_stg"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CAEBF58F-562A-47D1-A139-15D0E9364474}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate bireports-Mitel_QueuePerformanceByDNISStats_stg"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BA496169-9812-446B-BA8A-0558F28D68C9}"
+          SQLTask:SqlStatementSource="truncate table bireports.stg_tblData_Programs&#xA;&#xA;truncate table bireports.stg_tblData_Responses&#xA;&#xA;truncate table bireports.stg_tblData_Respondents&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{DD44ECCE-B0CE-4348-B916-7142F5590A9A}"
+      DTS:From="Package\truncate bireports-Mitel_QueuePerformanceByDNISStats_stg"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Mitel Survey_Programs To CRM STG table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{562381E1-0B26-4F2A-801A-B00A96A6E195}"
+      DTS:From="Package\Mitel Survey_Responses To CRM STG table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Mitel Survey_Respondents To CRM STG table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{587F7DD3-5C55-42F8-BAFB-305DEC99610D}"
+      DTS:From="Package\Mitel Survey_Programs To CRM STG table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Mitel Survey_Responses To CRM STG table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{9A601140-A6F0-4BFA-92DD-2E95465CDAC4}"
+      DTS:From="Package\Mitel Survey_Respondents To CRM STG table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\exec bireport-sp_mitel_survey_load_stg_to_fact" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="305,42"
+          Id="Package\exec bireport-sp_mitel_survey_load_stg_to_fact"
+          TopLeft="281.428569920209,438" />
+        <NodeLayout
+          Size="275,42"
+          Id="Package\Mitel Survey_Programs To CRM STG table"
+          TopLeft="321,180" />
+        <NodeLayout
+          Size="291,42"
+          Id="Package\Mitel Survey_Respondents To CRM STG table"
+          TopLeft="322,343" />
+        <NodeLayout
+          Size="281,42"
+          Id="Package\Mitel Survey_Responses To CRM STG table"
+          TopLeft="320,260" />
+        <NodeLayout
+          Size="364,42"
+          Id="Package\truncate bireports-Mitel_QueuePerformanceByDNISStats_stg"
+          TopLeft="316,99" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="438.666666666667,141">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.8333333333334,39"
+              Start="0,0"
+              End="19.8333333333334,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.7024070021882" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.7024070021882"
+                    Point2="0,15.7024070021882"
+                    Point3="4,15.7024070021882" />
+                  <mssgle:LineSegment
+                    End="15.8333333333334,15.7024070021882" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.8333333333334,15.7024070021882"
+                    Point2="19.8333333333334,15.7024070021882"
+                    Point3="19.8333333333334,19.7024070021882" />
+                  <mssgle:LineSegment
+                    End="19.8333333333334,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="464,302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="459.5,222">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="467.5,385">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-33.571430079791,53"
+              Start="0,0"
+              End="-33.571430079791,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.5"
+                    Point2="0,26.5"
+                    Point3="-4,26.5" />
+                  <mssgle:LineSegment
+                    End="-29.571430079791,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-29.571430079791,26.5"
+                    Point2="-33.571430079791,26.5"
+                    Point3="-33.571430079791,30.5" />
+                  <mssgle:LineSegment
+                    End="-33.571430079791,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Mitel Survey_Programs To CRM STG table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source"
+          TopLeft="258.857139772298,72.9294101088104" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination"
+          TopLeft="335.571434371326,196.600002771265" />
+        <EdgeLayout
+          Id="Package\Mitel Survey_Programs To CRM STG table.Paths[OLE DB Source Output]"
+          TopLeft="333.857139772298,114.92941010881">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87.214294599028,81.6705926624546"
+              Start="0,0"
+              End="87.214294599028,74.1705926624546">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.8352963312273" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.8352963312273"
+                    Point2="0,40.8352963312273"
+                    Point3="4,40.8352963312273" />
+                  <mssgle:LineSegment
+                    End="83.214294599028,40.8352963312273" />
+                  <mssgle:CubicBezierSegment
+                    Point1="83.214294599028,40.8352963312273"
+                    Point2="87.214294599028,40.8352963312273"
+                    Point3="87.214294599028,44.8352963312273" />
+                  <mssgle:LineSegment
+                    End="87.214294599028,74.1705926624546" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Mitel Survey_Programs To CRM STG table\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Mitel Survey_Programs To CRM STG table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Mitel Survey_Respondents To CRM STG table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source"
+          TopLeft="351,161" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination"
+          TopLeft="368.8,320" />
+        <EdgeLayout
+          Id="Package\Mitel Survey_Respondents To CRM STG table.Paths[OLE DB Source Output]"
+          TopLeft="426.2,202.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="27.8,117.4"
+              Start="0,0"
+              End="27.8,109.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,54.7"
+                    Point2="0,58.7"
+                    Point3="4,58.7" />
+                  <mssgle:LineSegment
+                    End="23.8,58.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.8,58.7"
+                    Point2="27.8,58.7"
+                    Point3="27.8,62.7" />
+                  <mssgle:LineSegment
+                    End="27.8,109.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Mitel Survey_Respondents To CRM STG table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Mitel Survey_Responses To CRM STG table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source"
+          TopLeft="286,202" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination"
+          TopLeft="326.4,353.6" />
+        <EdgeLayout
+          Id="Package\Mitel Survey_Responses To CRM STG table.Paths[OLE DB Source Output]"
+          TopLeft="361,244">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50.4,109.6"
+              Start="0,0"
+              End="50.4,102.1">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.8" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,50.8"
+                    Point2="0,54.8"
+                    Point3="4,54.8" />
+                  <mssgle:LineSegment
+                    End="46.4,54.8" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.4,54.8"
+                    Point2="50.4,54.8"
+                    Point3="50.4,58.8" />
+                  <mssgle:LineSegment
+                    End="50.4,102.1" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Mitel Survey_Responses To CRM STG table\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Mitel Survey_Responses To CRM STG table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Interchange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ISA">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" name="ISA01" type="xs:unsignedByte" />
+              <xs:element minOccurs="0" name="ISA02" type="xs:string" />
+              <xs:element minOccurs="0" name="ISA03" type="xs:unsignedByte" />
+              <xs:element minOccurs="0" name="ISA04" type="xs:string" />
+              <xs:element minOccurs="0" name="ISA05" type="xs:string" />
+              <xs:element minOccurs="0" name="ISA06" type="xs:string" />
+              <xs:element minOccurs="0" name="ISA07" type="xs:string" />
+              <xs:element minOccurs="0" name="ISA08" type="xs:unsignedInt" />
+              <xs:element minOccurs="0" name="ISA09" type="xs:unsignedInt" />
+              <xs:element minOccurs="0" name="ISA10" type="xs:unsignedShort" />
+              <xs:element minOccurs="0" name="ISA11" type="xs:string" />
+              <xs:element minOccurs="0" name="ISA12" type="xs:unsignedShort" />
+              <xs:element minOccurs="0" name="ISA13" type="xs:unsignedByte" />
+              <xs:element minOccurs="0" name="ISA14" type="xs:unsignedByte" />
+              <xs:element minOccurs="0" name="ISA15" type="xs:string" />
+              <xs:element minOccurs="0" name="ISA16">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" name="ISA1601" />
+                    <xs:element minOccurs="0" name="ISA1602" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="FunctionGroup">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" name="GS">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" name="GS01" type="xs:string" />
+                    <xs:element minOccurs="0" name="GS02" type="xs:string" />
+                    <xs:element minOccurs="0" name="GS03" type="xs:unsignedInt" />
+                    <xs:element minOccurs="0" name="GS04" type="xs:unsignedInt" />
+                    <xs:element minOccurs="0" name="GS05" type="xs:unsignedInt" />
+                    <xs:element minOccurs="0" name="GS06" type="xs:unsignedByte" />
+                    <xs:element minOccurs="0" name="GS07" type="xs:string" />
+                    <xs:element minOccurs="0" name="GS08" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="Transaction">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" name="ST">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element minOccurs="0" name="ST01" type="xs:unsignedShort" />
+                          <xs:element minOccurs="0" name="ST02" type="xs:unsignedShort" />
+                          <xs:element minOccurs="0" name="ST03" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="BGN">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element minOccurs="0" name="BGN01" type="xs:unsignedByte" />
+                          <xs:element minOccurs="0" name="BGN02" type="xs:unsignedLong" />
+                          <xs:element minOccurs="0" name="BGN03" type="xs:unsignedInt" />
+                          <xs:element minOccurs="0" name="BGN04" type="xs:unsignedInt" />
+                          <xs:element minOccurs="0" name="BGN05" type="xs:string" />
+                          <xs:element minOccurs="0" name="BGN06" />
+                          <xs:element minOccurs="0" name="BGN07" />
+                          <xs:element minOccurs="0" name="BGN08" type="xs:unsignedByte" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Loop">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element minOccurs="0" name="INS">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element minOccurs="0" name="INS01" type="xs:string" />
+                                <xs:element minOccurs="0" name="INS02" type="xs:unsignedByte" />
+                                <xs:element minOccurs="0" name="INS03" type="xs:unsignedByte" />
+                                <xs:element minOccurs="0" name="INS04" type="xs:string" />
+                                <xs:element minOccurs="0" name="INS05" type="xs:string" />
+                                <xs:element minOccurs="0" name="INS06" />
+                                <xs:element minOccurs="0" name="INS07" />
+                                <xs:element minOccurs="0" name="INS08" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="REF">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element minOccurs="0" name="REF01" type="xs:string" />
+                                <xs:element minOccurs="0" name="REF02" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="DTP">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element minOccurs="0" name="DTP01" type="xs:unsignedShort" />
+                                <xs:element minOccurs="0" name="DTP02" type="xs:string" />
+                                <xs:element minOccurs="0" name="DTP03" type="xs:unsignedInt" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="Loop">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element minOccurs="0" name="LS">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element minOccurs="0" name="LS01" type="xs:unsignedShort" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="HD">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element minOccurs="0" name="HD01" type="xs:unsignedByte" />
+                                      <xs:element minOccurs="0" name="HD02" />
+                                      <xs:element minOccurs="0" name="HD03" type="xs:string" />
+                                      <xs:element minOccurs="0" name="HD04" type="xs:string" />
+                                      <xs:element minOccurs="0" name="HD05" type="xs:string" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" maxOccurs="unbounded" name="DTP">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element minOccurs="0" name="DTP01" type="xs:unsignedShort" />
+                                      <xs:element minOccurs="0" name="DTP02" type="xs:string" />
+                                      <xs:element minOccurs="0" name="DTP03" type="xs:unsignedInt" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" maxOccurs="unbounded" name="REF">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element minOccurs="0" name="REF01" type="xs:string" />
+                                      <xs:element minOccurs="0" name="REF02" type="xs:string" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" maxOccurs="unbounded" name="Loop">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element minOccurs="0" name="LX">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element minOccurs="0" name="LX01" type="xs:unsignedByte" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element minOccurs="0" name="Loop">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element minOccurs="0" name="N1">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element minOccurs="0" name="N101" type="xs:unsignedByte" />
+                                                  <xs:element minOccurs="0" name="N102" type="xs:string" />
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="REF">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element minOccurs="0" name="REF01" type="xs:string" />
+                                                  <xs:element minOccurs="0" name="REF02" type="xs:string" />
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                            <xs:element minOccurs="0" name="DTP">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element minOccurs="0" name="DTP01" type="xs:unsignedByte" />
+                                                  <xs:element minOccurs="0" name="DTP02" type="xs:string" />
+                                                  <xs:element minOccurs="0" name="DTP03" type="xs:string" />
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                          <xs:attribute name="LoopId" type="xs:unsignedShort" use="optional" />
+                                          <xs:attribute name="Name" type="xs:string" use="optional" />
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element minOccurs="0" name="NM1">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element minOccurs="0" name="NM101" type="xs:string" />
+                                            <xs:element minOccurs="0" name="NM102" type="xs:unsignedByte" />
+                                            <xs:element minOccurs="0" name="NM103" />
+                                            <xs:element minOccurs="0" name="NM104" />
+                                            <xs:element minOccurs="0" name="NM105" />
+                                            <xs:element minOccurs="0" name="NM106" />
+                                            <xs:element minOccurs="0" name="NM107" />
+                                            <xs:element minOccurs="0" name="NM108" type="xs:string" />
+                                            <xs:element minOccurs="0" name="NM109" type="xs:string" />
+                                            <xs:element minOccurs="0" name="NM110" type="xs:unsignedByte" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element minOccurs="0" name="N3">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element minOccurs="0" name="N301" type="xs:string" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element minOccurs="0" name="N4">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element minOccurs="0" name="N401" type="xs:string" />
+                                            <xs:element minOccurs="0" name="N402" type="xs:string" />
+                                            <xs:element minOccurs="0" name="N403" type="xs:unsignedInt" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element minOccurs="0" name="PLA">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element minOccurs="0" name="PLA01" type="xs:unsignedByte" />
+                                            <xs:element minOccurs="0" name="PLA02" type="xs:string" />
+                                            <xs:element minOccurs="0" name="PLA03" type="xs:unsignedInt" />
+                                            <xs:element minOccurs="0" name="PLA04" />
+                                            <xs:element minOccurs="0" name="PLA05" type="xs:string" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="LoopId" type="xs:unsignedShort" use="optional" />
+                                    <xs:attribute name="Name" type="xs:string" use="optional" />
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="LE">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element minOccurs="0" name="LE01" type="xs:unsignedShort" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="NM1">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element minOccurs="0" name="NM101" type="xs:string" />
+                                      <xs:element minOccurs="0" name="NM102" type="xs:unsignedByte" />
+                                      <xs:element minOccurs="0" name="NM103" type="xs:string" />
+                                      <xs:element minOccurs="0" name="NM104" type="xs:string" />
+                                      <xs:element minOccurs="0" name="NM105" type="xs:string" />
+                                      <xs:element minOccurs="0" name="NM106" type="xs:string" />
+                                      <xs:element minOccurs="0" name="NM107" type="xs:string" />
+                                      <xs:element minOccurs="0" name="NM108" type="xs:string" />
+                                      <xs:element minOccurs="0" name="NM109" type="xs:string" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="PER">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element minOccurs="0" name="PER01" type="xs:string" />
+                                      <xs:element minOccurs="0" name="PER02" />
+                                      <xs:element minOccurs="0" name="PER03" type="xs:string" />
+                                      <xs:element minOccurs="0" name="PER04" type="xs:string" />
+                                      <xs:element minOccurs="0" name="PER05" type="xs:string" />
+                                      <xs:element minOccurs="0" name="PER06" type="xs:string" />
+									  <xs:element minOccurs="0" name="PER07" type="xs:string" />
+                                      <xs:element minOccurs="0" name="PER08" type="xs:string" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="N3">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element minOccurs="0" name="N301" type="xs:string" />
+                                      <xs:element minOccurs="0" name="N302" type="xs:string" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="N4">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element minOccurs="0" name="N401" type="xs:string" />
+                                      <xs:element minOccurs="0" name="N402" type="xs:string" />
+                                      <xs:element minOccurs="0" name="N403" type="xs:unsignedInt" />
+                                      <xs:element minOccurs="0" name="N404" />
+                                      <xs:element minOccurs="0" name="N405" type="xs:string" />
+                                      <xs:element minOccurs="0" name="N406" type="xs:unsignedInt" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="DMG">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element minOccurs="0" name="DMG01" type="xs:string" />
+                                      <xs:element minOccurs="0" name="DMG02" type="xs:unsignedInt" />
+                                      <xs:element minOccurs="0" name="DMG03" type="xs:string" />
+                                      <xs:element minOccurs="0" name="DMG04" type="xs:string" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="LUI">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element minOccurs="0" name="LUI01" type="xs:string" />
+                                      <xs:element minOccurs="0" name="LUI02" type="xs:string" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="LoopId" type="xs:string" use="optional" />
+                              <xs:attribute name="Name" type="xs:string" use="optional" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" name="N1">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element minOccurs="0" name="N101" type="xs:string" />
+                                <xs:element minOccurs="0" name="N102" type="xs:string" />
+                                <xs:element minOccurs="0" name="N103" type="xs:string" />
+                                <xs:element minOccurs="0" name="N104" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="LoopId" type="xs:string" use="optional" />
+                        <xs:attribute name="Name" type="xs:string" use="optional" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="SE">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element minOccurs="0" name="SE01" type="xs:unsignedByte" />
+                          <xs:element minOccurs="0" name="SE02" type="xs:unsignedShort" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="ControlNumber" type="xs:unsignedShort" use="optional" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="GE">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" name="GE01" type="xs:unsignedShort" />
+                    <xs:element minOccurs="0" name="GE02" type="xs:unsignedByte" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="IEA">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" name="IEA01" type="xs:unsignedByte" />
+              <xs:element minOccurs="0" name="IEA02" type="xs:unsignedByte" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="segment-terminator" type="xs:string" use="optional" />
+      <xs:attribute name="element-separator" type="xs:string" use="optional" />
+      <xs:attribute name="sub-element-separator" type="xs:string" use="optional" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

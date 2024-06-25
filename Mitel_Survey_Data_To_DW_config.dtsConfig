@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- ___________________________________________________________________________________-->
+<!-- ___________________________________________________________________________________-->
+<!--    Author: DPSR                                                          -->
+<!--    Client: Internal                                                               -->
+<!--      Date: Feb 2021                                                             -->
+<!--      Prog: ApptLatLong_Package.dtsConfig                                             -->
+<!--      Desc: Configuration file for ApptLatLong package                        -->
+<!--                                                                                    -->
+<!-- ___________________________________________________________________________________-->
+<!-- ___________________________________________________________________________________-->
+
+
+<DTSConfiguration>
+  <DTSConfigurationHeading>
+    
+  </DTSConfigurationHeading>
+  
+  <Configuration ConfiguredType="Property" Path="\Package.Variables[User::FromDays].Properties[Value]" ValueType="Int32">
+   <ConfiguredValue>7</ConfiguredValue>
+  </Configuration>
+
+  <Configuration ConfiguredType="Property" Path="\Package.Variables[User::ToDays].Properties[Value]" ValueType="Int32">
+   <ConfiguredValue>0</ConfiguredValue>
+  </Configuration>
+    
+</DTSConfiguration>

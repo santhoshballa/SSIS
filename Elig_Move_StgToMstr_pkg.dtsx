@@ -1,26 +1,26 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="11/23/2019 7:32:17 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="NHFLFTLDTC1242"
   DTS:CreatorName="NH\SPottigari"
-  DTS:DTSID="{FB72ADF2-5935-4590-9603-954128A3F461}"
+  DTS:DTSID="{9807FA8C-5EA0-416A-85BB-D4A3D00782C0}"
   DTS:EnableConfig="True"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.132"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
   DTS:LocaleID="1033"
   DTS:ObjectName="Elig_Move_StgToMstr_pkg"
   DTS:PackageType="5"
   DTS:VersionBuild="376"
-  DTS:VersionGUID="{12E091DF-7076-4855-9B4E-FA4BAD3C1CC9}">
+  DTS:VersionGUID="{42B7790E-58A5-40B3-8896-B1937788274D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[EligAckFileConnectionManager]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{46B3BDCC-CA75-4BF2-9086-923736101C7D}"
+      DTS:DTSID="{80D83C0C-BA6E-4768-8253-1233E0D14EA2}"
       DTS:ObjectName="EligAckFileConnectionManager">
       <DTS:PropertyExpression
         DTS:Name="ConnectionString">@[User::strEAckfromlocation] +""+ @[User::strELIG_ACK_FileName]</DTS:PropertyExpression>
@@ -41,7 +41,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="outputText"
-              DTS:DTSID="{1DE4D7AC-BBE9-45D3-BF0A-F2F238447540}"
+              DTS:DTSID="{E8AD443A-B312-488A-BF70-446679AEF1D5}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -50,7 +50,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[EligErrFileConnectionManager]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{F6833862-86C6-4F31-8AEA-9D768A52477B}"
+      DTS:DTSID="{4230211C-07A2-48C6-9E47-88655741E205}"
       DTS:ObjectName="EligErrFileConnectionManager">
       <DTS:PropertyExpression
         DTS:Name="ConnectionString">@[User::strEErrfromlocation] +""+ @[User::strELIG_ERR_FileName]</DTS:PropertyExpression>
@@ -70,7 +70,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="outputText"
-              DTS:DTSID="{1DE4D7AC-BBE9-45D3-BF0A-F2F238447540}"
+              DTS:DTSID="{E8AD443A-B312-488A-BF70-446679AEF1D5}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -79,7 +79,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[EligStatFileConnectionManager]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{14B248DA-9DF0-4C2A-98C7-E3105DAE99FB}"
+      DTS:DTSID="{AEE464AD-C4FF-4817-A3E2-3794B71FD866}"
       DTS:ObjectName="EligStatFileConnectionManager">
       <DTS:PropertyExpression
         DTS:Name="ConnectionString">@[User::strStatfromlocation] +""+ @[User::strELIG_STAT_FileName]</DTS:PropertyExpression>
@@ -99,7 +99,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="outputText"
-              DTS:DTSID="{1DE4D7AC-BBE9-45D3-BF0A-F2F238447540}"
+              DTS:DTSID="{E8AD443A-B312-488A-BF70-446679AEF1D5}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -108,28 +108,38 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[NHSQLDBConn]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{85B376C4-70B8-416B-8B1A-7445F7023D00}"
+      DTS:DTSID="{D311E0BF-00C3-4BBD-AEEF-50D9B8B4E441}"
       DTS:ObjectName="NHSQLDBConn">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=nhcrmstg.database.windows.net;User ID=stageadmin;Initial Catalog=NHCRM_STG;Provider=SQLNCLI11.1;Persist Security Info=True;" />
+          DTS:ConnectionString="Data Source=nhcrmstg.database.windows.net;User ID=stageadmin;Initial Catalog=NHCRM_STG;Provider=SQLNCLI11.1;Persist Security Info=True;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA0aLpvgQHB0SsqBgR4DjRoQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAC+tUcp8xcaVYf0s+7H7BKIMzDUtcvVkvg46vNgnyeVTwAAAAAOgAAAAAIAACAAAAAYZeoHutX1+NOhM3ymFuosBjRXghZW6fT2Lji8mgUf2CAAAAD6HNv0QvX2rs4wJ5h/cCCQRKCAsgtGP/LryachM95jtkAAAAAOgPrje6vs8ePks9896tOSHBTPKxiVnNEBMh7OHAH8HYmkl8caISElchL/W7QmmufmpB6PGcTyPAKAa8dHeaIP</DTS:Password>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[ProcessMonitorDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
+      DTS:DTSID="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
       DTS:ObjectName="ProcessMonitorDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=nhcrmstg.database.windows.net;User ID=stageadmin;Initial Catalog=NHCRM_STG;Provider=SQLNCLI11.1;Persist Security Info=True;" />
+          DTS:ConnectionString="Data Source=nhcrmstg.database.windows.net;User ID=stageadmin;Initial Catalog=NHCRM_STG;Provider=SQLNCLI11.1;Persist Security Info=True;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA0aLpvgQHB0SsqBgR4DjRoQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADwXA0SRcOpuI9JRVkzB3N4WfbAiFV3pAX/uxUJ2rpWdQAAAAAOgAAAAAIAACAAAAAUeQSOYqDUXt85TuSBGIFOp5ddsVhlJ1c7vsjC3USXqiAAAADt7PhySlaLc1DhBwCZ2kxuDAInBdyBfCMLcYsojV74G0AAAAA/yrhAvmxl2ZfGHJWeiTCyhGKAD5Q/Jo+nggb324rmgdQoYO1buQ2Z1Yu2cgFugJW9zBtL2ks9JhQ68/0A3ByG</DTS:Password>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{45D3C808-920C-493A-893F-2E434527F4B2}"
+      DTS:DTSID="{C2B74DAD-06DF-49FC-8E19-11E84CB8108D}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="ErrOutFTPFlag">
@@ -139,7 +149,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{4DBCFDE0-14A2-4A6D-A1BE-70F7C4F675A8}"
+      DTS:DTSID="{3FFD66A9-F5AC-4BCF-8602-17E5842C7786}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="intFileInfoId">
@@ -148,7 +158,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{3BF49739-E4C6-4BC8-8FB9-2FD4E4E889CD}"
+      DTS:DTSID="{28CC02CC-87D6-49B8-89E6-4AEB526E016B}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="intFileTrackId">
@@ -157,7 +167,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{F248D325-A0FC-434F-A0E0-46EC7922E07D}"
+      DTS:DTSID="{5C1F2726-7119-494A-B70C-136771D333EB}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="OutFTPFlag">
@@ -166,7 +176,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{D302AEF8-5D28-4CEC-B1AF-482B2845BBCA}"
+      DTS:DTSID="{A1B8F567-1D0F-4973-9E9D-7E792F5F226A}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="rsFileTrackInfo">
@@ -184,7 +194,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{839D5ED0-6037-49BB-AA66-D940AF2247E6}"
+      DTS:DTSID="{7509E70C-6872-4E00-826C-AEBCD6AD9B11}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="StatOutFTPFlag">
@@ -194,7 +204,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{E3CF6ED5-CEF6-48B2-8C7D-E5BE26130BF2}"
+      DTS:DTSID="{90EEDDA0-EB79-4BAE-85E6-490EDA8CD1B2}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strAppName">
@@ -203,7 +213,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{B91D39F9-B2D4-4FD1-8B93-5398153A06AD}"
+      DTS:DTSID="{3813D194-AD37-4F21-9DE0-2ED5DBEE4638}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strClientCode">
@@ -212,7 +222,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{5005A039-67BF-4254-BD76-D501C8D7E5A2}"
+      DTS:DTSID="{0C0BED69-7C96-49E3-AB36-1F5324C2F5B7}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strDestinationTable">
@@ -221,7 +231,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{7AA2A619-928F-47D1-9083-2C6C03AA0DF5}"
+      DTS:DTSID="{E14D38DF-EBE3-4F2A-B370-AC6316041D59}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strEAckfromlocation">
@@ -230,7 +240,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{15CB895E-FF56-43CB-9D52-359E634F1C17}"
+      DTS:DTSID="{32EACB31-C0CF-4FD2-86CA-D5066B691C94}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strEErrfromlocation">
@@ -240,7 +250,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{C8F4CEEB-3268-4760-9F11-FD32C3844C45}"
+      DTS:DTSID="{B8955283-BA67-456C-AA65-3D84860476E2}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strELIG_ACK_FileName">
@@ -250,7 +260,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{7D86115E-D3EE-4F0A-8AEC-AB2E36B65852}"
+      DTS:DTSID="{6BB57721-0FB4-4550-8732-232704EE9EEE}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strELIG_ERR_FileName">
@@ -260,7 +270,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{1D7DD1C4-9178-4DC7-8DBD-83FF82AC44EE}"
+      DTS:DTSID="{AAC73329-159C-48DA-9CD3-3D8CD033B580}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strELIG_STAT_FileName">
@@ -270,7 +280,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{AF7312D3-1C7F-4F01-9725-CEDA4F931CFC}"
+      DTS:DTSID="{1984773A-4C9B-4AB5-9432-824AA4E25E2F}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;exec elig.sp_Elig_Error_Response_File &quot; +  (DT_WSTR, 10) @[User::intFileTrackId] + &quot;&#x9;&#x9;WITH RESULT SETS&#xA;&#x9;&#x9;(&#xA;&#x9;&#x9; (&#xA;&#x9;&#x9; fororder int,&#xA;&#x9;&#x9; outputText VARCHAR(max)&#xA;&#x9;&#x9; )&#xA;&#x9;&#x9;)&quot;"
       DTS:IncludeInDebugDump="2345"
@@ -287,7 +297,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{475E96BC-DEAB-4B29-9987-3A76AC6F7AD0}"
+      DTS:DTSID="{EED45FB3-EA83-4611-8BD5-FC24379CCE7D}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strFileDelimiter">
@@ -296,7 +306,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{5C02D0AA-643F-414E-ABD6-223B3476C23D}"
+      DTS:DTSID="{AAE886AF-C150-46DA-A01A-2C0189EF5C6D}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strFileExtension">
@@ -305,7 +315,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{70491A1B-0794-4AD2-94F9-BCE4FD59CFF0}"
+      DTS:DTSID="{5D6E602E-3CC6-45EE-8856-5E2D55CFA816}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strFileName">
@@ -315,7 +325,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{520F59BF-D54E-452A-B9A7-A9B11AC79935}"
+      DTS:DTSID="{35550632-CE25-4790-B9ED-9096C7A982D1}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strFileType">
@@ -324,29 +334,29 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{042B7220-70C1-423C-9B45-6F4568B73E0A}"
+      DTS:DTSID="{DEE7BB52-EC06-46F6-A8C8-B284BFCE5279}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;exec elig.sp_process_detail &quot; +  &quot;'&quot; + ( @[User::strAppName]!=&quot;&quot; ? @[User::strAppName] : @[System::PackageName])  + &quot;',&quot; +  &quot;'&quot; + @[System::MachineName] + &quot;'&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strJobDetail">
       <DTS:VariableValue
-        DTS:DataType="8">exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116'</DTS:VariableValue>
+        DTS:DataType="8">exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1'</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{E608158A-783E-4E38-AF4F-971771F4E5C3}"
+      DTS:DTSID="{02DCC2AA-F696-4527-8409-AF84995BA589}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;exec elig.sp_process_summary &quot; +  &quot;'&quot; + ( @[User::strAppName]!=&quot;&quot; ? @[User::strAppName] : @[System::PackageName]) + &quot;',&quot; +  &quot;'&quot; + @[System::MachineName] + &quot;'&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strJobSummary">
       <DTS:VariableValue
-        DTS:DataType="8">exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116'</DTS:VariableValue>
+        DTS:DataType="8">exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1'</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{322BCBD4-7ED9-4B07-A5E8-FA750A8425C0}"
+      DTS:DTSID="{663A5239-16B7-46DF-BF4E-0ECF8773773C}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strLogFolder">
@@ -355,7 +365,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{55300C8D-E834-4A01-98CF-53812FD3A24D}"
+      DTS:DTSID="{59E585A8-6FBC-48B7-BEFC-5EE5DE48C1FD}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strSnapshotFlag">
@@ -364,7 +374,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{5588633F-7671-46FD-A15F-C14AA75B335B}"
+      DTS:DTSID="{4143F589-9A4F-48A5-A66C-E615D337E67E}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strSourceFolder">
@@ -373,7 +383,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{7AB125DC-9088-4577-B3EE-0369207F9A4B}"
+      DTS:DTSID="{D95FA1EA-1002-4DCB-A4C8-0BE6786F8F20}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;exec elig.sp_Elig_Audit_Response_File &quot; +  (DT_WSTR, 10) @[User::intFileTrackId]"
       DTS:IncludeInDebugDump="2345"
@@ -384,7 +394,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{F999F8DD-9F66-4E5F-AB0E-2C71EFF453F0}"
+      DTS:DTSID="{1212E5DE-427A-475C-AE36-9532180867E9}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;exec elig.sp_Elig_Stats_Response_File &quot; +  (DT_WSTR, 10) @[User::intFileTrackId]"
       DTS:IncludeInDebugDump="2345"
@@ -395,7 +405,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{6E886841-FDD8-47A0-95A3-288C7A190C29}"
+      DTS:DTSID="{777E7B88-97BC-46E9-9423-47A801EE04B1}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="strStatfromlocation">
@@ -405,7 +415,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{332676FB-1FFA-4AE8-B0B2-DB9AC59F3911}"
+      DTS:DTSID="{6DA06B70-C634-4975-895B-A01D1BAA7125}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="WinSCPDestinationPath">
@@ -414,7 +424,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{CBB6DB36-EDEC-4797-8DBE-A04C06ECB391}"
+      DTS:DTSID="{75662E50-2B35-4515-9FB0-8E87B496D123}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="WinSCPExePathName">
@@ -423,7 +433,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{A1A8C282-FFC2-46FF-8CF8-79B67C4DF1D7}"
+      DTS:DTSID="{FB546E62-D853-4291-8D5B-FEB6BC0D95FF}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="WinSCPLoginName">
@@ -432,7 +442,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{E04F6C5B-BEC9-480F-95D4-C0CA5A817D2A}"
+      DTS:DTSID="{C60C0A45-0F4A-4285-816B-04A780D88520}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="WinSCPScriptFullyQualifiedPathName">
@@ -441,7 +451,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{B2C1A53C-0FFF-4889-912A-691667259473}"
+      DTS:DTSID="{293E4F58-F51F-4235-ABEA-EDFA8E5E9591}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="WinSCPScriptName">
@@ -450,7 +460,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{0B837303-D835-4271-B7D4-49B9D082CA25}"
+      DTS:DTSID="{00EB2A5B-24BA-44AC-B2DE-0D15EF7B4693}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="WinSCPSourceFileName">
@@ -460,7 +470,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{08F4F12F-9896-4BD7-9759-E27973A063E7}"
+      DTS:DTSID="{06337F1A-305D-4CEF-BCBA-CD23AB15C129}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="WinSCPSourcePath">
@@ -474,7 +484,7 @@
       DTS:refId="Package\Process Files for strClientCode"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{331981EB-6FC2-4B6D-98B9-DBC6DBC07A60}"
+      DTS:DTSID="{AD4A33CD-2486-4C72-A022-1581FB7B4CB5}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
       DTS:ObjectName="Process Files for strClientCode">
@@ -484,13 +494,13 @@
           DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId"
           DTS:CreationName="STOCK:FOREACHLOOP"
           DTS:Description="Foreach Loop Container"
-          DTS:DTSID="{9F18DEF9-822F-49D5-976E-A1EF5988B415}"
+          DTS:DTSID="{D8BBB7D5-80FD-4C21-A65A-78800449FB89}"
           DTS:ExecutableType="STOCK:FOREACHLOOP"
           DTS:LocaleID="-1"
           DTS:ObjectName="For Each FileTrackId">
           <DTS:ForEachEnumerator
             DTS:CreationName="Microsoft.ForEachADOEnumerator"
-            DTS:DTSID="{43A3FD79-64BE-4F13-BF60-5FD43A864FD4}"
+            DTS:DTSID="{1BF31073-48BA-489B-B455-68DE0C4C83A0}"
             DTS:ObjectName="{C2064813-B267-4A38-A00E-8014355F49C5}">
             <DTS:ObjectData>
               <FEEADO
@@ -504,7 +514,7 @@
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Data Flow Task ACK"
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
-              DTS:DTSID="{BD52DE13-8BFB-4922-ABEB-8E5098655D27}"
+              DTS:DTSID="{84474B8A-A867-41C4-8DF5-B4CFF39DB93C}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
               DTS:ObjectName="Data Flow Task ACK"
@@ -696,7 +706,7 @@
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Data Flow Task Error file"
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
-              DTS:DTSID="{3D0643F0-B79D-4CD6-99ED-CFAC964F75F9}"
+              DTS:DTSID="{6096A5A5-4DD9-4810-8DF3-980987BD56A6}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
               DTS:ObjectName="Data Flow Task Error file"
@@ -902,7 +912,7 @@
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Data Flow Task Stats"
               DTS:CreationName="Microsoft.Pipeline"
               DTS:Description="Data Flow Task"
-              DTS:DTSID="{93349877-9E61-43A8-A90E-487E37692FF0}"
+              DTS:DTSID="{CD6429E5-3C97-4C9F-8835-26A06755B390}"
               DTS:ExecutableType="Microsoft.Pipeline"
               DTS:LocaleID="-1"
               DTS:ObjectName="Data Flow Task Stats"
@@ -1094,7 +1104,7 @@
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Exec batch to move ACK files"
               DTS:CreationName="Microsoft.ExecuteProcess"
               DTS:Description="Execute Process Task"
-              DTS:DTSID="{6027AA61-4EF0-4D6A-B1B0-B45A2F9EFD63}"
+              DTS:DTSID="{81356C42-E08B-462D-934D-B09F0DEC6246}"
               DTS:ExecutableType="Microsoft.ExecuteProcess"
               DTS:LocaleID="-1"
               DTS:ObjectName="Exec batch to move ACK files"
@@ -1113,7 +1123,7 @@
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Exec batch to move ERR files"
               DTS:CreationName="Microsoft.ExecuteProcess"
               DTS:Description="Execute Process Task"
-              DTS:DTSID="{11620526-83B7-415C-B8B4-B83DC66E705A}"
+              DTS:DTSID="{09FE61C1-3C2C-46FC-8A5A-F70361D84F08}"
               DTS:ExecutableType="Microsoft.ExecuteProcess"
               DTS:LocaleID="-1"
               DTS:ObjectName="Exec batch to move ERR files"
@@ -1132,7 +1142,7 @@
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Exec batch to move Stats file"
               DTS:CreationName="Microsoft.ExecuteProcess"
               DTS:Description="Execute Process Task"
-              DTS:DTSID="{2AAE8BBF-F2AA-4E45-960F-1199C4A201CC}"
+              DTS:DTSID="{0FF37181-45A9-43AD-A7EA-4317831EF7CC}"
               DTS:ExecutableType="Microsoft.ExecuteProcess"
               DTS:LocaleID="-1"
               DTS:ObjectName="Exec batch to move Stats file"
@@ -1151,7 +1161,7 @@
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Execute SQL update statuscode 500"
               DTS:CreationName="Microsoft.ExecuteSQLTask"
               DTS:Description="Execute SQL Task"
-              DTS:DTSID="{86290D3A-706F-46C4-88D9-9640AEFB843F}"
+              DTS:DTSID="{5428CDB9-1CC8-405C-847C-B4D3E88077AD}"
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="Execute SQL update statuscode 500"
@@ -1159,7 +1169,7 @@
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{85B376C4-70B8-416B-8B1A-7445F7023D00}"
+                  SQLTask:Connection="{D311E0BF-00C3-4BBD-AEEF-50D9B8B4E441}"
                   SQLTask:SqlStatementSource="update elig.FileTrack set StatusCode = 500&#xA;where filetrackid = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                   <SQLTask:ParameterBinding
                     SQLTask:ParameterName="0"
@@ -1175,7 +1185,7 @@
               DTS:CreationName="Microsoft.ExecuteSQLTask"
               DTS:Description="Execute SQL Task"
               DTS:Disabled="True"
-              DTS:DTSID="{F89FACE2-8BC8-4066-A61F-6B18EA0F7EFA}"
+              DTS:DTSID="{4826FD5D-C4B9-4DED-A94D-AE0099639F71}"
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="Execute SQL update statuscode ACK"
@@ -1183,7 +1193,7 @@
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{85B376C4-70B8-416B-8B1A-7445F7023D00}"
+                  SQLTask:Connection="{D311E0BF-00C3-4BBD-AEEF-50D9B8B4E441}"
                   SQLTask:SqlStatementSource="update elig.FileTrack set StatusCode = 410&#xA;where filetrackid = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                   <SQLTask:ParameterBinding
                     SQLTask:ParameterName="0"
@@ -1199,7 +1209,7 @@
               DTS:CreationName="Microsoft.ExecuteSQLTask"
               DTS:Description="Execute SQL Task"
               DTS:Disabled="True"
-              DTS:DTSID="{C2BF2A82-8AB7-4B15-A01B-C37EFCA8A84B}"
+              DTS:DTSID="{97D307C9-BB0D-4EBF-894D-ABBC99E31950}"
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="Execute SQL update statuscode Err"
@@ -1207,7 +1217,7 @@
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{85B376C4-70B8-416B-8B1A-7445F7023D00}"
+                  SQLTask:Connection="{D311E0BF-00C3-4BBD-AEEF-50D9B8B4E441}"
                   SQLTask:SqlStatementSource="update elig.FileTrack set StatusCode = 420&#xA;where filetrackid = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                   <SQLTask:ParameterBinding
                     SQLTask:ParameterName="0"
@@ -1223,7 +1233,7 @@
               DTS:CreationName="Microsoft.ExecuteSQLTask"
               DTS:Description="Execute SQL Task"
               DTS:Disabled="True"
-              DTS:DTSID="{EBC2446F-B19C-4983-83D3-976B90221487}"
+              DTS:DTSID="{E657C170-597E-4F84-B16B-0ADEB4E0F130}"
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="Execute SQL update statuscode Stats"
@@ -1231,7 +1241,7 @@
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{85B376C4-70B8-416B-8B1A-7445F7023D00}"
+                  SQLTask:Connection="{D311E0BF-00C3-4BBD-AEEF-50D9B8B4E441}"
                   SQLTask:SqlStatementSource="update elig.FileTrack set StatusCode = 430&#xA;where filetrackid = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                   <SQLTask:ParameterBinding
                     SQLTask:ParameterName="0"
@@ -1246,7 +1256,7 @@
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Execute winscp to upload ACK file"
               DTS:CreationName="Microsoft.ExecuteProcess"
               DTS:Description="Execute Process Task"
-              DTS:DTSID="{A13E5F0B-AAFD-48FD-AC10-0C2D0EACA322}"
+              DTS:DTSID="{A4C88A02-669B-4042-A995-D4F7D034D2FA}"
               DTS:ExecutableType="Microsoft.ExecuteProcess"
               DTS:LocaleID="-1"
               DTS:ObjectName="Execute winscp to upload ACK file"
@@ -1259,7 +1269,7 @@
                 <DTS:EventHandler
                   DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Execute winscp to upload ACK file.EventHandlers[OnPostExecute]"
                   DTS:CreationName="OnPostExecute"
-                  DTS:DTSID="{2F8FD00B-A830-4F96-B36C-0BFE4145B6B0}"
+                  DTS:DTSID="{FE23A8D8-E4E3-49A1-B971-7E21C59F3E9A}"
                   DTS:EventID="11136"
                   DTS:EventName="OnPostExecute"
                   DTS:LocaleID="-1">
@@ -1267,7 +1277,7 @@
                     <DTS:Variable
                       DTS:CreationName=""
                       DTS:Description="The propagate property of the event"
-                      DTS:DTSID="{567B0662-52AA-420B-81A2-1EED21167F7A}"
+                      DTS:DTSID="{E86AE11E-4649-4E8F-A5B9-E737FE08314B}"
                       DTS:IncludeInDebugDump="6789"
                       DTS:Namespace="System"
                       DTS:ObjectName="Propagate">
@@ -1280,14 +1290,14 @@
                       DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Execute winscp to upload ACK file.EventHandlers[OnPostExecute]\Execute SQL Task"
                       DTS:CreationName="Microsoft.ExecuteSQLTask"
                       DTS:Description="Execute SQL Task"
-                      DTS:DTSID="{F9E51BD6-DCE9-492B-AC6E-B0588CC320D8}"
+                      DTS:DTSID="{06F9FCE0-0940-45D3-B94C-C2B26C49B334}"
                       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
                       DTS:LocaleID="-1"
                       DTS:ObjectName="Execute SQL Task">
                       <DTS:Variables />
                       <DTS:ObjectData>
                         <SQLTask:SqlTaskData
-                          SQLTask:Connection="{85B376C4-70B8-416B-8B1A-7445F7023D00}"
+                          SQLTask:Connection="{D311E0BF-00C3-4BBD-AEEF-50D9B8B4E441}"
                           SQLTask:SqlStatementSource="insert into  elig.filetrack (clientcode,DirectionCode,FileName,filetype,DateReceived,statuscode)&#xA;values (?,'OUT',?,'ELIG_ACK',getdate(),'999')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                           <SQLTask:ParameterBinding
                             SQLTask:ParameterName="0"
@@ -1310,14 +1320,14 @@
               <DTS:ObjectData>
                 <ExecuteProcessData
                   Executable="C:\NHEligJobs\NH_WinSCP_Scripts\WinSCP.com"
-                  Arguments="/script=C:\NHEligJobs\NH_WinSCP_Scripts\ScriptToUploadFiles.txt /parameter nhitsftp &quot;/h223/fromNH&quot; whereFileCreatedAssignedThruQuery   /Log=C:\NHEligJobs\BCBSRI_SSIS\LOG\H223_ELIG_DELTA_2022-07-27_Ack_Log_ScriptToUploadFiles.txt" />
+                  Arguments="/script=C:\NHEligJobs\NH_WinSCP_Scripts\ScriptToUploadFiles.txt /parameter nhitsftp &quot;/h223/fromNH&quot; whereFileCreatedAssignedThruQuery   /Log=C:\NHEligJobs\BCBSRI_SSIS\LOG\H223_ELIG_DELTA_2020-01-16_Ack_Log_ScriptToUploadFiles.txt" />
               </DTS:ObjectData>
             </DTS:Executable>
             <DTS:Executable
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Execute winscp to upload ERR file"
               DTS:CreationName="Microsoft.ExecuteProcess"
               DTS:Description="Execute Process Task"
-              DTS:DTSID="{4587DB07-192C-4805-A084-5A551A86BC68}"
+              DTS:DTSID="{C68C8C3B-B9A3-4DAD-9E09-6B237A40B676}"
               DTS:ExecutableType="Microsoft.ExecuteProcess"
               DTS:LocaleID="-1"
               DTS:ObjectName="Execute winscp to upload ERR file"
@@ -1330,7 +1340,7 @@
                 <DTS:EventHandler
                   DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Execute winscp to upload ERR file.EventHandlers[OnPostExecute]"
                   DTS:CreationName="OnPostExecute"
-                  DTS:DTSID="{C3E9B736-44CB-4456-9E5B-78A109A39611}"
+                  DTS:DTSID="{25BAD6D3-F6E4-40BB-8830-95D01B444A93}"
                   DTS:EventID="13352976"
                   DTS:EventName="OnPostExecute"
                   DTS:LocaleID="-1">
@@ -1338,7 +1348,7 @@
                     <DTS:Variable
                       DTS:CreationName=""
                       DTS:Description="The propagate property of the event"
-                      DTS:DTSID="{3FEB791E-DBAE-468F-9879-B6032D06B564}"
+                      DTS:DTSID="{59AB2DAB-D5FF-4B36-8F0C-A792D342B981}"
                       DTS:IncludeInDebugDump="6789"
                       DTS:Namespace="System"
                       DTS:ObjectName="Propagate">
@@ -1351,14 +1361,14 @@
                       DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Execute winscp to upload ERR file.EventHandlers[OnPostExecute]\Execute SQL Task"
                       DTS:CreationName="Microsoft.ExecuteSQLTask"
                       DTS:Description="Execute SQL Task"
-                      DTS:DTSID="{C4F9EA5D-0227-4467-9948-EE1B985FFA59}"
+                      DTS:DTSID="{558256E2-E7FE-4EB7-BB92-79DEBFF83FCB}"
                       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
                       DTS:LocaleID="-1"
                       DTS:ObjectName="Execute SQL Task">
                       <DTS:Variables />
                       <DTS:ObjectData>
                         <SQLTask:SqlTaskData
-                          SQLTask:Connection="{85B376C4-70B8-416B-8B1A-7445F7023D00}"
+                          SQLTask:Connection="{D311E0BF-00C3-4BBD-AEEF-50D9B8B4E441}"
                           SQLTask:SqlStatementSource="insert into  elig.filetrack (clientcode,DirectionCode,FileName,filetype,DateReceived,statuscode)&#xA;values (?,'OUT',?,'ELIG_ERR',getdate(),'999')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                           <SQLTask:ParameterBinding
                             SQLTask:ParameterName="0"
@@ -1381,14 +1391,14 @@
               <DTS:ObjectData>
                 <ExecuteProcessData
                   Executable="C:\NHEligJobs\NH_WinSCP_Scripts\WinSCP.com"
-                  Arguments="/script=C:\NHEligJobs\NH_WinSCP_Scripts\ScriptToUploadFiles.txt /parameter nhitsftp &quot;/h223/fromNH&quot;    /Log=C:\NHEligJobs\BCBSRI_SSIS\LOG\H223_ELIG_DELTA_2022-07-27_Err_Log_ScriptToUploadFiles.txt" />
+                  Arguments="/script=C:\NHEligJobs\NH_WinSCP_Scripts\ScriptToUploadFiles.txt /parameter nhitsftp &quot;/h223/fromNH&quot;    /Log=C:\NHEligJobs\BCBSRI_SSIS\LOG\H223_ELIG_DELTA_2020-01-16_Err_Log_ScriptToUploadFiles.txt" />
               </DTS:ObjectData>
             </DTS:Executable>
             <DTS:Executable
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Execute winscp to upload Stats file"
               DTS:CreationName="Microsoft.ExecuteProcess"
               DTS:Description="Execute Process Task"
-              DTS:DTSID="{18AE87D7-29BF-4F3B-BFA7-AF18245446E4}"
+              DTS:DTSID="{D12E8FA9-B89B-46E9-8618-0F859BC39E8E}"
               DTS:ExecutableType="Microsoft.ExecuteProcess"
               DTS:LocaleID="-1"
               DTS:ObjectName="Execute winscp to upload Stats file"
@@ -1401,7 +1411,7 @@
                 <DTS:EventHandler
                   DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Execute winscp to upload Stats file.EventHandlers[OnPostExecute]"
                   DTS:CreationName="OnPostExecute"
-                  DTS:DTSID="{E97963A6-03AF-47C9-9EEC-7A6342F76A79}"
+                  DTS:DTSID="{6DC76514-B08D-40B3-BA6A-A373AC61FB92}"
                   DTS:EventID="0"
                   DTS:EventName="OnPostExecute"
                   DTS:LocaleID="-1">
@@ -1409,7 +1419,7 @@
                     <DTS:Variable
                       DTS:CreationName=""
                       DTS:Description="The propagate property of the event"
-                      DTS:DTSID="{79160836-0D7F-4C6B-960D-70798B34DDA4}"
+                      DTS:DTSID="{EA971BA2-1328-4D78-BF47-CCB4A364FEC2}"
                       DTS:IncludeInDebugDump="6789"
                       DTS:Namespace="System"
                       DTS:ObjectName="Propagate">
@@ -1422,14 +1432,14 @@
                       DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\Execute winscp to upload Stats file.EventHandlers[OnPostExecute]\Execute SQL Task"
                       DTS:CreationName="Microsoft.ExecuteSQLTask"
                       DTS:Description="Execute SQL Task"
-                      DTS:DTSID="{0571F7E7-37D1-46ED-BE3C-00D3BF99D970}"
+                      DTS:DTSID="{9CC60272-B203-48E3-B9A4-D7AC539F28F7}"
                       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
                       DTS:LocaleID="-1"
                       DTS:ObjectName="Execute SQL Task">
                       <DTS:Variables />
                       <DTS:ObjectData>
                         <SQLTask:SqlTaskData
-                          SQLTask:Connection="{85B376C4-70B8-416B-8B1A-7445F7023D00}"
+                          SQLTask:Connection="{D311E0BF-00C3-4BBD-AEEF-50D9B8B4E441}"
                           SQLTask:SqlStatementSource="insert into  elig.filetrack (clientcode,DirectionCode,FileName,filetype,DateReceived,statuscode)&#xA;values (?,'OUT',?,'ELIG_STAT',getdate(),'999')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                           <SQLTask:ParameterBinding
                             SQLTask:ParameterName="0"
@@ -1452,14 +1462,14 @@
               <DTS:ObjectData>
                 <ExecuteProcessData
                   Executable="C:\NHEligJobs\NH_WinSCP_Scripts\WinSCP.com"
-                  Arguments="/script=C:\NHEligJobs\NH_WinSCP_Scripts\ScriptToUploadFiles.txt /parameter nhitsftp &quot;/h223/fromNH&quot;    /Log=C:\NHEligJobs\BCBSRI_SSIS\LOG\H223_ELIG_DELTA_2022-07-27_Stat_Log_ScriptToUploadFiles.txt" />
+                  Arguments="/script=C:\NHEligJobs\NH_WinSCP_Scripts\ScriptToUploadFiles.txt /parameter nhitsftp &quot;/h223/fromNH&quot;    /Log=C:\NHEligJobs\BCBSRI_SSIS\LOG\H223_ELIG_DELTA_2020-01-16_Stat_Log_ScriptToUploadFiles.txt" />
               </DTS:ObjectData>
             </DTS:Executable>
             <DTS:Executable
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId\mstrElig load SQL Task"
               DTS:CreationName="Microsoft.ExecuteSQLTask"
               DTS:Description="Execute SQL Task"
-              DTS:DTSID="{DFD79E79-2B08-4F2A-A5E1-1E184FD5C40C}"
+              DTS:DTSID="{752C521F-95A0-4F03-817A-830814858F1C}"
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="mstrElig load SQL Task"
@@ -1468,7 +1478,7 @@
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{85B376C4-70B8-416B-8B1A-7445F7023D00}"
+                  SQLTask:Connection="{D311E0BF-00C3-4BBD-AEEF-50D9B8B4E441}"
                   SQLTask:SqlStatementSource="[elig].[sp_elig_load_stg_to_elig] ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                   <SQLTask:ParameterBinding
                     SQLTask:ParameterName="0"
@@ -1484,7 +1494,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId.PrecedenceConstraints[Constraint]"
               DTS:CreationName=""
-              DTS:DTSID="{01295B86-FA08-4911-AC77-49C7DA5721B5}"
+              DTS:DTSID="{D9A5044C-7C30-41AF-91D0-2DEE710C2A50}"
               DTS:From="Package\Process Files for strClientCode\For Each FileTrackId\mstrElig load SQL Task"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint"
@@ -1492,7 +1502,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId.PrecedenceConstraints[Constraint 1]"
               DTS:CreationName=""
-              DTS:DTSID="{72EF5B7C-6AF3-424A-93D3-FDDA3C6FFB20}"
+              DTS:DTSID="{0DE6D4D0-38C1-429B-8727-0338689E3000}"
               DTS:From="Package\Process Files for strClientCode\For Each FileTrackId\Data Flow Task Error file"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 1"
@@ -1500,7 +1510,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId.PrecedenceConstraints[Constraint 10]"
               DTS:CreationName=""
-              DTS:DTSID="{D3A9E27E-26AA-4318-95F6-99229C0E67AB}"
+              DTS:DTSID="{69114295-FE92-4429-AF02-7829B4455E0A}"
               DTS:From="Package\Process Files for strClientCode\For Each FileTrackId\Execute SQL update statuscode Err"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 10"
@@ -1508,7 +1518,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId.PrecedenceConstraints[Constraint 11]"
               DTS:CreationName=""
-              DTS:DTSID="{768B54F1-26DE-4E95-A77C-7C43256B81B3}"
+              DTS:DTSID="{363715D8-CB51-456A-9761-A803D559B909}"
               DTS:From="Package\Process Files for strClientCode\For Each FileTrackId\Execute SQL update statuscode Stats"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 11"
@@ -1516,7 +1526,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId.PrecedenceConstraints[Constraint 12]"
               DTS:CreationName=""
-              DTS:DTSID="{C1A09D75-7B5F-412B-9A6A-26C9DFA8FC68}"
+              DTS:DTSID="{ED2022FE-BBB9-4C72-9414-7480AC5B255B}"
               DTS:From="Package\Process Files for strClientCode\For Each FileTrackId\Data Flow Task ACK"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 12"
@@ -1524,7 +1534,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId.PrecedenceConstraints[Constraint 2]"
               DTS:CreationName=""
-              DTS:DTSID="{A3A54DA1-0F05-474E-A240-6D22296B1A09}"
+              DTS:DTSID="{7730ED8C-B685-4DA1-8772-107C5BABF9AA}"
               DTS:EvalOp="3"
               DTS:Expression="@[User::OutFTPFlag] == &quot;Y&quot;"
               DTS:From="Package\Process Files for strClientCode\For Each FileTrackId\Execute SQL update statuscode ACK"
@@ -1534,7 +1544,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId.PrecedenceConstraints[Constraint 3]"
               DTS:CreationName=""
-              DTS:DTSID="{61787513-230E-4748-B433-052C668781A3}"
+              DTS:DTSID="{FE9C5EDE-2F59-428F-BEEB-4AEB6392F931}"
               DTS:From="Package\Process Files for strClientCode\For Each FileTrackId\Execute winscp to upload ACK file"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 3"
@@ -1542,7 +1552,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId.PrecedenceConstraints[Constraint 4]"
               DTS:CreationName=""
-              DTS:DTSID="{C73E4508-AEAB-47E4-A483-2A36208843C9}"
+              DTS:DTSID="{8DCA46DA-31A7-4E4A-9319-F1BBFE639C9F}"
               DTS:From="Package\Process Files for strClientCode\For Each FileTrackId\Data Flow Task ACK"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 4"
@@ -1550,7 +1560,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId.PrecedenceConstraints[Constraint 5]"
               DTS:CreationName=""
-              DTS:DTSID="{98AD98B0-7004-4669-A350-5D8AC8CFE060}"
+              DTS:DTSID="{98A4AE5C-F420-458B-B2E6-52134752F0E3}"
               DTS:EvalOp="3"
               DTS:Expression="@[User::ErrOutFTPFlag]==&quot;Y&quot;"
               DTS:From="Package\Process Files for strClientCode\For Each FileTrackId\mstrElig load SQL Task"
@@ -1560,7 +1570,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId.PrecedenceConstraints[Constraint 6]"
               DTS:CreationName=""
-              DTS:DTSID="{B86B8483-6ECA-4038-BCF0-6CDBDBDB3E92}"
+              DTS:DTSID="{331CB2AF-FD42-465D-9D39-B4EAF4B3158F}"
               DTS:From="Package\Process Files for strClientCode\For Each FileTrackId\Execute winscp to upload ERR file"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 6"
@@ -1568,7 +1578,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId.PrecedenceConstraints[Constraint 7]"
               DTS:CreationName=""
-              DTS:DTSID="{C3CE1E0F-EAB0-4316-BBE9-1B23ED8CD241}"
+              DTS:DTSID="{000FFF6C-9654-4744-AA32-88B0834829D1}"
               DTS:From="Package\Process Files for strClientCode\For Each FileTrackId\Data Flow Task Stats"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 7"
@@ -1576,7 +1586,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId.PrecedenceConstraints[Constraint 8]"
               DTS:CreationName=""
-              DTS:DTSID="{14B705D9-1452-41D4-892F-CE20507E0D4D}"
+              DTS:DTSID="{6F7D0BD4-8259-467B-9E76-0A4227A92E7B}"
               DTS:From="Package\Process Files for strClientCode\For Each FileTrackId\Execute winscp to upload Stats file"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint 8"
@@ -1584,7 +1594,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode\For Each FileTrackId.PrecedenceConstraints[Constraint 9]"
               DTS:CreationName=""
-              DTS:DTSID="{BB5FDFD3-424F-4291-85F6-7CC8A3564889}"
+              DTS:DTSID="{85F3B79E-00AF-4CA5-9C9A-F80F7F19F8FB}"
               DTS:EvalOp="3"
               DTS:Expression="@[User::StatOutFTPFlag]==&quot;Y&quot;"
               DTS:From="Package\Process Files for strClientCode\For Each FileTrackId\mstrElig load SQL Task"
@@ -1595,98 +1605,98 @@
           <DTS:ForEachVariableMappings>
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{FCDA1D83-761C-4402-B825-D5F49839F010}"
-              DTS:ObjectName="{FCDA1D83-761C-4402-B825-D5F49839F010}"
+              DTS:DTSID="{B41E1596-3168-4C4A-9180-6651C02DD018}"
+              DTS:ObjectName="{B41E1596-3168-4C4A-9180-6651C02DD018}"
               DTS:ValueIndex="0"
               DTS:VariableName="User::intFileInfoId" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{C63AAAEC-7A05-48D5-9210-C68408E180EF}"
-              DTS:ObjectName="{C63AAAEC-7A05-48D5-9210-C68408E180EF}"
+              DTS:DTSID="{41D7C9C1-BBC1-456D-BE67-7C951636F12A}"
+              DTS:ObjectName="{41D7C9C1-BBC1-456D-BE67-7C951636F12A}"
               DTS:ValueIndex="1"
               DTS:VariableName="User::intFileTrackId" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{4876798F-D52C-4142-849F-1137273728B6}"
-              DTS:ObjectName="{4876798F-D52C-4142-849F-1137273728B6}"
+              DTS:DTSID="{7BA6B685-FB63-446E-B50F-A797FEABF95C}"
+              DTS:ObjectName="{7BA6B685-FB63-446E-B50F-A797FEABF95C}"
               DTS:ValueIndex="2"
               DTS:VariableName="User::strFileName" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{BCCB3FB8-A68D-4762-B3C4-C93EA58510E4}"
-              DTS:ObjectName="{BCCB3FB8-A68D-4762-B3C4-C93EA58510E4}"
+              DTS:DTSID="{7E8D0377-3325-4845-B3D0-49417C437653}"
+              DTS:ObjectName="{7E8D0377-3325-4845-B3D0-49417C437653}"
               DTS:ValueIndex="3"
               DTS:VariableName="User::strSourceFolder" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{43255E43-8393-4ABD-8221-CC61C8E35675}"
-              DTS:ObjectName="{43255E43-8393-4ABD-8221-CC61C8E35675}"
+              DTS:DTSID="{8CE775D3-40E2-40FA-8402-F059FE87AC04}"
+              DTS:ObjectName="{8CE775D3-40E2-40FA-8402-F059FE87AC04}"
               DTS:ValueIndex="4"
               DTS:VariableName="User::strFileExtension" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{70C87C00-B7A1-4E1C-96C8-CE97E7A878E4}"
-              DTS:ObjectName="{70C87C00-B7A1-4E1C-96C8-CE97E7A878E4}"
+              DTS:DTSID="{8EECA958-57D2-4A84-9F48-CD65F10E7AB7}"
+              DTS:ObjectName="{8EECA958-57D2-4A84-9F48-CD65F10E7AB7}"
               DTS:ValueIndex="5"
               DTS:VariableName="User::strFileDelimiter" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{58DAA597-FC55-4844-AC6A-F1AE8A30B1C0}"
-              DTS:ObjectName="{58DAA597-FC55-4844-AC6A-F1AE8A30B1C0}"
+              DTS:DTSID="{BB0930CC-2515-42DA-B3F3-B8E5525E99A2}"
+              DTS:ObjectName="{BB0930CC-2515-42DA-B3F3-B8E5525E99A2}"
               DTS:ValueIndex="6"
               DTS:VariableName="User::strELIG_ACK_FileName" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{57A95A03-78E2-4B68-9021-AF46E360C7F7}"
-              DTS:ObjectName="{57A95A03-78E2-4B68-9021-AF46E360C7F7}"
+              DTS:DTSID="{F5EFA26C-ADBC-49D3-86C3-75842C3C9E51}"
+              DTS:ObjectName="{F5EFA26C-ADBC-49D3-86C3-75842C3C9E51}"
               DTS:ValueIndex="7"
               DTS:VariableName="User::strEAckfromlocation" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{2355818C-D5AB-4763-B857-56AD63E3933F}"
-              DTS:ObjectName="{2355818C-D5AB-4763-B857-56AD63E3933F}"
+              DTS:DTSID="{C2EB29D1-E5FA-4438-AFDA-461BBE5E058F}"
+              DTS:ObjectName="{C2EB29D1-E5FA-4438-AFDA-461BBE5E058F}"
               DTS:ValueIndex="8"
               DTS:VariableName="User::WinSCPDestinationPath" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{B8BFBC7C-8BBA-46A5-892D-5466FC33FD0D}"
-              DTS:ObjectName="{B8BFBC7C-8BBA-46A5-892D-5466FC33FD0D}"
+              DTS:DTSID="{EA346D17-9309-4B89-9E66-0EBE803DDABC}"
+              DTS:ObjectName="{EA346D17-9309-4B89-9E66-0EBE803DDABC}"
               DTS:ValueIndex="9"
               DTS:VariableName="User::OutFTPFlag" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{6F770E86-B1FC-4274-B658-D592D6488705}"
-              DTS:ObjectName="{6F770E86-B1FC-4274-B658-D592D6488705}"
+              DTS:DTSID="{9027879B-1E4A-44D4-ADF0-DA27CE470466}"
+              DTS:ObjectName="{9027879B-1E4A-44D4-ADF0-DA27CE470466}"
               DTS:ValueIndex="10"
               DTS:VariableName="User::strELIG_ERR_FileName" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{9544BC83-08F8-4CF5-837D-1061015B39E4}"
-              DTS:ObjectName="{9544BC83-08F8-4CF5-837D-1061015B39E4}"
+              DTS:DTSID="{98D4405C-F06F-44EE-AB97-D2E26E183BD7}"
+              DTS:ObjectName="{98D4405C-F06F-44EE-AB97-D2E26E183BD7}"
               DTS:ValueIndex="11"
               DTS:VariableName="User::strEErrfromlocation" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{7D52B863-3A49-44B5-BF52-1EEACB199B33}"
-              DTS:ObjectName="{7D52B863-3A49-44B5-BF52-1EEACB199B33}"
+              DTS:DTSID="{178FB0E8-E9F2-4731-8E48-9CAEFB885B80}"
+              DTS:ObjectName="{178FB0E8-E9F2-4731-8E48-9CAEFB885B80}"
               DTS:ValueIndex="13"
               DTS:VariableName="User::ErrOutFTPFlag" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{09CF08A0-0E84-4185-99E8-573C6AE54343}"
-              DTS:ObjectName="{09CF08A0-0E84-4185-99E8-573C6AE54343}"
+              DTS:DTSID="{1332BA46-18BE-460A-A5D2-4F7563CB7CFE}"
+              DTS:ObjectName="{1332BA46-18BE-460A-A5D2-4F7563CB7CFE}"
               DTS:ValueIndex="14"
               DTS:VariableName="User::strELIG_STAT_FileName" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{A509CB2F-D6D2-47A6-B780-EA18E348719C}"
-              DTS:ObjectName="{A509CB2F-D6D2-47A6-B780-EA18E348719C}"
+              DTS:DTSID="{B5DB6788-2F8A-449F-BFFF-0A6BC120398C}"
+              DTS:ObjectName="{B5DB6788-2F8A-449F-BFFF-0A6BC120398C}"
               DTS:ValueIndex="15"
               DTS:VariableName="User::strStatfromlocation" />
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{87306C9C-B33E-468C-9AD7-9B4259A8D355}"
-              DTS:ObjectName="{87306C9C-B33E-468C-9AD7-9B4259A8D355}"
+              DTS:DTSID="{B437F384-2E00-4C61-881D-8D44D8C35274}"
+              DTS:ObjectName="{B437F384-2E00-4C61-881D-8D44D8C35274}"
               DTS:ValueIndex="17"
               DTS:VariableName="User::StatOutFTPFlag" />
           </DTS:ForEachVariableMappings>
@@ -1695,7 +1705,7 @@
           DTS:refId="Package\Process Files for strClientCode\Get FileTrackId for ClientCode"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{6B25B9C8-6922-44BD-A2CA-AD4EB22552AA}"
+          DTS:DTSID="{6D91B776-1A30-4824-A9AF-3EAD797FBC20}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Get FileTrackId for ClientCode"
@@ -1704,7 +1714,7 @@
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
+              SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
               SQLTask:SqlStatementSource="select  top 1&#xA;    ft.FileinfoId as FileinfoId,&#xA;    ft.FileTrackID as FileTrackId,&#xA;    ft.FileName as FileName,&#xA;    fi.ToLocation as SourceFolder,&#xA;    fi.FileExtension as FileExtension,&#xA;    fi.FileFormatValue as FileDelimiter,&#xA;&#xA;case when ELIG_ACK_FileName is null then 'Elig_Ack_' + ft.FileName else replace([elig].[GetOutFileName](ft.FileName,ELIG_ACK_FileName),fi.FileExtension,AckFileExtension) end as ELIG_ACK_FileName,&#xA;case when EAck.fromlocation is null then fi.ToLocation +'Archive\' else EAck.fromlocation end as EAckfromlocation,&#xA; isnull(EAck.tolocation,'') as EAcktolocation,&#xA;isnull(EAck.isAckFileToFTP,'N') as EAckOutFTPFlag,&#xA;&#xA;case when ELIG_ERR_FileName is null then 'Elig_Err_' + ft.FileName else replace([elig].[GetOutFileName](ft.FileName,ELIG_ERR_FileName),fi.FileExtension,ErrFileExtension) end as ELIG_ERR_FileName,&#xA;case when EErr.fromlocation is null then fi.ToLocation +'Archive\' else EErr.fromlocation end as EErrfromlocation,&#xA; isnull(EErr.tolocation,'') as EErrtolocation,&#xA;isnull(EErr.isAckFileToFTP,'N') as EErrOutFTPFlag,&#xA;&#xA;case when ELIG_STAT_FileName is null then 'Elig_Stat_' + ft.FileName else replace([elig].[GetOutFileName](ft.FileName,ELIG_STAT_FileName),fi.FileExtension,StatFileExtension) end as ELIG_STAT_FileName,&#xA;case when stat.fromlocation is null then fi.ToLocation +'Archive\' else stat.fromlocation end as statfromlocation,&#xA; isnull(stat.tolocation,'') as Stattolocation,&#xA;isnull(stat.isAckFileToFTP,'N') as StatOutFTPFlag&#xA;&#xA;&#xA;from elig.filetrack ft&#xA;join elig.fileinfo fi on ft.FileInfoID = fi.FileInfoId&#xA;left join ( select filename as ELIG_ACK_FileName,clientcode,snapshotflag,fromlocation,tolocation,isAckFileToFTP,FileExtension as AckFileExtension&#xA;            from elig.fileinfo&#xA;            where 1=1&#xA;            and filetype = 'ELIG_ACK'&#xA;            and direction = 'OUT'&#xA;            and isAckFileToFTP = 'Y'&#xA;) EAck on fi.clientcode = EAck.clientcode and fi.snapshotflag = EAck.snapshotflag&#xA;left join ( select filename as ELIG_ERR_FileName,clientcode,snapshotflag,fromlocation,tolocation,isAckFileToFTP,FileExtension as ERRFileExtension&#xA;            from elig.fileinfo&#xA;            where 1=1&#xA;            and filetype = 'ELIG_ERR'&#xA;            and direction = 'OUT'&#xA;            and isAckFileToFTP = 'Y'&#xA;) EErr on fi.clientcode = EErr.clientcode and fi.snapshotflag = EErr.snapshotflag&#xA;left join ( select filename as ELIG_STAT_FileName,clientcode,snapshotflag,fromlocation,tolocation,isAckFileToFTP,FileExtension as STATFileExtension&#xA;            from elig.fileinfo&#xA;            where 1=1&#xA;            and filetype = 'ELIG_STAT'&#xA;            and direction = 'OUT'&#xA;            and isAckFileToFTP = 'Y'&#xA;) stat on fi.clientcode = stat.clientcode and fi.snapshotflag = stat.snapshotflag&#xA;&#xA;where 1=1&#xA;and ft.ClientCode =?&#xA;and fi.FileType = ?&#xA;and fi.SnapshotFlag = ?&#xA; and fi.direction = 'IN'&#xA;and ft.StatusCode = '300'&#xA;order by ft.FileInfoID,ft.FileTrackID"
               SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ResultBinding
@@ -1736,7 +1746,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Process Files for strClientCode.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{34DD03D5-9027-41A5-BD5F-F1FCB9DF8AD0}"
+          DTS:DTSID="{7650F7FC-8DE8-499C-A407-FEEB09B9C0CF}"
           DTS:From="Package\Process Files for strClientCode\Get FileTrackId for ClientCode"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
@@ -1746,7 +1756,7 @@
         <DTS:EventHandler
           DTS:refId="Package\Process Files for strClientCode.EventHandlers[OnError]"
           DTS:CreationName="OnError"
-          DTS:DTSID="{1943C47A-D8EF-4116-9C33-3F3BBEB2AFB5}"
+          DTS:DTSID="{D7B39EC0-55BB-47E5-9B7E-619BC8463EB1}"
           DTS:EventID="0"
           DTS:EventName="OnError"
           DTS:LocaleID="-1">
@@ -1754,7 +1764,7 @@
             <DTS:Variable
               DTS:CreationName=""
               DTS:Description="The propagate property of the event"
-              DTS:DTSID="{037B48C5-2A0F-4904-9431-E86523E585CD}"
+              DTS:DTSID="{17F557A6-FFBD-4EB1-8837-E80DC6210FB2}"
               DTS:IncludeInDebugDump="6789"
               DTS:Namespace="System"
               DTS:ObjectName="Propagate">
@@ -1767,7 +1777,7 @@
               DTS:refId="Package\Process Files for strClientCode.EventHandlers[OnError]\Write to process detail talbe"
               DTS:CreationName="Microsoft.ExecuteSQLTask"
               DTS:Description="Execute SQL Task"
-              DTS:DTSID="{3BDEF360-A1B8-475C-9F22-E6611795AAF4}"
+              DTS:DTSID="{94FA7BA8-A4C6-491F-B691-13E07C2CA13F}"
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="Write to process detail talbe">
@@ -1776,15 +1786,15 @@
                 DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'I','E','Fatal Error " + (DT_WSTR,20)@[System::ErrorCode] + " " + REPLACE(@[System::ErrorDescription] , "'","") + "'"</DTS:PropertyExpression>
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-                  SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','I','E','Fatal Error 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+                  SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','I','E','Fatal Error 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
             <DTS:Executable
               DTS:refId="Package\Process Files for strClientCode.EventHandlers[OnError]\write to process summary table"
               DTS:CreationName="Microsoft.ExecuteSQLTask"
               DTS:Description="Execute SQL Task"
-              DTS:DTSID="{ACF66237-3BE1-4154-A8E1-D1AA33791F19}"
+              DTS:DTSID="{921131F9-B874-4AC5-B720-82C4E2F6C8FC}"
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="write to process summary table">
@@ -1793,8 +1803,8 @@
                 DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'U','E','Error " + (DT_WSTR,20)@[System::ErrorCode] + " " + REPLACE(@[System::ErrorDescription] , "'","") + "'"</DTS:PropertyExpression>
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-                  SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','U','E','Error 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+                  SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','U','E','Error 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
           </DTS:Executables>
@@ -1802,7 +1812,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
               DTS:CreationName=""
-              DTS:DTSID="{121A53B8-98A8-43EB-948B-1C06A7E104E0}"
+              DTS:DTSID="{915E0473-36F7-4E4A-BCFA-02C03E75779F}"
               DTS:From="Package\Process Files for strClientCode.EventHandlers[OnError]\write to process summary table"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint"
@@ -1812,7 +1822,7 @@
         <DTS:EventHandler
           DTS:refId="Package\Process Files for strClientCode.EventHandlers[OnPreExecute]"
           DTS:CreationName="OnPreExecute"
-          DTS:DTSID="{6F916A8E-3BE6-4E87-8087-F2822FD88DE2}"
+          DTS:DTSID="{2B5B0DC8-32DA-4F79-9BDB-B2EE6FD0552B}"
           DTS:EventID="0"
           DTS:EventName="OnPreExecute"
           DTS:LocaleID="-1">
@@ -1820,7 +1830,7 @@
             <DTS:Variable
               DTS:CreationName=""
               DTS:Description="The propagate property of the event"
-              DTS:DTSID="{CA70BE44-4841-4507-9A15-E92509DB7286}"
+              DTS:DTSID="{6249C15C-55FD-4F19-9A8E-AD1277E6B00E}"
               DTS:IncludeInDebugDump="6789"
               DTS:Namespace="System"
               DTS:ObjectName="Propagate">
@@ -1833,7 +1843,7 @@
               DTS:refId="Package\Process Files for strClientCode.EventHandlers[OnPreExecute]\Write to process detail talbe"
               DTS:CreationName="Microsoft.ExecuteSQLTask"
               DTS:Description="Execute SQL Task"
-              DTS:DTSID="{6E9229F9-7CCA-41FF-9269-C18432E104A9}"
+              DTS:DTSID="{3249F3AB-90D0-4079-AD27-036D69AC825D}"
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="Write to process detail talbe">
@@ -1842,15 +1852,15 @@
                 DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'I','R','DL files for "  + @[User::strClientCode] +" "+   @[System::SourceName]     +"'"</DTS:PropertyExpression>
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-                  SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','I','R','DL files for H223 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+                  SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','I','R','DL files for H223 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
             <DTS:Executable
               DTS:refId="Package\Process Files for strClientCode.EventHandlers[OnPreExecute]\write to process summary table"
               DTS:CreationName="Microsoft.ExecuteSQLTask"
               DTS:Description="Execute SQL Task"
-              DTS:DTSID="{4D3D4494-F8D8-499E-A73C-811D30FD7BA2}"
+              DTS:DTSID="{DC56C000-79C4-4812-B8E9-A898D359CABA}"
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="write to process summary table">
@@ -1859,8 +1869,8 @@
                 DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'U','R','DL files for " +  @[User::strClientCode] +"'"</DTS:PropertyExpression>
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-                  SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','U','R','DL files for H223'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+                  SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','U','R','DL files for H223'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
           </DTS:Executables>
@@ -1868,7 +1878,7 @@
             <DTS:PrecedenceConstraint
               DTS:refId="Package\Process Files for strClientCode.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
               DTS:CreationName=""
-              DTS:DTSID="{16C76B8D-9E1C-4B56-8980-CE43EE97CD77}"
+              DTS:DTSID="{9FC02754-AB7F-4075-B457-0FBCC29759AD}"
               DTS:From="Package\Process Files for strClientCode.EventHandlers[OnPreExecute]\write to process summary table"
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint"
@@ -1881,7 +1891,7 @@
       DTS:refId="Package\Process Monitor Appication Start"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{16C73B14-D141-42AE-9AFC-18D6558252FB}"
+      DTS:DTSID="{C0E03759-EF5F-49A5-B8C4-75DD474C7229}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
       DTS:ObjectName="Process Monitor Appication Start">
@@ -1892,7 +1902,7 @@
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:Disabled="True"
-          DTS:DTSID="{18286B0F-C373-4BC7-8864-A693405EDAD7}"
+          DTS:DTSID="{ABE163DF-76C9-43AA-90CD-E826013192F2}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:FailPackageOnFailure="True"
           DTS:LocaleID="-1"
@@ -1929,15 +1939,15 @@
             DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'D'"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-              SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','D'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+              SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','D'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Process Monitor Appication Start\Delete from Process Summary Tbl"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{0751AD45-BBE8-4500-856C-157313AC241B}"
+          DTS:DTSID="{4B330F82-4310-470B-8CC1-BD074D85AF6D}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:FailPackageOnFailure="True"
           DTS:LocaleID="-1"
@@ -1974,15 +1984,15 @@
             DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'D'"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-              SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','D'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+              SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','D'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Process Monitor Appication Start\Write To Process Detail Tbl"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{366D4472-7AA5-4BAA-9FA2-FB3D4927E326}"
+          DTS:DTSID="{A601C7C3-F788-4A20-AC3A-FD89C08B1C43}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:FailPackageOnFailure="True"
           DTS:LocaleID="-1"
@@ -2019,15 +2029,15 @@
             DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'I','I','Startup: Idle'"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-              SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','I','I','Startup: Idle'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+              SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','I','I','Startup: Idle'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Process Monitor Appication Start\Write To Process Summary Tbl"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{9EB9ECBB-DB06-4B9E-B719-B5B2A6C5FD44}"
+          DTS:DTSID="{32C9DAC0-2D92-4890-8723-6AC1A1084AFB}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:FailPackageOnFailure="True"
           DTS:LocaleID="-1"
@@ -2064,8 +2074,8 @@
             DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'I','I','Idle'"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-              SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','I','I','Idle'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+              SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','I','I','Idle'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -2073,7 +2083,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Process Monitor Appication Start.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{3BA710AC-7377-4ABA-B595-5A3C8F41D828}"
+          DTS:DTSID="{1D7D3C30-718C-4C81-BEF1-6E83C21B3046}"
           DTS:From="Package\Process Monitor Appication Start\Delete from Process Summary Tbl"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
@@ -2081,7 +2091,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Process Monitor Appication Start.PrecedenceConstraints[Constraint 1]"
           DTS:CreationName=""
-          DTS:DTSID="{D975694B-C325-4FD4-AB18-1BD876498F98}"
+          DTS:DTSID="{ADFB0782-724D-4722-BCEA-162D6ECDAF10}"
           DTS:From="Package\Process Monitor Appication Start\Delete from Process Detail Tbl"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
@@ -2089,7 +2099,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Process Monitor Appication Start.PrecedenceConstraints[Constraint 2]"
           DTS:CreationName=""
-          DTS:DTSID="{29D2503F-F433-489E-A1E6-5D32B8F6D704}"
+          DTS:DTSID="{915F671D-D01E-48FC-B3B7-79F8DD1C2B3C}"
           DTS:From="Package\Process Monitor Appication Start\Write To Process Summary Tbl"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 2"
@@ -2100,7 +2110,7 @@
       DTS:refId="Package\Process Monitor Application End"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{1CD3845A-ECB5-4FDB-9814-38E2B3AED7D2}"
+      DTS:DTSID="{51BB9418-AD68-4A19-87F2-662FA38E556B}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
       DTS:ObjectName="Process Monitor Application End">
@@ -2110,7 +2120,7 @@
           DTS:refId="Package\Process Monitor Application End\Done, write To Process Detail Tbl"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{6EF2107F-4437-4100-91D0-A3F8B2E7D06F}"
+          DTS:DTSID="{5D250A7F-7BFD-4FFC-AC34-779443F21D0F}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:FailPackageOnFailure="True"
           DTS:LocaleID="-1"
@@ -2149,7 +2159,7 @@
             <DTS:EventHandler
               DTS:refId="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError]"
               DTS:CreationName="OnError"
-              DTS:DTSID="{2F45E4D1-CAAB-4380-99E6-7D64022E8ECC}"
+              DTS:DTSID="{C5F9A8A6-AF50-4236-9DB4-67D680B958CF}"
               DTS:EventID="-2139062144"
               DTS:EventName="OnError"
               DTS:LocaleID="-1">
@@ -2157,7 +2167,7 @@
                 <DTS:Variable
                   DTS:CreationName=""
                   DTS:Description="The propagate property of the event"
-                  DTS:DTSID="{C14511DF-B3D5-4FB7-956D-93F7817F6F58}"
+                  DTS:DTSID="{71BC2C1E-24ED-4254-8EB8-5DD6CC5CFAE8}"
                   DTS:IncludeInDebugDump="6789"
                   DTS:Namespace="System"
                   DTS:ObjectName="Propagate">
@@ -2170,7 +2180,7 @@
                   DTS:refId="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError]\Write To Job Detail Table"
                   DTS:CreationName="Microsoft.ExecuteSQLTask"
                   DTS:Description="Write To Job Detail Tbl"
-                  DTS:DTSID="{FDB354BD-3F9B-4B91-949D-187E89541973}"
+                  DTS:DTSID="{2E0132CA-E5BB-482F-9DE6-120B4597831A}"
                   DTS:ExecutableType="Microsoft.ExecuteSQLTask"
                   DTS:LocaleID="-1"
                   DTS:ObjectName="Write To Job Detail Table"
@@ -2180,15 +2190,15 @@
                     DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'I','E','Fatal Error: " + (DT_WSTR,20)@[System::ErrorCode]  + " " + @[System::ErrorDescription] + "'"</DTS:PropertyExpression>
                   <DTS:ObjectData>
                     <SQLTask:SqlTaskData
-                      SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-                      SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','I','E','Fatal Error: 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+                      SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','I','E','Fatal Error: 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
                   </DTS:ObjectData>
                 </DTS:Executable>
                 <DTS:Executable
                   DTS:refId="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError]\Write To Job Summary Table"
                   DTS:CreationName="Microsoft.ExecuteSQLTask"
                   DTS:Description="Execute SQL Task"
-                  DTS:DTSID="{959A37A8-DB16-4080-BA3D-C80A139DD094}"
+                  DTS:DTSID="{90AFF76D-41DA-46D7-948F-808F1358AC06}"
                   DTS:ExecutableType="Microsoft.ExecuteSQLTask"
                   DTS:LocaleID="-1"
                   DTS:ObjectName="Write To Job Summary Table"
@@ -2198,8 +2208,8 @@
                     DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'U','E','Error: " + (DT_WSTR,20)@[System::ErrorCode]  + " " + @[System::ErrorDescription] + "'"</DTS:PropertyExpression>
                   <DTS:ObjectData>
                     <SQLTask:SqlTaskData
-                      SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-                      SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','U','E','Error: 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+                      SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','U','E','Error: 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
                   </DTS:ObjectData>
                 </DTS:Executable>
               </DTS:Executables>
@@ -2207,7 +2217,7 @@
                 <DTS:PrecedenceConstraint
                   DTS:refId="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
                   DTS:CreationName=""
-                  DTS:DTSID="{C8D34CAE-BD5C-43C1-AEA5-61A3D0F58565}"
+                  DTS:DTSID="{DF878359-C90A-4E57-B44C-09B80AD9B811}"
                   DTS:From="Package\Process Monitor Application End\Done, write To Process Detail Tbl.EventHandlers[OnError]\Write To Job Summary Table"
                   DTS:LogicalAnd="True"
                   DTS:ObjectName="Constraint"
@@ -2217,15 +2227,15 @@
           </DTS:EventHandlers>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-              SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','I','D','Done: with 0 Non-Fatal Errors '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+              SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','I','D','Done: with 0 Non-Fatal Errors '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Process Monitor Application End\Done, write To Process Summary Tbl"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{FE645007-C9F9-4C61-9057-78E6C832933C}"
+          DTS:DTSID="{E2DDA97B-7858-4B0C-BA9F-BA56CF983A29}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:FailPackageOnFailure="True"
           DTS:LocaleID="-1"
@@ -2264,7 +2274,7 @@
             <DTS:EventHandler
               DTS:refId="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError]"
               DTS:CreationName="OnError"
-              DTS:DTSID="{193C6F44-3653-4EE7-B832-8987B7CA65F0}"
+              DTS:DTSID="{DA683E6F-494D-42A4-ACF9-D9C2012F942F}"
               DTS:EventID="126438876"
               DTS:EventName="OnError"
               DTS:LocaleID="-1">
@@ -2272,7 +2282,7 @@
                 <DTS:Variable
                   DTS:CreationName=""
                   DTS:Description="The propagate property of the event"
-                  DTS:DTSID="{CEB4A3F7-2F88-4502-93E9-5E6C2027037D}"
+                  DTS:DTSID="{C23D084E-9E3F-4DAB-B7CB-9C6FDDD51C6C}"
                   DTS:IncludeInDebugDump="6789"
                   DTS:Namespace="System"
                   DTS:ObjectName="Propagate">
@@ -2285,7 +2295,7 @@
                   DTS:refId="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError]\Write To Job Detail Table"
                   DTS:CreationName="Microsoft.ExecuteSQLTask"
                   DTS:Description="Write To Job Detail Tbl"
-                  DTS:DTSID="{B93856D3-B5D3-4658-8CC1-F64CE960A342}"
+                  DTS:DTSID="{F3BB7118-CC25-4C4C-A1AA-4D9C3627FECD}"
                   DTS:ExecutableType="Microsoft.ExecuteSQLTask"
                   DTS:LocaleID="-1"
                   DTS:ObjectName="Write To Job Detail Table"
@@ -2295,15 +2305,15 @@
                     DTS:Name="SqlStatementSource">@[User::strJobDetail] + ",'I','E','Fatal Error: " + (DT_WSTR,20)@[System::ErrorCode]  + " " + @[System::ErrorDescription] + "'"</DTS:PropertyExpression>
                   <DTS:ObjectData>
                     <SQLTask:SqlTaskData
-                      SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-                      SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','I','E','Fatal Error: 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+                      SQLTask:SqlStatementSource="exec elig.sp_process_detail '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','I','E','Fatal Error: 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
                   </DTS:ObjectData>
                 </DTS:Executable>
                 <DTS:Executable
                   DTS:refId="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError]\Write To Job Summary Table"
                   DTS:CreationName="Microsoft.ExecuteSQLTask"
                   DTS:Description="Execute SQL Task"
-                  DTS:DTSID="{62630689-2FEE-455D-B19C-EC8131286688}"
+                  DTS:DTSID="{A4AE5D04-BE05-411F-B563-0B7843C3AE70}"
                   DTS:ExecutableType="Microsoft.ExecuteSQLTask"
                   DTS:LocaleID="-1"
                   DTS:ObjectName="Write To Job Summary Table"
@@ -2313,8 +2323,8 @@
                     DTS:Name="SqlStatementSource">@[User::strJobSummary] + ",'U','E','Error: " + (DT_WSTR,20)@[System::ErrorCode]  + " " + @[System::ErrorDescription] + "'"</DTS:PropertyExpression>
                   <DTS:ObjectData>
                     <SQLTask:SqlTaskData
-                      SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-                      SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','U','E','Error: 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                      SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+                      SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','U','E','Error: 0 '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
                   </DTS:ObjectData>
                 </DTS:Executable>
               </DTS:Executables>
@@ -2322,7 +2332,7 @@
                 <DTS:PrecedenceConstraint
                   DTS:refId="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
                   DTS:CreationName=""
-                  DTS:DTSID="{FAA4FC92-3D95-49C9-A7A9-BFB87F1E920F}"
+                  DTS:DTSID="{99E02C1E-6838-4913-A1DE-00AE9EB87C68}"
                   DTS:From="Package\Process Monitor Application End\Done, write To Process Summary Tbl.EventHandlers[OnError]\Write To Job Summary Table"
                   DTS:LogicalAnd="True"
                   DTS:ObjectName="Constraint"
@@ -2332,8 +2342,8 @@
           </DTS:EventHandlers>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{27F3E8C9-080F-45A6-9C6A-DA2E31371E0B}"
-              SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NB-HQ-LT116','U','D','Done: with 0 Non-Fatal Errors '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{E16D2086-2463-4B74-8D7B-C6A015ABE64B}"
+              SQLTask:SqlStatementSource="exec elig.sp_process_summary '23_BCBSRI_H223_DELTA_StgToMstr','NHETSTSQL1','U','D','Done: with 0 Non-Fatal Errors '" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -2341,7 +2351,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Process Monitor Application End.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{C7AA92C8-0D11-41FE-889F-9481BA53EBDB}"
+          DTS:DTSID="{B6BE1B64-8A46-4FB9-B684-A6BDEFB3A7C5}"
           DTS:From="Package\Process Monitor Application End\Done, write To Process Summary Tbl"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
@@ -2353,7 +2363,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{4300F9A5-A349-4D9F-B47A-C1752A2F87E8}"
+      DTS:DTSID="{315ABA26-F9FB-4696-ACA6-E7C0D5FB0C6C}"
       DTS:From="Package\Process Files for strClientCode"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -2361,7 +2371,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{59036C5F-C1EB-4CA6-884E-12642B5EA0BC}"
+      DTS:DTSID="{5E57FD28-2A25-4B31-A84E-1B63B46FEAEB}"
       DTS:From="Package\Process Monitor Appication Start"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
